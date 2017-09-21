@@ -14,7 +14,6 @@ class HiglassUI extends Component {
 		        { bounded: true },
 		        function (api) {
 		          window.hgApi = api;
-		          console.log("hgAPI:", window.hgApi);
 		        }
       		)}
   		  </div>

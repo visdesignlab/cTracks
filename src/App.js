@@ -30,14 +30,12 @@ class App extends Component {
 //    HiglassAPI.fetchViewConfig()
       .then(function(APIInfo) {
         console.log("APIInfo:", APIInfo);
-        console.log("APIInfo_Type:", typeof(APIInfo));
         this.setState(function () {
           return {
             APIInfo: APIInfo
           }
         })
       }.bind(this));
-    console.log("APIInfo2:", this.state.APIInfo);
   }
 
   render() {

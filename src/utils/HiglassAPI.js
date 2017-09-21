@@ -6,9 +6,6 @@ export default {
 		return window.hgApi.get('viewConfig')
         .then(function (viewConfig) {
           var vc = JSON.parse(viewConfig);
-          console.log('viewConfig:', vc);
-          console.log('viewUID:', vc.views[0].uid);
-          console.log('viewUID_type:', typeof (vc.views[0].uid));
           return vc.views[0].uid;
         });
 	},
@@ -23,15 +20,13 @@ export default {
 	 			return window.hgApi.get('location',viewUID);
 		 	})
 		 	.then (function (location) {
-	 		console.log('location',location);
-	 		return location;
+	 			return location;
 		 	});
 	},
 	// get current location (needs ViewUID as an input)
 	fetchLocation: function(viewUID) {
 		return window.hgApi.get('location',viewUID)
 		 	.then (function (location) {
-		 		console.log('location',location);
 		 		return location;
 		 	});
 	}

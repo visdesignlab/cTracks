@@ -1,5 +1,36 @@
-.CNVTable {
-	padding-left:50px;
-  padding-top:20px;
-  background: green;
+
+.CNVInfo {
+	margin: 20px;
+}
+
+
+.Table table {
+	border-collapse: collapse;
+}
+
+.Table tbody {
+  height: 200px;
+  overflow: auto;
+}
+
+.Table th {
+  background: #8a8989;
+  color: white;
+  padding: 5px;
+  border: 1px solid #ccc; 
+  text-align: center; 
+}
+
+.Table td { 
+  padding: 5px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+
+.Table tr:nth-child(even) { 
+  background: #ecefef;
+}
+
+.Table tr:hover {
+  background-color: #ddd;
 }
