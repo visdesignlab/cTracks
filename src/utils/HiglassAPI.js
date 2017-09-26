@@ -30,7 +30,19 @@ export default {
 		 	.then (function (location) {
 		 		return location;
 		 	});
+	},
+/*	onLocationChange: function (callback, callbackId) {
+		return window.hgApi.get('viewConfig')
+      .then(function (viewConfig) {
+        var vc = JSON.parse(viewConfig);
+        console.log('viewUID:',vc.views[0].uid);
+        return vc.views[0].uid;
+      })
+      .then (function (viewUID) {
+      	return window.hgApi.on('location',callback, viewUID, callbackId);
+			});
 	}
+	*/
 /*	onLocationChange: function (viewUID, callback, callbackId) {
 		return window.hgApi.on('location',viewUID)
 		console.log('Yuuhuu we are over here', yeahCool);

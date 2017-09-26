@@ -16,34 +16,38 @@ class App extends Component {
     this.state = {
       APIInfo: null,
     };
-    this.UpdateAPIInfo = this.UpdateAPIInfo.bind(this);
+    this.UpdateLocation = this.UpdateLocation.bind(this);
   }
 
   componentDidMount() {
-    this.UpdateAPIInfo();
-    //this.UpdateAPIInfo2();
+    this.UpdateLocation();
+    //this.UpdateLocation2();
   }
 
-  UpdateAPIInfo() {
+  UpdateAPIInfo(location) {
+    console.log("APIInfo:", location);
+    this.setState(function () {
+      return {
+        APIInfo: location
+      }
+    })
+  }
+
+  UpdateLocation() {
     console.log("UpdateAPIInfo...");
     //HiglassAPI.fetchLocation('aa')
     HiglassAPI.fetchLocationAuto()
-      .then(function(APIInfo) {
-        console.log("APIInfo:", APIInfo);
-        this.setState(function () {
-          return {
-            APIInfo: APIInfo
-          }
-        })
+      .then(function(location) {
+        this.UpdateAPIInfo(location);
       }.bind(this));
   }
 
-  UpdateAPIInfo2() {
+  UpdateLocation2() {
     console.log("UpdateAPIInfo2...");
-/*    var ViewID = HiglassAPI.fetchViewConfig()
+    var ViewID = HiglassAPI.fetchViewConfig()
       .then((ViewID) => {return ViewID});
-    console.log("ViewID", ViewID);
-
+    console.log("ViewID:", ViewID);
+/*
     window.hgApi.on('location', (info) => {
       this.setState({APIInfo: info});
       console.log('We are over here:', info);
@@ -58,7 +62,7 @@ class App extends Component {
       console.log('We are over here:', info);
     }, 'aa' , function (id) {
       console.log('Second Listener ID:', id);
-      });      
+      });
   }
 
   render() {
@@ -70,7 +74,7 @@ class App extends Component {
           <HiglassUI ViewConfig = {MyViewConfig} />
         </div>
         <div className = "Button">
-          <button onClick={this.UpdateAPIInfo}>UpdateTable</button>
+          <button onClick={this.UpdateLocation}>UpdateTable</button>
         </div>
         <div>
           {this.state.APIInfo && <CNVTable location={this.state.APIInfo} />}
