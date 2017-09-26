@@ -1,19 +1,27 @@
 
-.CNVInfo {
-	margin: 20px;
+.CNVTable {
+	margin-left: 50px;
 }
 
+ul {
+  display: flex;
+}
 
-.Table table {
+li {
+    margin-right: 40px;
+}
+
+.CNVTable table {
 	border-collapse: collapse;
 }
 
-.Table tbody {
-  height: 200px;
+.CNVTable tbody {
+  margin: 20px;
+  height: 100px;
   overflow: auto;
 }
 
-.Table th {
+.CNVTable th {
   background: #8a8989;
   color: white;
   padding: 5px;
@@ -21,16 +29,16 @@
   text-align: center; 
 }
 
-.Table td { 
+.CNVTable td { 
   padding: 5px; 
   border: 1px solid #ccc; 
   text-align: left; 
 }
 
-.Table tr:nth-child(even) { 
+.CNVTable tr:nth-child(even) { 
   background: #ecefef;
 }
 
-.Table tr:hover {
+.CNVTable tr:hover {
   background-color: #ddd;
 }

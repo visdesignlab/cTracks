@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as hglib from 'higlass';
 import * as ViewConfig from './ViewConfig';
 import HiglassUI from './HiglassUI';
 import CNVTable from './CNVTable';
@@ -22,12 +21,13 @@ class App extends Component {
 
   componentDidMount() {
     this.UpdateAPIInfo();
+    //this.UpdateAPIInfo2();
   }
 
   UpdateAPIInfo() {
+    console.log("UpdateAPIInfo...");
+    //HiglassAPI.fetchLocation('aa')
     HiglassAPI.fetchLocationAuto()
-//    HiglassAPI.fetchLocation('aa')
-//    HiglassAPI.fetchViewConfig()
       .then(function(APIInfo) {
         console.log("APIInfo:", APIInfo);
         this.setState(function () {
@@ -38,16 +38,39 @@ class App extends Component {
       }.bind(this));
   }
 
+  UpdateAPIInfo2() {
+    console.log("UpdateAPIInfo2...");
+/*    var ViewID = HiglassAPI.fetchViewConfig()
+      .then((ViewID) => {return ViewID});
+    console.log("ViewID", ViewID);
+
+    window.hgApi.on('location', (info) => {
+      this.setState({APIInfo: info});
+      console.log('We are over here:', info);
+    }, ViewID , function (id) {
+      console.log('Second Listener ID:', id);
+      });
+*/
+
+    // Need to improve function (with automated viewID)
+    window.hgApi.on('location', (info) => {
+      this.setState({APIInfo: info});
+      console.log('We are over here:', info);
+    }, 'aa' , function (id) {
+      console.log('Second Listener ID:', id);
+      });      
+  }
+
   render() {
     // Feature: can add button to choose our initial ViewConfig
-    var MyViewConfig = ViewConfig.ViewConfig_Public_Dev;
+    var MyViewConfig = ViewConfig.ViewConfig_Public_Dev_Simple;
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Copy Number Project</h2>
-        </div>
         <div>
           <HiglassUI ViewConfig = {MyViewConfig} />
+        </div>
+        <div className = "Button">
+          <button onClick={this.UpdateAPIInfo}>UpdateTable</button>
         </div>
         <div>
           {this.state.APIInfo && <CNVTable location={this.state.APIInfo} />}

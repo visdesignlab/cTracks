@@ -14,6 +14,7 @@ export default {
 		return window.hgApi.get('viewConfig')
       .then(function (viewConfig) {
         var vc = JSON.parse(viewConfig);
+        console.log('viewUID:',vc.views[0].uid);
         return vc.views[0].uid;
       })
       .then (function (viewUID) {
@@ -30,6 +31,13 @@ export default {
 		 		return location;
 		 	});
 	}
+/*	onLocationChange: function (viewUID, callback, callbackId) {
+		return window.hgApi.on('location',viewUID)
+		console.log('Yuuhuu we are over here', yeahCool);
+  }, function (id) {
+    console.log('First Listener ID', id);
+  });
+	}*/
 }
 
 

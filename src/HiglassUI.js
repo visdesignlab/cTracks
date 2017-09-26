@@ -7,7 +7,7 @@ import './HiglassUI.css'
 class HiglassUI extends Component {
   render () {
   	return (
-  		  <div>
+  		  <div className = "HiglassUI">
   		  	{hglib.createHgComponent(
 		        document.getElementById('higlass'),
 		        this.props.ViewConfig,

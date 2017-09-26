@@ -6,20 +6,14 @@ import JsonTable from 'react-json-table';
 
 import './CNVTable.css';
 
-// Will display table by itself using proper data as input
-function DisplayTable (props) {
-  return (
-  	<div>
-  		<p>CNV Table:</p>
-  		<p>{props.table}</p>
-  	</div>
- 	)
-}
+
 
 // Retrieve CNV information 
 function RetrieveTable (location) {
 	console.log("Retrieve table from file...");
 
+
+ // Retrieve information from csvString
   var csvString = "chrom\tstart\tstop\tlog2\tqual\tploidy\texons\n\
 1\t22174138\t25571909\t0.5818\t47.55\t3\t460\n\
 1\t46743451\t47607963\t-1.0420\t90.82\t1\t140\n\
@@ -42,14 +36,22 @@ function RetrieveTable (location) {
   var results = Papa.parse(csvString,Papa_Config);
   console.log("CSVInfo:",results);
 
-/*
-  var CSVFile_URL = "http://sci.utah.edu/~cvachet/Documents/BIDAC/Project_ARUP/data/test_data.tsv";
-  var CSVFile_DataBase = "http://localhost:8989/api/v1/test_data.tsv";
 
-  Papa.parse({CSVFile_URL}, {
+
+  // Retrieve information from url
+/*  var CSVFile_URL = "http://sci.utah.edu/~cvachet/Documents/BIDAC/Project_ARUP/data/test_data.tsv";
+  var CSVFile_DataBase = "http://localhost:8989/api/v1/tiles/?d=test_data";
+  var CSVFile_DataBase2 = "http://localhost:8000/test_data.tsv";
+  var CSVFile_DataBase3 = "http://scis-macbook-pro.local:3000/src/data/test_data.tsv";
+  var CSVFile_DataBase4 = "/data/test_data.tsv";
+
+  Papa.parse(CSVFile_DataBase3, {
     download: true,
+    error: function(error) {
+      console.log("ERROR Parse:",error);
+    },
     complete: function(results) {
-      console.log(results);
+      console.log("CSVInfo_DataBase:",results);
     }
   });
 */
@@ -84,16 +86,18 @@ class CNVTable extends Component {
 
 	render () {
 		return (
-			<div className="CNVInfo">
-				<p>Chromosome range:</p>
-				<ul>
-					<li>Begin: {this.props.location[0]} - {this.props.location[1]}</li>
-					<li>End: {this.props.location[2]} - {this.props.location[3]}</li>
-				</ul>
-				<div className="Table">
-					{this.state.Table && <JsonTable rows = {this.state.Table} />}
-				</div>
-			</div>
+      <div className="CNVTable">
+  			<div className="CNVInfo">
+  				<p>Chromosome range:</p>
+  				<ul>
+  					<li>Begin: {this.props.location[0]} - {this.props.location[1]}</li>
+  					<li>End: {this.props.location[2]} - {this.props.location[3]}</li>
+  				</ul>
+        </div>  
+  			<div>
+  				{this.state.Table && <JsonTable rows = {this.state.Table} />}
+  			</div>
+      </div>
 		)
 	}
 }
