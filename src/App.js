@@ -78,15 +78,16 @@ class App extends Component {
           });
         });
 */
-//    window.hgApi.on('location', this.UpdateAPIInfo, 'aa' , this.ListenerID);
+    window.hgApi.on('location', this.UpdateAPIInfo, 'aa' , this.ListenerID);
 
-    // Need to improve function (with automated viewID)
+/*    // Need to improve function (with automated viewID)
    window.hgApi.on('location', (info) => {
       console.log('We are over here:', info);
       //this.setState({APIInfo: info});
     }, 'aa' , function (id) {
       console.log('Listener ID:', id);
       });
+      */
   }
 
   ProcessCNVFile (files) {
@@ -119,7 +120,7 @@ class App extends Component {
         <div>
           <HiglassUI ViewConfig = {MyViewConfig} />
         </div>
-        <div  className = "Button">
+        <div className = "Button">
           <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
             <button>Upload CNV File</button>
           </ReactFileReader>

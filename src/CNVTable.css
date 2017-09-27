@@ -1,15 +1,10 @@
 
 .CNVTable {
+  margin: 10px;
 	margin-left: 50px;
+  padding-top: 10px;
 }
 
-ul {
-  display: flex;
-}
-
-li {
-    margin-right: 40px;
-}
 
 .CNVTable table {
 	border-collapse: collapse;
@@ -23,7 +18,7 @@ li {
 
 .CNVTable tbody {
   display: block;
-  height: 200px;
+  height: 250px;
   overflow-y: auto;
   overflow-x: hidden;
 }
