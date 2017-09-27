@@ -13,15 +13,24 @@ li {
 
 .CNVTable table {
 	border-collapse: collapse;
+  width: 710px;
+  margin-top: 10px;
+}
+
+.CNVTable thead {
+  display: block;
 }
 
 .CNVTable tbody {
-  margin: 20px;
-  height: 100px;
-  overflow: auto;
+  display: block;
+  height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
+
 .CNVTable th {
+  width: 100px;
   background: #8a8989;
   color: white;
   padding: 5px;
@@ -30,9 +39,15 @@ li {
 }
 
 .CNVTable td { 
-  padding: 5px; 
+  width: 100px;
+  height: 10px;
+  padding-left: 5px; 
   border: 1px solid #ccc; 
   text-align: left; 
+}
+
+.CNVTable thead th:last-child {
+    width: 110px; /* 100px + 10px scrollbar width */
 }
 
 .CNVTable tr:nth-child(even) { 

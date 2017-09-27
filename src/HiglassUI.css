@@ -1,9 +1,9 @@
 #higlass{
-  height: 400px;
+  height: 300px;
   width: 800px;
   padding-left:50px;
   padding-top:20px;
-  border:0px;
+  border:5px;
 }
 /*
 #higlass-viewer {
