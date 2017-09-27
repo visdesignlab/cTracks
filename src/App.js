@@ -43,7 +43,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.UpdateLocation();
+    //this.UpdateLocation();
     //this.UpdateLocation2();
   }
 
@@ -126,7 +126,7 @@ class App extends Component {
           </ReactFileReader>
         </div>
         <div className = "Button">
-          <button onClick={this.UpdateLocation}>UpdateTable</button>
+          <button onClick={this.UpdateLocation2}>Initialize/Update Table</button>
         </div>
         <div>
           {this.state.APIInfo && this.state.CNVData && <CNVTable CNVData = {this.state.CNVData} location={this.state.APIInfo} />}
