@@ -31,6 +31,7 @@ function ParseFile(file, callback) {
 class App extends Component {
   constructor (props) {
     super(props);
+    this.listenerID = null;
     this.state = {
       APIInfo: null,
       CNVData: null,
@@ -71,23 +72,14 @@ class App extends Component {
 
   UpdateLocation2() {
     console.log("Updating location2...");
-    /*HiglassAPI.fetchViewConfig()
+    HiglassAPI.fetchViewConfig()
       .then(function(ViewID) {
-        window.hgApi.on('location',(location) => {this.UpdateAPIInfo(location)},ViewID, function (id) {
-          console.log('Second Listener ID:', id);
-          });
-        });
-*/
-    window.hgApi.on('location', this.UpdateAPIInfo, 'aa' , this.ListenerID);
+        console.log("ViewID_in", ViewID);
+        window.hgApi.on('location', this.UpdateAPIInfo, ViewID , this.ListenerID);
+      }.bind(this));
 
-/*    // Need to improve function (with automated viewID)
-   window.hgApi.on('location', (info) => {
-      console.log('We are over here:', info);
-      //this.setState({APIInfo: info});
-    }, 'aa' , function (id) {
-      console.log('Listener ID:', id);
-      });
-      */
+    //window.hgApi.on('location', this.UpdateAPIInfo, 'aa' , this.ListenerID);
+
   }
 
   ProcessCNVFile (files) {
@@ -114,7 +106,7 @@ class App extends Component {
 
   render() {
     // Feature: can add button to choose our initial ViewConfig
-    var MyViewConfig = ViewConfig.ViewConfig_Public_Dev_Simple;
+    var MyViewConfig = ViewConfig.ViewConfig_Default;
     return (
       <div className="App">
         <div>
