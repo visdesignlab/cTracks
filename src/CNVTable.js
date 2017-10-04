@@ -170,12 +170,7 @@ class CNVTable extends Component {
 	render () {
 		return (
       <div className="CNVTable">
-  			<div>
-  				<p>Chromosome range:     {this.props.location[0]} : {this.props.location[1]} - {this.props.location[2]} : {this.props.location[3]}</p>
-        </div>  
-  			<div>
-  				{this.state.Table && <JsonTable rows = {this.state.Table} />}
-  			</div>
+  			{this.state.Table && <JsonTable rows = {this.state.Table} />}
       </div>
 		)
 	}

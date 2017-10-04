@@ -4,10 +4,10 @@ var ViewConfig_Default =
   "editable": true,
   "zoomFixed": false,
   "trackSourceServers": [
-  "http://higlass.io/api/v1",
-  "http://127.0.0.1:8989/api/v1"
+    "http://higlass.io/api/v1",
+    "http://localhost:8989/api/v1"
   ],
-  "exportViewUrl": "http://127.0.0.1:8989/api/v1/viewconfs/",
+  "exportViewUrl": "http://localhost:8989/api/v1/viewconfs/",
   "views": [
     {
       
@@ -40,9 +40,8 @@ var ViewConfig_Default =
   }
 }
 
-// ViewConfig used in Higlass - dev.html
-// Note: viewUID located on top of the file
-var ViewConfig_Public_Dev = 
+// Single view
+var ViewConfig_SingleView_1Sample = 
 {
   "editable": true,
   "zoomFixed": false,
@@ -54,12 +53,14 @@ var ViewConfig_Public_Dev =
   "views": [
     {
       "uid": "aa",
-            "initialXDomain": [
-                1000000000,3000000000
-                                          ],
-            "initialYDomain": [
-                1000000000,3000000000
-                                          ],
+      "initialXDomain": [
+        0.9999985694885254,
+        3095693983.000002
+      ],
+      "initialYDomain": [
+        2226294160.3077917,
+        2238355305.6922073
+      ],
       "autocompleteSource": "http://higlass.io/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
       "genomePositionSearchBox": {
         "autocompleteId": "OHJakQICQD6gTD7skx4EWA",
@@ -71,375 +72,93 @@ var ViewConfig_Public_Dev =
       "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
       "tracks": {
         "top": [
-                  {
-            "uuid": "OHJakQICQD6gTD7skx4EWA",
-            "filetype": "beddb",
-            "datatype": "gene-annotation",
-            "private": false,
+          {
             "name": "Gene Annotations (hg19)",
-            "coordSystem": "hg19",
-            "coordSystem2": "",
+            "created": "2017-02-05T19:31:52.412319Z",
             "server": "http://higlass.io/api/v1",
             "tilesetUid": "OHJakQICQD6gTD7skx4EWA",
-            "serverUidKey": "http://higlass.io/api/v1/OHJakQICQD6gTD7skx4EWA",
-            "uid": "BEEMEjU7QCa2krDO9C0yOQ",
+            "uid": "RrIDfBq4QHiFiuhkgqbrhg",
             "type": "horizontal-gene-annotations",
             "options": {
-                "labelPosition": "outerTop",
+              "labelColor": "black",
+              "labelPosition": "hidden",
+              "plusStrandColor": "blue",
+              "minusStrandColor": "red",
+              "trackBorderWidth": 0,
+              "trackBorderColor": "black",
               "name": "Gene Annotations (hg19)"
             },
             "width": 20,
-            "height": 60,
-            "maxWidth": 4294967296,
-            "maxZoom": 22
+            "height": 55,
+            "position": "top"
           },
-         {
-            "filetype": "hitile",
-            "datatype": "vector",
-            "private": false,
-            "name": "wgEncodeSydhTfbsGm12878Rad21IggrabSig.hitile",
-            "coordSystem": "hg19",
-            "coordSystem2": "",
-            "server": "http://higlass.io/api/v1",
-            "tilesetUid": "F2vbUeqhS86XkxuO1j2rPA",
-            "serverUidKey": "http://higlass.io/api/v1/F2vbUeqhS86XkxuO1j2rPA",
-            "type": "horizontal-line",
+          {
+            "name": "sim_01_sorted.log2_log2.hitile",
+            "created": "2017-08-22T22:11:57.240116Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-log2_log2_sim01",
+            "uid": "QfEEi6NSSZKss27fXQ8ByA",
+            "type": "horizontal-point",
             "options": {
-              "labelColor": "red",
-              "labelPosition": "outerLeft",
+              "labelColor": "black",
+              "labelPosition": "bottomLeft",
               "axisPositionHorizontal": "right",
-              "lineStrokeColor": "blue",
-              "name": "wgEncodeSydhTfbsGm12878Rad21IggrabSig.hitile",
-              "valueScaling": "log"
+              "pointColor": "red",
+              "pointSize": 3,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "black",
+              "labelTextOpacity": 0.4,
+              "name": "sim_01_sorted.log2_log2.hitile"
             },
-            "width": 20,
-            "height": 20,
-            "maxWidth": 4294967296,
-            "maxZoom": 22
+            "width": 770,
+            "height": 71,
+            "position": "top"
           },
           {
-            "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
-            "type": "horizontal-chromosome-labels",
-            "position": "top",
-            "name": "Chromosome Labels (hg19)",
-            "height": 30,
-            "uid": "I1QUF22JQJuJ38j9PS4iqw",
-            "options": {}
-          }
-        ],
-        "left": [
-         {
-            "name": "wgEncodeSydhTfbsGm12878Rad21IggrabSig.hitile",
-            "server": "http://higlass.io/api/v1",
-            "tilesetUid": "F2vbUeqhS86XkxuO1j2rPA",
-            "type": "vertical-line",
-            "options": {
-              "labelColor": "red",
-              "labelPosition": "outerLeft",
-              "axisPositionHorizontal": "right",
-              "lineStrokeColor": "blue",
-              "name": "wgEncodeSydhTfbsGm12878Rad21IggrabSig.hitile",
-              "valueScaling": "log"
-            }
-          },
-          {
-            "type": "vertical-gene-annotations",
-            "width": 60,
-            "tilesetUid": "OHJakQICQD6gTD7skx4EWA",
-            "server": "http://higlass.io/api/v1",
-            "position": "left",
-            "name": "Gene Annotations (hg19)",
-            "options": {
-              "labelPosition": "bottomRight",
-              "name": "Gene Annotations (hg19)"
-            },
-            "uid": "OgnAEKSHRaG-gR1RqPOuBQ",
-            "maxWidth": 4294967296,
-            "maxZoom": 22
-          },
-          {
-            "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
-            "type": "vertical-chromosome-labels",
-            "position": "left",
-            "name": "Chromosome Labels (hg19)",
-            "width": 30,
-            "uid": "a-mFiHnBQ8uuI6UG3USWVA",
-            "options": {}
-          }
-        ],
-        "center": [
-          {
-            "uid": "c1",
-            "type": "combined",
-            "height": 200,
-            "contents": [
-              {
-                "server": "http://higlass.io/api/v1",
-                "tilesetUid": "CQMd6V_cRw6iCI_-Unl3PQ",
-                "type": "heatmap",
-                "position": "center",
-                "options": {
-                  "colorRange": [
-                    "#FFFFFF",
-                    "#F8E71C",
-                    "#F5A623",
-                    "#D0021B"
-                  ],
-                  "colorbarPosition": "topRight",
-                  "colorbarLabelsPosition": "outside",
-                  "maxZoom": null,
-                  "labelPosition": "bottomLeft",
-                  "name": "Rao et al. (2014) GM12878 MboI (allreps) 1kb"
-                },
-                "uid": "heatmap1",
-                "name": "Rao et al. (2014) GM12878 MboI (allreps) 1kb",
-                "maxWidth": 4194304000,
-                "binsPerDimension": 256,
-                "maxZoom": 14
-              },
-              {
-                "type": "2d-chromosome-grid",
-                "datatype": [
-                  "chromosome-2d-grid"
-                ],
-                "local": true,
-                "orientation": "2d",
-                "name": "Chromosome Grid (hg19)",
-                "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
-                "thumbnail": null,
-                "uuid": "TIlwFtqxTX-ndtM7Y9k1bw",
-                "server": "",
-                "tilesetUid": "TIlwFtqxTX-ndtM7Y9k1bw",
-                "serverUidKey": "/TIlwFtqxTX-ndtM7Y9k1bw",
-                "uid": "LUVqXXu2QYiO8XURIwyUyA",
-                "options": {}
-              }
-
-            ],
-            "position": "center",
-            "options": {}
-          }
-        ],
-        "right": [
-          {
-            "type": "vertical-gene-annotations",
-            "width": 60,
-            "tilesetUid": "OHJakQICQD6gTD7skx4EWA",
-            "server": "http://higlass.io/api/v1",
-            "name": "Gene Annotations (hg19)",
-            "options": {
-              "labelPosition": "outerBottom",
-              "name": "Gene Annotations (hg19)"
-            },
-            "maxWidth": 4294967296,
-            "maxZoom": 22
-          },
-          {
-            "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
-            "type": "vertical-chromosome-labels",
-            "name": "Chromosome Labels (hg19)",
-            "width": 30,
-            "options": {
-                "labelPosition": "outerBottom",
-                "name": "Chromosome labels"
-            }
-          }
-        ],
-        "bottom": [
-         {
-            "filetype": "hitile",
-            "datatype": "vector",
-            "private": false,
-            "name": "wgEncodeSydhTfbsGm12878Rad21IggrabSig.hitile",
-            "coordSystem": "hg19",
-            "coordSystem2": "",
-            "server": "http://higlass.io/api/v1",
-            "tilesetUid": "F2vbUeqhS86XkxuO1j2rPA",
-            "serverUidKey": "http://higlass.io/api/v1/F2vbUeqhS86XkxuO1j2rPA",
-            "type": "horizontal-line",
-            "options": {
-              "labelPosition": "outerLeft",
-              "axisPositionHorizontal": "right",
-              "lineStrokeColor": "blue",
-              "name": "wgEncodeSydhTfbsGm12878Rad21IggrabSig.hitile",
-              "valueScaling": "log"
-            },
-            "width": 20,
-            "height": 50,
-            "maxWidth": 4294967296,
-            "maxZoom": 22
-          },
-        ]
-      },
-      "layout": {
-        "w": 12,
-        "h": 12,
-        "x": 0,
-        "y": 0,
-        "i": "aa",
-        "moved": false,
-        "static": false
-      }
-    }
-  ],
-  "zoomLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  },
-  "locationLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  }
-}
-
-// Simplified version of ViewConfig used in Higlass - dev.html
-// Note: viewUID located on top of the file
-var ViewConfig_Public_Dev_Simple = 
-{
-  "editable": true,
-  "zoomFixed": false,
-  "trackSourceServers": [
-    "http://higlass.io/api/v1",
-    "http://localhost:8989/api/v1"
-  ],
-  "exportViewUrl": "http://localhost:8989/api/v1/viewconfs/",
-  "views": [
-    {
-      "uid": "aa",
-            "initialXDomain": [
-                1000000000,3000000000
-                                          ],
-            "initialYDomain": [
-                1000000000,3000000000
-                                          ],
-      "autocompleteSource": "http://higlass.io/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
-      "genomePositionSearchBox": {
-        "autocompleteId": "OHJakQICQD6gTD7skx4EWA",
-        "autocompleteServer": "http://higlass.io/api/v1",
-        "chromInfoId": "hg19",
-        "chromInfoServer": "http://higlass.io/api/v1",
-        "visible": true
-      },
-      "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
-      "tracks": {
-        "top": [
-                  {
-            "uuid": "OHJakQICQD6gTD7skx4EWA",
-            "filetype": "beddb",
-            "datatype": "gene-annotation",
-            "private": false,
-            "name": "Gene Annotations (hg19)",
-            "coordSystem": "hg19",
-            "coordSystem2": "",
-            "server": "http://higlass.io/api/v1",
-            "tilesetUid": "OHJakQICQD6gTD7skx4EWA",
-            "serverUidKey": "http://higlass.io/api/v1/OHJakQICQD6gTD7skx4EWA",
-            "uid": "BEEMEjU7QCa2krDO9C0yOQ",
-            "type": "horizontal-gene-annotations",
-            "options": {
-                "labelPosition": "outerTop",
-              "name": "Gene Annotations (hg19)"
-            },
-            "width": 20,
-            "height": 60,
-            "maxWidth": 4294967296,
-            "maxZoom": 22
-          },
-         {
-            "filetype": "hitile",
-            "datatype": "vector",
-            "private": false,
-            "name": "wgEncodeSydhTfbsGm12878Rad21IggrabSig.hitile",
-            "coordSystem": "hg19",
-            "coordSystem2": "",
-            "server": "http://higlass.io/api/v1",
-            "tilesetUid": "F2vbUeqhS86XkxuO1j2rPA",
-            "serverUidKey": "http://higlass.io/api/v1/F2vbUeqhS86XkxuO1j2rPA",
-            "type": "horizontal-line",
-            "options": {
-              "labelColor": "red",
-              "labelPosition": "outerLeft",
-              "axisPositionHorizontal": "right",
-              "lineStrokeColor": "blue",
-              "name": "wgEncodeSydhTfbsGm12878Rad21IggrabSig.hitile",
-              "valueScaling": "log"
-            },
-            "width": 20,
-            "height": 150,
-            "maxWidth": 4294967296,
-            "maxZoom": 22
-          },
-          {
-            "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
-            "type": "horizontal-chromosome-labels",
-            "position": "top",
-            "name": "Chromosome Labels (hg19)",
-            "height": 30,
-            "uid": "I1QUF22JQJuJ38j9PS4iqw",
-            "options": {}
-          }
-        ]
-      },
-      "layout": {
-        "w": 12,
-        "h": 12,
-        "x": 0,
-        "y": 0,
-        "i": "aa",
-        "moved": false,
-        "static": false
-      }
-    }
-  ],
-  "zoomLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  },
-  "locationLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  }
-}
-
-// ViewConf created from CNVApp user interface - using public data
-var ViewConfig_Auto_PublicData =
-{
-}
-
-// ViewConf created from CNVApp user interface - using local data
-var ViewConfig_Auto_LocalData =
-{
-  "editable": true,
-  "zoomFixed": false,
-  "trackSourceServers": [
-    "http://higlass.io/api/v1",
-    "http://127.0.0.1:8989/api/v1"
-  ],
-  "exportViewUrl": "http://127.0.0.1:8989/api/v1/viewconfs/",
-  "views": [
-    {
-      "tracks": {
-        "top": [
-          {
-            "name": "sim_02_sorted.ballele.hitile",
-            "server": "http://127.0.0.1:8989/api/v1",
-            "tilesetUid": "hitile-ballele_sim02",
-            "uid": "Ajnxa3Q0SH-KYl8as45YlA",
-            "type": "horizontal-line",
+            "name": "sim_01_sorted.log2_qual.hitile",
+            "created": "2017-08-22T22:11:59.260231Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-log2_qual_sim01",
+            "uid": "fCYWT2b9RMquP4sFxYNVSg",
+            "type": "horizontal-point",
             "options": {
               "labelColor": "black",
               "labelPosition": "topLeft",
               "axisPositionHorizontal": "right",
-              "lineStrokeColor": "blue",
-              "lineStrokeWidth": 1,
+              "pointColor": "blue",
+              "pointSize": 3,
               "valueScaling": "linear",
-              "trackBorderWidth": 0,
+              "trackBorderWidth": 1,
               "trackBorderColor": "black",
               "labelTextOpacity": 0.4,
-              "name": "sim_02_sorted.ballele.hitile"
+              "name": "sim_01_sorted.log2_qual.hitile"
             },
-            "width": 680,
-            "height": 56,
+            "width": 770,
+            "height": 66,
+            "position": "top"
+          },
+          {
+            "name": "sim_01_sorted.reads.hitile",
+            "created": "2017-08-22T22:12:01.208750Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-reads_sim01",
+            "uid": "ah0Hp70iR5mTPbfgfjprdQ",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "topLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "orange",
+              "pointSize": 3,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "black",
+              "labelTextOpacity": 0.4,
+              "name": "sim_01_sorted.reads.hitile"
+            },
+            "width": 770,
+            "height": 71,
             "position": "top"
           },
           {
@@ -447,7 +166,7 @@ var ViewConfig_Auto_LocalData =
             "created": "2017-06-13T17:06:10.941309Z",
             "server": "http://higlass.io/api/v1",
             "tilesetUid": "Ajn_ttUUQbqgtOD4nOt-IA",
-            "uid": "C4jnVxaLSN-QcLT2mcognQ",
+            "uid": "JhvTi-LQTaq6ERDuZkoAtg",
             "type": "horizontal-chromosome-labels",
             "options": {},
             "width": 680,
@@ -460,14 +179,6 @@ var ViewConfig_Auto_LocalData =
         "right": [],
         "bottom": []
       },
-      "initialXDomain": [
-        -3.725290298461914e-9,
-        3199999999.9999995
-      ],
-      "initialYDomain": [
-        1016470588.2352942,
-        2183529411.764706
-      ],
       "layout": {
         "w": 12,
         "h": 12,
@@ -476,15 +187,6 @@ var ViewConfig_Auto_LocalData =
         "i": "aa",
         "moved": false,
         "static": false
-      },
-      "uid": "aa",
-      "genomePositionSearchBoxVisible": true,
-      "genomePositionSearchBox": {
-        "autocompleteServer": "http://higlass.io/api/v1",
-        "chromInfoServer": "http://higlass.io/api/v1",
-        "visible": true,
-        "chromInfoId": "hg19",
-        "autocompleteId": "OHJakQICQD6gTD7skx4EWA"
       }
     }
   ],
@@ -498,8 +200,8 @@ var ViewConfig_Auto_LocalData =
   }
 }
 
-// Artificial / Manually created viewconf, using Public_Dev as a template and my simulation data
-var ViewConfig_Artificial_LocalData =
+// Single view
+var ViewConfig_SingleView_2Samples = 
 {
   "editable": true,
   "zoomFixed": false,
@@ -510,13 +212,15 @@ var ViewConfig_Artificial_LocalData =
   "exportViewUrl": "http://localhost:8989/api/v1/viewconfs/",
   "views": [
     {
-      "uid": "aa",
-            "initialXDomain": [
-                1000000000,3000000000
-                                          ],
-            "initialYDomain": [
-                1000000000,3000000000
-                                          ],
+      "uid": "bb",
+      "initialXDomain": [
+        -83707811.01894261,
+        3210656258.0513477
+      ],
+      "initialYDomain": [
+        2186300530.009819,
+        2278348937.822077
+      ],
       "autocompleteSource": "http://higlass.io/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
       "genomePositionSearchBox": {
         "autocompleteId": "OHJakQICQD6gTD7skx4EWA",
@@ -528,89 +232,142 @@ var ViewConfig_Artificial_LocalData =
       "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
       "tracks": {
         "top": [
-                  {
-            "uuid": "OHJakQICQD6gTD7skx4EWA",
-            "filetype": "beddb",
-            "datatype": "gene-annotation",
-            "private": false,
+          {
             "name": "Gene Annotations (hg19)",
-            "coordSystem": "hg19",
-            "coordSystem2": "",
+            "created": "2017-02-05T19:31:52.412319Z",
             "server": "http://higlass.io/api/v1",
             "tilesetUid": "OHJakQICQD6gTD7skx4EWA",
-            "serverUidKey": "http://higlass.io/api/v1/OHJakQICQD6gTD7skx4EWA",
-            "uid": "BEEMEjU7QCa2krDO9C0yOQ",
+            "uid": "ZYxYUtf6RauzxQJzdCoBLg",
             "type": "horizontal-gene-annotations",
             "options": {
-                "labelPosition": "outerTop",
+              "labelColor": "black",
+              "labelPosition": "hidden",
+              "plusStrandColor": "blue",
+              "minusStrandColor": "red",
+              "trackBorderWidth": 0,
+              "trackBorderColor": "black",
               "name": "Gene Annotations (hg19)"
             },
             "width": 20,
-            "height": 60,
-            "maxWidth": 4294967296,
-            "maxZoom": 22
+            "height": 55,
+            "position": "top"
           },
           {
-            "name": "sim_01_sorted.ballele.hitile",
+            "name": "sim_01_sorted.log2_log2.hitile",
+            "created": "2017-08-22T22:11:57.240116Z",
             "server": "http://localhost:8989/api/v1",
-            "tilesetUid": "hitile-ballele_sim01",
-            "uid": "H94GxWXJSjKxauWcwAihDg",
-            "type": "horizontal-line",
+            "tilesetUid": "hitile-log2_log2_sim01",
+            "uid": "GKU4rXgFQCKBEi1YKZuvCw",
+            "type": "horizontal-point",
             "options": {
               "labelColor": "black",
-              "labelPosition": "topLeft",
+              "labelPosition": "bottomLeft",
               "axisPositionHorizontal": "right",
-              "lineStrokeColor": "blue",
-              "lineStrokeWidth": 1,
+              "pointColor": "red",
+              "pointSize": 3,
               "valueScaling": "linear",
-              "trackBorderWidth": 0,
+              "trackBorderWidth": 1,
               "trackBorderColor": "black",
               "labelTextOpacity": 0.4,
-              "name": "sim_01_sorted.ballele.hitile"
+              "name": "sim_01_sorted.log2_log2.hitile"
             },
-            "width": 20,
-            "height": 60,
+            "width": 680,
+            "height": 50,
+            "position": "top"
+          },
+          {
+            "name": "sim_02_sorted.log2_log2.hitile",
+            "created": "2017-08-23T00:28:35.146995Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-log2_log2_sim02",
+            "uid": "VhkOZRTrRGezaP6DxAs2kA",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "bottomLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "red",
+              "pointSize": 3,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "black",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.log2_log2.hitile"
+            },
+            "width": 680,
+            "height": 50,
             "position": "top"
           },
           {
             "name": "sim_01_sorted.reads.hitile",
+            "created": "2017-08-22T22:12:01.208750Z",
             "server": "http://localhost:8989/api/v1",
             "tilesetUid": "hitile-reads_sim01",
-            "uid": "G0g0oYqDTbicUgvDI_dqLg",
+            "uid": "NTjJea9dSVa5LunHnCd2EA",
             "type": "horizontal-point",
             "options": {
               "labelColor": "black",
               "labelPosition": "topLeft",
               "axisPositionHorizontal": "right",
-              "pointColor": "red",
+              "pointColor": "orange",
               "pointSize": 3,
               "valueScaling": "linear",
-              "trackBorderWidth": 0,
+              "trackBorderWidth": 1,
               "trackBorderColor": "black",
               "labelTextOpacity": 0.4,
               "name": "sim_01_sorted.reads.hitile"
             },
-            "width": 851,
-            "height": 71,
+            "width": 680,
+            "height": 50,
             "position": "top"
           },
           {
-            "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
+            "name": "sim_02_sorted.reads.hitile",
+            "created": "2017-08-23T00:28:39.434323Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-reads_sim02",
+            "uid": "J55GbLeGRZCnTP2ZYg0CdA",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "topLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "orange",
+              "pointSize": 3,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "black",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.reads.hitile"
+            },
+            "width": 680,
+            "height": 50,
+            "position": "top"
+          },
+          {
+            "name": "Chromosome Axis",
+            "created": "2017-06-13T17:06:10.941309Z",
+            "server": "http://higlass.io/api/v1",
+            "tilesetUid": "Ajn_ttUUQbqgtOD4nOt-IA",
+            "uid": "JGmoT5P4R4yqAwgWAOKtbw",
             "type": "horizontal-chromosome-labels",
-            "position": "top",
-            "name": "Chromosome Labels (hg19)",
+            "options": {},
+            "width": 680,
             "height": 30,
-            "uid": "I1QUF22JQJuJ38j9PS4iqw",
-            "options": {}
+            "position": "top"
           }
-        ]
+        ],
+        "left": [],
+        "center": [],
+        "right": [],
+        "bottom": []
       },
       "layout": {
         "w": 12,
         "h": 12,
         "x": 0,
         "y": 0,
-        "i": "aa",
+        "i": "bb",
         "moved": false,
         "static": false
       }
@@ -626,7 +383,240 @@ var ViewConfig_Artificial_LocalData =
   }
 }
 
-export {ViewConfig_Default, ViewConfig_Public_Dev, ViewConfig_Public_Dev_Simple, ViewConfig_Auto_LocalData, ViewConfig_Artificial_LocalData} ;
 
-
-
+// Dual view: overview and zoom-in
+var ViewConfig_DualView =
+{
+  "editable": true,
+  "zoomFixed": false,
+  "trackSourceServers": [
+    "http://higlass.io/api/v1",
+    "http://localhost:8989/api/v1"
+  ],
+  "exportViewUrl": "http://localhost:8989/api/v1/viewconfs/",
+  "views": [
+    {
+      "tracks": {
+        "top": [
+          {
+            "type": "combined",
+            "uid": "Qr-ngI7_Qi-tPEUCdSoAdQ",
+            "height": 45,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_02_sorted.ballele.hitile",
+                "created": "2017-08-23T00:28:24.510319Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-ballele_sim02",
+                "uid": "GiXtEi17SfqOF-e5pmlQgg",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "topLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "red",
+                  "pointSize": 3,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 0,
+                  "trackBorderColor": "black",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_02_sorted.ballele.hitile"
+                },
+                "width": 770,
+                "height": 45,
+                "position": "top"
+              },
+              {
+                "uid": "J4YOCjzESaqfzG5rtLRnCg",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "A8AsraloQv-djomDcBgrqw",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              },
+              {
+                "uid": "dwl1XWT-TSCUike4X7lyiA",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "cc",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "name": "Chromosome Axis",
+            "created": "2017-06-13T17:06:10.941309Z",
+            "server": "http://higlass.io/api/v1",
+            "tilesetUid": "Ajn_ttUUQbqgtOD4nOt-IA",
+            "uid": "PK0lgXPuRReIBRRQSlS9UA",
+            "type": "horizontal-chromosome-labels",
+            "options": {},
+            "width": 770,
+            "height": 30,
+            "position": "top"
+          }
+        ],
+        "left": [],
+        "center": [],
+        "right": [],
+        "bottom": []
+      },
+      "initialXDomain": [
+        -41025571.69653028,
+        3308767330.6217923
+      ],
+      "initialYDomain": [
+        1283287898.6401546,
+        1322441322.1737454
+      ],
+      "layout": {
+        "w": 12,
+        "h": 8,
+        "x": 0,
+        "y": 0,
+        "i": "eN9c0VphSmOaptnJ6cOTdg",
+        "moved": false,
+        "static": false
+      },
+      "uid": "eN9c0VphSmOaptnJ6cOTdg"
+    },
+    {
+      "uid": "cc",
+      "initialXDomain": [
+        1610469724.0633821,
+        1946828290.1648335
+      ],
+      "initialYDomain": [
+        1050620572.4932203,
+        1048873255.2667192
+      ],
+      "autocompleteSource": "http://higlass.io/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
+      "genomePositionSearchBox": {
+        "autocompleteId": "OHJakQICQD6gTD7skx4EWA",
+        "autocompleteServer": "http://higlass.io/api/v1",
+        "chromInfoId": "hg19",
+        "chromInfoServer": "http://higlass.io/api/v1",
+        "visible": true
+      },
+      "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
+      "tracks": {
+        "top": [
+          {
+            "name": "Gene Annotations (hg19)",
+            "created": "2017-02-05T19:31:52.412319Z",
+            "server": "http://higlass.io/api/v1",
+            "tilesetUid": "OHJakQICQD6gTD7skx4EWA",
+            "uid": "W0JjTZidSIyW-GMWDW-yuA",
+            "type": "horizontal-gene-annotations",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "hidden",
+              "plusStrandColor": "blue",
+              "minusStrandColor": "red",
+              "trackBorderWidth": 0,
+              "trackBorderColor": "black",
+              "name": "Gene Annotations (hg19)"
+            },
+            "width": 770,
+            "height": 55,
+            "position": "top"
+          },
+          {
+            "name": "sim_02_sorted.log2_log2.hitile",
+            "created": "2017-08-23T00:28:35.146995Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-log2_log2_sim02",
+            "uid": "TJ5-EufFSryatQf2CpQW6g",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "topLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "blue",
+              "pointSize": 3,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "black",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.log2_log2.hitile"
+            },
+            "width": 770,
+            "height": 37,
+            "position": "top"
+          },
+          {
+            "name": "sim_02_sorted.reads.hitile",
+            "created": "2017-08-23T00:28:39.434323Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-reads_sim02",
+            "uid": "CG_VF8BuQp2TtmDJbj5hQg",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "topLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "orange",
+              "pointSize": 3,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "black",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.reads.hitile"
+            },
+            "width": 770,
+            "height": 34,
+            "position": "top"
+          },
+          {
+            "name": "Chromosome Axis",
+            "created": "2017-06-13T17:06:10.941309Z",
+            "server": "http://higlass.io/api/v1",
+            "tilesetUid": "Ajn_ttUUQbqgtOD4nOt-IA",
+            "uid": "PK0lgXPuRReIBRRQSlS9UA",
+            "type": "horizontal-chromosome-labels",
+            "options": {},
+            "width": 770,
+            "height": 30,
+            "position": "top"
+          }
+        ],
+        "left": [],
+        "center": [],
+        "right": [],
+        "bottom": []
+      },
+      "layout": {
+        "w": 12,
+        "h": 12,
+        "x": 0,
+        "y": 8,
+        "i": "cc",
+        "moved": false,
+        "static": false
+      }
+    }
+  ],
+  "zoomLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  },
+  "locationLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  }
+}
+export {ViewConfig_Default, ViewConfig_SingleView_1Sample, ViewConfig_SingleView_2Samples, ViewConfig_DualView} ;

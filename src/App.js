@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import * as ViewConfig from './ViewConfig';
+import * as ViewConfig_Test from './ViewConfig_Test';
+
 import HiglassUI from './HiglassUI';
 import CNVTable from './CNVTable';
 import HiglassAPI from './utils/HiglassAPI';
@@ -106,7 +108,8 @@ class App extends Component {
 
   render() {
     // Feature: can add button to choose our initial ViewConfig
-    var MyViewConfig = ViewConfig.ViewConfig_Default;
+    //var MyViewConfig = ViewConfig_Test.ViewConfig_Artificial_LocalData;
+    var MyViewConfig = ViewConfig.ViewConfig_SingleView_1Sample;
     return (
       <div className="App">
         <div>
