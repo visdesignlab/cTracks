@@ -385,7 +385,7 @@ var ViewConfig_SingleView_2Samples =
 
 
 // Dual view: overview and zoom-in
-var ViewConfig_DualView =
+var ViewConfig_DualView_2Samples =
 {
   "editable": true,
   "zoomFixed": false,
@@ -400,37 +400,37 @@ var ViewConfig_DualView =
         "top": [
           {
             "type": "combined",
-            "uid": "Qr-ngI7_Qi-tPEUCdSoAdQ",
-            "height": 45,
+            "uid": "Y9RhOw8NShWr9OlId7_GiQ",
+            "height": 35,
             "width": 770,
             "contents": [
               {
-                "name": "sim_02_sorted.ballele.hitile",
-                "created": "2017-08-23T00:28:24.510319Z",
+                "name": "sim_01_sorted.log2_log2.hitile",
+                "created": "2017-08-22T22:11:57.240116Z",
                 "server": "http://localhost:8989/api/v1",
-                "tilesetUid": "hitile-ballele_sim02",
-                "uid": "GiXtEi17SfqOF-e5pmlQgg",
+                "tilesetUid": "hitile-log2_log2_sim01",
+                "uid": "AXPyO5cqT2G98MJWL0I4Gw",
                 "type": "horizontal-point",
                 "options": {
                   "labelColor": "black",
-                  "labelPosition": "topLeft",
+                  "labelPosition": "bottomLeft",
                   "axisPositionHorizontal": "right",
                   "pointColor": "red",
                   "pointSize": 3,
                   "valueScaling": "linear",
-                  "trackBorderWidth": 0,
+                  "trackBorderWidth": 1,
                   "trackBorderColor": "black",
                   "labelTextOpacity": 0.4,
-                  "name": "sim_02_sorted.ballele.hitile"
+                  "name": "sim_01_sorted.log2_log2.hitile"
                 },
                 "width": 770,
-                "height": 45,
+                "height": 27,
                 "position": "top"
               },
               {
-                "uid": "J4YOCjzESaqfzG5rtLRnCg",
+                "uid": "bbO5IkrmR7qJGLGeGwce8Q",
                 "type": "viewport-projection-horizontal",
-                "fromViewUid": "A8AsraloQv-djomDcBgrqw",
+                "fromViewUid": "cc",
                 "options": {
                   "projectionFillColor": "#777",
                   "projectionStrokeColor": "#777",
@@ -439,9 +439,134 @@ var ViewConfig_DualView =
                 },
                 "name": "Viewport Projection",
                 "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "type": "combined",
+            "uid": "LbT3T3PeRdKw-wgwx0OKig",
+            "height": 34,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_02_sorted.log2_log2.hitile",
+                "created": "2017-08-23T00:28:35.146995Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-log2_log2_sim02",
+                "uid": "WGW2LAgsQ-m4zSSDd3W8jA",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "bottomLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "red",
+                  "pointSize": 3,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 1,
+                  "trackBorderColor": "black",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_02_sorted.log2_log2.hitile"
+                },
+                "width": 770,
+                "height": 29,
+                "position": "top"
               },
               {
-                "uid": "dwl1XWT-TSCUike4X7lyiA",
+                "uid": "CTav4Q4gRYav5PUcasFVeg",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "cc",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "type": "combined",
+            "uid": "VtPB9lDpTZu2xLc1upmUTg",
+            "height": 37,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_01_sorted.ballele.hitile",
+                "created": "2017-08-22T22:11:46.939355Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-ballele_sim01",
+                "uid": "Iz3P5KIMQaCxRuU2yRzvXQ",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "topLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "blue",
+                  "pointSize": 3,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 1,
+                  "trackBorderColor": "black",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_01_sorted.ballele.hitile"
+                },
+                "width": 770,
+                "height": 36,
+                "position": "top"
+              },
+              {
+                "uid": "MmISlGVKTfibTBSNqBpZdQ",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "cc",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "type": "combined",
+            "uid": "Gr5dG4UMSx20DguXkrs_RA",
+            "height": 35,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_02_sorted.ballele.hitile",
+                "created": "2017-08-23T00:28:24.510319Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-ballele_sim02",
+                "uid": "bH4aJmaLTpGN5Qrwt0YuOg",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "topLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "blue",
+                  "pointSize": 3,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 1,
+                  "trackBorderColor": "black",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_02_sorted.ballele.hitile"
+                },
+                "width": 770,
+                "height": 31,
+                "position": "top"
+              },
+              {
+                "uid": "SZchJJKTRo-B3hbyfPKm4g",
                 "type": "viewport-projection-horizontal",
                 "fromViewUid": "cc",
                 "options": {
@@ -462,7 +587,7 @@ var ViewConfig_DualView =
             "created": "2017-06-13T17:06:10.941309Z",
             "server": "http://higlass.io/api/v1",
             "tilesetUid": "Ajn_ttUUQbqgtOD4nOt-IA",
-            "uid": "PK0lgXPuRReIBRRQSlS9UA",
+            "uid": "Mc-MWAcqSQeQDhGFAWmoiw",
             "type": "horizontal-chromosome-labels",
             "options": {},
             "width": 770,
@@ -477,15 +602,15 @@ var ViewConfig_DualView =
       },
       "initialXDomain": [
         -41025571.69653028,
-        3308767330.6217923
+        3308767330.621793
       ],
       "initialYDomain": [
-        1283287898.6401546,
-        1322441322.1737454
+        1298514230.0143292,
+        1307214990.7995718
       ],
       "layout": {
         "w": 12,
-        "h": 8,
+        "h": 9,
         "x": 0,
         "y": 0,
         "i": "eN9c0VphSmOaptnJ6cOTdg",
@@ -497,12 +622,12 @@ var ViewConfig_DualView =
     {
       "uid": "cc",
       "initialXDomain": [
-        1610469724.0633821,
-        1946828290.1648335
+        1749681896.6272607,
+        2086040462.7287123
       ],
       "initialYDomain": [
-        1050620572.4932203,
-        1048873255.2667192
+        1052367889.7197214,
+        1047125938.0402182
       ],
       "autocompleteSource": "http://higlass.io/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
       "genomePositionSearchBox": {
@@ -520,7 +645,7 @@ var ViewConfig_DualView =
             "created": "2017-02-05T19:31:52.412319Z",
             "server": "http://higlass.io/api/v1",
             "tilesetUid": "OHJakQICQD6gTD7skx4EWA",
-            "uid": "W0JjTZidSIyW-GMWDW-yuA",
+            "uid": "GKNBYUIKSaOYv_s5MJ2ByQ",
             "type": "horizontal-gene-annotations",
             "options": {
               "labelColor": "black",
@@ -532,30 +657,30 @@ var ViewConfig_DualView =
               "name": "Gene Annotations (hg19)"
             },
             "width": 770,
-            "height": 55,
+            "height": 30,
             "position": "top"
           },
           {
-            "name": "sim_02_sorted.log2_log2.hitile",
-            "created": "2017-08-23T00:28:35.146995Z",
+            "name": "sim_01_sorted.reads.hitile",
+            "created": "2017-08-22T22:12:01.208750Z",
             "server": "http://localhost:8989/api/v1",
-            "tilesetUid": "hitile-log2_log2_sim02",
-            "uid": "TJ5-EufFSryatQf2CpQW6g",
+            "tilesetUid": "hitile-reads_sim01",
+            "uid": "ex1YeL5YTtWVeO1cG7_ORw",
             "type": "horizontal-point",
             "options": {
               "labelColor": "black",
               "labelPosition": "topLeft",
               "axisPositionHorizontal": "right",
-              "pointColor": "blue",
+              "pointColor": "orange",
               "pointSize": 3,
               "valueScaling": "linear",
               "trackBorderWidth": 1,
               "trackBorderColor": "black",
               "labelTextOpacity": 0.4,
-              "name": "sim_02_sorted.log2_log2.hitile"
+              "name": "sim_01_sorted.reads.hitile"
             },
             "width": 770,
-            "height": 37,
+            "height": 32,
             "position": "top"
           },
           {
@@ -563,7 +688,7 @@ var ViewConfig_DualView =
             "created": "2017-08-23T00:28:39.434323Z",
             "server": "http://localhost:8989/api/v1",
             "tilesetUid": "hitile-reads_sim02",
-            "uid": "CG_VF8BuQp2TtmDJbj5hQg",
+            "uid": "eU6M18ONTPiRWinm9IW7PQ",
             "type": "horizontal-point",
             "options": {
               "labelColor": "black",
@@ -578,7 +703,7 @@ var ViewConfig_DualView =
               "name": "sim_02_sorted.reads.hitile"
             },
             "width": 770,
-            "height": 34,
+            "height": 32,
             "position": "top"
           },
           {
@@ -586,7 +711,7 @@ var ViewConfig_DualView =
             "created": "2017-06-13T17:06:10.941309Z",
             "server": "http://higlass.io/api/v1",
             "tilesetUid": "Ajn_ttUUQbqgtOD4nOt-IA",
-            "uid": "PK0lgXPuRReIBRRQSlS9UA",
+            "uid": "Ahkj-ScUQgq0ipYb0AczNg",
             "type": "horizontal-chromosome-labels",
             "options": {},
             "width": 770,
@@ -601,9 +726,9 @@ var ViewConfig_DualView =
       },
       "layout": {
         "w": 12,
-        "h": 12,
+        "h": 8,
         "x": 0,
-        "y": 8,
+        "y": 9,
         "i": "cc",
         "moved": false,
         "static": false
@@ -619,4 +744,481 @@ var ViewConfig_DualView =
     "locksDict": {}
   }
 }
-export {ViewConfig_Default, ViewConfig_SingleView_1Sample, ViewConfig_SingleView_2Samples, ViewConfig_DualView} ;
+
+// Final view
+var ViewConfig_DualView =
+{
+  "editable": true,
+  "zoomFixed": false,
+  "trackSourceServers": [
+    "http://higlass.io/api/v1",
+    "http://localhost:8989/api/v1"
+  ],
+  "exportViewUrl": "http://localhost:8989/api/v1/viewconfs/",
+  "views": [
+    {
+      "tracks": {
+        "top": [
+          {
+            "type": "combined",
+            "uid": "WTom2np0Sq60RM4AEgeTqQ",
+            "height": 38,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_02_sorted.ballele.hitile",
+                "created": "2017-08-23T00:28:24.510319Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-ballele_sim02",
+                "uid": "O037fITLR5ytaM-OwFz9sQ",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "topLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "red",
+                  "pointSize": 2,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 1,
+                  "trackBorderColor": "grey",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_02_sorted.ballele.hitile"
+                },
+                "width": 770,
+                "height": 38,
+                "position": "top"
+              },
+              {
+                "uid": "Z2Qq5wzuSkugGNASkT-wSA",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "cc",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "type": "combined",
+            "uid": "YSp-FsUTQFOARyGGBstKmg",
+            "height": 38,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_02_sorted.log2_qual.hitile",
+                "created": "2017-08-23T00:28:37.306697Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-log2_qual_sim02",
+                "uid": "IUkubwUBTdGfkvicGHJpzQ",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "topLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "orange",
+                  "pointSize": 2,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 1,
+                  "trackBorderColor": "grey",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_02_sorted.log2_qual.hitile"
+                },
+                "width": 770,
+                "height": 38,
+                "position": "top"
+              },
+              {
+                "uid": "ZqolykfVRWqd_w9m7Pk0Ww",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "cc",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "type": "combined",
+            "uid": "A0-maEOsQqil1LNpeMop5Q",
+            "height": 38,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_02_sorted.log2_log2.hitile",
+                "created": "2017-08-23T00:28:35.146995Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-log2_log2_sim02",
+                "uid": "AkxtpXfXR7aZSZpIrdRwGg",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "bottomLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "green",
+                  "pointSize": 2,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 1,
+                  "trackBorderColor": "grey",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_02_sorted.log2_log2.hitile"
+                },
+                "width": 770,
+                "height": 38,
+                "position": "top"
+              },
+              {
+                "uid": "c5aJ2i1PQbKwbq5aDxrpRA",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "cc",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "type": "combined",
+            "uid": "DMVnWRH4RWWP9Oh25oE53A",
+            "height": 38,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_02_sorted.cnv_log2.hitile",
+                "created": "2017-08-23T00:28:28.708220Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-cnv_log2_sim02",
+                "uid": "JUSDVte6Saae93sUgHODMQ",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "bottomLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "turquoise",
+                  "pointSize": 2,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 1,
+                  "trackBorderColor": "grey",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_02_sorted.cnv_log2.hitile"
+                },
+                "width": 770,
+                "height": 38,
+                "position": "top"
+              },
+              {
+                "uid": "U9txBTtTTDqVBd_jiJo6OQ",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "cc",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "type": "combined",
+            "uid": "S81mNFKwQWus-LI5tEj6Aw",
+            "height": 38,
+            "width": 770,
+            "contents": [
+              {
+                "name": "sim_02_sorted.reads.hitile",
+                "created": "2017-08-23T00:28:39.434323Z",
+                "server": "http://localhost:8989/api/v1",
+                "tilesetUid": "hitile-reads_sim02",
+                "uid": "HzlIkJP2TTiIKv2h93k7Qw",
+                "type": "horizontal-point",
+                "options": {
+                  "labelColor": "black",
+                  "labelPosition": "topLeft",
+                  "axisPositionHorizontal": "right",
+                  "pointColor": "blue",
+                  "pointSize": 2,
+                  "valueScaling": "linear",
+                  "trackBorderWidth": 1,
+                  "trackBorderColor": "grey",
+                  "labelTextOpacity": 0.4,
+                  "name": "sim_02_sorted.reads.hitile"
+                },
+                "width": 770,
+                "height": 38,
+                "position": "top"
+              },
+              {
+                "uid": "Nza7tzj8RBCp6F4f1I20Hw",
+                "type": "viewport-projection-horizontal",
+                "fromViewUid": "cc",
+                "options": {
+                  "projectionFillColor": "#777",
+                  "projectionStrokeColor": "#777",
+                  "projectionFillOpacity": 0.3,
+                  "projectionStrokeOpacity": 0.3
+                },
+                "name": "Viewport Projection",
+                "position": "top"
+              }
+            ],
+            "position": "top",
+            "options": {}
+          },
+          {
+            "name": "Chromosome Axis",
+            "created": "2017-06-13T17:06:10.941309Z",
+            "server": "http://higlass.io/api/v1",
+            "tilesetUid": "Ajn_ttUUQbqgtOD4nOt-IA",
+            "uid": "bpRZDog1QQuZ7DmLfsKwXw",
+            "type": "horizontal-chromosome-labels",
+            "options": {},
+            "width": 770,
+            "height": 30,
+            "position": "top"
+          }
+        ],
+        "left": [],
+        "center": [],
+        "right": [],
+        "bottom": []
+      },
+      "initialXDomain": [
+        -41025571.69653028,
+        3308767330.621793
+      ],
+      "initialYDomain": [
+        1285463088.836465,
+        1320266131.9774342
+      ],
+      "layout": {
+        "w": 12,
+        "h": 7,
+        "x": 0,
+        "y": 0,
+        "i": "eN9c0VphSmOaptnJ6cOTdg",
+        "moved": false,
+        "static": false
+      },
+      "uid": "eN9c0VphSmOaptnJ6cOTdg"
+    },
+    {
+      "uid": "cc",
+      "initialXDomain": [
+        492449995.00002545,
+        690472424.9999747
+      ],
+      "initialYDomain": [
+        1039004341.4545453,
+        1037204137.5454549
+      ],
+      "autocompleteSource": "http://higlass.io/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
+      "genomePositionSearchBox": {
+        "autocompleteId": "OHJakQICQD6gTD7skx4EWA",
+        "autocompleteServer": "http://higlass.io/api/v1",
+        "chromInfoId": "hg19",
+        "chromInfoServer": "http://higlass.io/api/v1",
+        "visible": true
+      },
+      "chromInfoPath": "//s3.amazonaws.com/pkerp/data/hg19/chromSizes.tsv",
+      "tracks": {
+        "top": [
+          {
+            "name": "Gene Annotations (hg19)",
+            "created": "2017-02-05T19:31:52.412319Z",
+            "server": "http://higlass.io/api/v1",
+            "tilesetUid": "OHJakQICQD6gTD7skx4EWA",
+            "uid": "NaYcUhtrQyeQhqz9gJOjxQ",
+            "type": "horizontal-gene-annotations",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "hidden",
+              "plusStrandColor": "blue",
+              "minusStrandColor": "red",
+              "trackBorderWidth": 0,
+              "trackBorderColor": "black",
+              "name": "Gene Annotations (hg19)"
+            },
+            "width": 20,
+            "height": 55,
+            "position": "top"
+          },
+          {
+            "name": "sim_02_sorted.ballele.hitile",
+            "created": "2017-08-23T00:28:24.510319Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-ballele_sim02",
+            "uid": "O037fITLR5ytaM-OwFz9sQ",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "topLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "red",
+              "pointSize": 2,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "grey",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.ballele.hitile"
+            },
+            "width": 770,
+            "height": 38,
+            "position": "top"
+          },
+          {
+            "name": "sim_02_sorted.log2_qual.hitile",
+            "created": "2017-08-23T00:28:37.306697Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-log2_qual_sim02",
+            "uid": "IUkubwUBTdGfkvicGHJpzQ",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "topLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "orange",
+              "pointSize": 2,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "grey",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.log2_qual.hitile"
+            },
+            "width": 770,
+            "height": 38,
+            "position": "top"
+          },
+          {
+            "name": "sim_02_sorted.log2_log2.hitile",
+            "created": "2017-08-23T00:28:35.146995Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-log2_log2_sim02",
+            "uid": "AkxtpXfXR7aZSZpIrdRwGg",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "bottomLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "green",
+              "pointSize": 2,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "grey",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.log2_log2.hitile"
+            },
+            "width": 770,
+            "height": 38,
+            "position": "top"
+          },
+          {
+            "name": "sim_02_sorted.cnv_log2.hitile",
+            "created": "2017-08-23T00:28:28.708220Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-cnv_log2_sim02",
+            "uid": "JUSDVte6Saae93sUgHODMQ",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "bottomLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "turquoise",
+              "pointSize": 3,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "grey",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.cnv_log2.hitile"
+            },
+            "width": 770,
+            "height": 38,
+            "position": "top"
+          },
+          {
+            "name": "sim_02_sorted.reads.hitile",
+            "created": "2017-08-23T00:28:39.434323Z",
+            "server": "http://localhost:8989/api/v1",
+            "tilesetUid": "hitile-reads_sim02",
+            "uid": "HzlIkJP2TTiIKv2h93k7Qw",
+            "type": "horizontal-point",
+            "options": {
+              "labelColor": "black",
+              "labelPosition": "topLeft",
+              "axisPositionHorizontal": "right",
+              "pointColor": "blue",
+              "pointSize": 2,
+              "valueScaling": "linear",
+              "trackBorderWidth": 1,
+              "trackBorderColor": "grey",
+              "labelTextOpacity": 0.4,
+              "name": "sim_02_sorted.reads.hitile"
+            },
+            "width": 770,
+            "height": 38,
+            "position": "top"
+          },
+          {
+            "name": "Chromosome Axis",
+            "created": "2017-06-13T17:06:10.941309Z",
+            "server": "http://higlass.io/api/v1",
+            "tilesetUid": "Ajn_ttUUQbqgtOD4nOt-IA",
+            "uid": "bpRZDog1QQuZ7DmLfsKwXw",
+            "type": "horizontal-chromosome-labels",
+            "options": {},
+            "width": 770,
+            "height": 30,
+            "position": "top"
+          }
+        ],
+        "left": [],
+        "center": [],
+        "right": [],
+        "bottom": []
+      },
+      "layout": {
+        "w": 12,
+        "h": 8,
+        "x": 0,
+        "y": 7,
+        "i": "cc",
+        "moved": false,
+        "static": false
+      }
+    }
+  ],
+  "zoomLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  },
+  "locationLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  }
+}
+
+export {ViewConfig_Default, ViewConfig_SingleView_1Sample, ViewConfig_SingleView_2Samples, ViewConfig_DualView, ViewConfig_DualView_2Samples} ;
