@@ -6,7 +6,7 @@ export default {
 		return window.hgApi.get('viewConfig')
         .then(function (viewConfig) {
           var vc = JSON.parse(viewConfig);
-          return vc.views[0].uid;
+          return vc.views[1].uid;
         });
 	},
 	// get current Location (retrieve ViewUID automatically)
@@ -14,8 +14,8 @@ export default {
 		return window.hgApi.get('viewConfig')
       .then(function (viewConfig) {
         var vc = JSON.parse(viewConfig);
-        console.log('viewUID:',vc.views[0].uid);
-        return vc.views[0].uid;
+        console.log('viewUID:',vc.views[1].uid);
+        return vc.views[1].uid;
       })
       .then (function (viewUID) {
 	 			return window.hgApi.get('location',viewUID);
