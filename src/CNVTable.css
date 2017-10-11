@@ -2,13 +2,13 @@
 .CNVTable {
   margin: 10px;
 	margin-left: 50px;
-  padding-top: 10px;
+  /*padding-top: 10px;*/
 }
 
 
 .CNVTable table {
 	border-collapse: collapse;
-  width: 780px;
+  width: 800px;
   margin-top: 10px;
 }
 
@@ -25,7 +25,7 @@
 
 
 .CNVTable th {
-  width: 110px;
+  width: 113px;
   background: #8a8989;
   color: white;
   padding: 5px;
@@ -34,7 +34,7 @@
 }
 
 .CNVTable td { 
-  width: 110px;
+  width: 113px;
   height: 10px;
   padding-left: 5px; 
   border: 1px solid #ccc; 
@@ -42,7 +42,7 @@
 }
 
 .CNVTable thead th:last-child {
-    width: 120px; /* 100px + 10px scrollbar width */
+    width: 122px; /* 113px + 9px scrollbar width */
 }
 
 .CNVTable tr:nth-child(even) { 

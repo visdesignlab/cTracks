@@ -1,9 +1,12 @@
+@import '../node_modules/higlass/build/hglib.css';
+
 #higlass{
-  height: 350px;
+  height: 630px;
   width: 800px;
-  padding-top:20px;
-  padding-bottom:20px;
+  padding-top:10px;
+  padding-bottom:10px;
   margin-left: 50px;
+  margin-bottom: 20px;
   border:10px;
 }
 /*

@@ -1,17 +1,18 @@
 
-@import '../node_modules/higlass/build/hglib.css';
-
 .App-header {
+  display:table;
+  width: 100%;
   background-color: #222;
-  height: 70px;
+  height: 60px;
   padding: 5px;
-  color: white;
-  text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App-header h2 {
+  display: table-cell;
+  top:50%;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
 }
 
 body {
@@ -20,8 +21,4 @@ body {
   font-family: sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
