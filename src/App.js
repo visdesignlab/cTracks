@@ -109,7 +109,7 @@ class App extends Component {
   render() {
     // Feature: can add button to choose our initial ViewConfig
     //var MyViewConfig = ViewConfig_Test.ViewConfig_Artificial_LocalData;
-    var MyViewConfig = ViewConfig.ViewConfig_SingleView_1Sample;
+    var MyViewConfig = ViewConfig.ViewConfig_DualView;
     return (
       <div className="App">
         <div>
@@ -119,9 +119,7 @@ class App extends Component {
           <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
             <button>Upload CNV File</button>
           </ReactFileReader>
-        </div>
-        <div className = "Button">
-          <button onClick={this.UpdateLocation2}>Initialize/Update Table</button>
+          <button onClick={this.UpdateLocation2}>Initialize Table</button>
         </div>
         <div>
           {this.state.APIInfo && this.state.CNVData && <CNVTable CNVData = {this.state.CNVData} location={this.state.APIInfo} />}
