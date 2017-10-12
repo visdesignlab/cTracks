@@ -48,7 +48,7 @@ class App extends Component {
 
   componentDidMount() {
     //this.RetrieveLocation_Static();
-    //this.RetrieveLocation();
+    this.RetrieveLocation();
   }
 
   // Update state of APIInfo (API location)
@@ -63,7 +63,7 @@ class App extends Component {
 
   // Retrieve location (one by one) using API.get
   RetrieveLocation_Static() {
-    console.log("Updating location...");
+    console.log("Retrieving location (static)...");
     //HiglassAPI.fetchLocation_ViewUID('aa')
     HiglassAPI.fetchLocation()
       .then(function(location) {
@@ -74,7 +74,7 @@ class App extends Component {
 
   // Retrieve location automatically using API.on
   RetrieveLocation() {
-    console.log("Updating location2...");
+    console.log("Retrieving location...");
     HiglassAPI.fetchViewConfig()
       .then(function(ViewID) {
         console.log("ViewID_in", ViewID);
