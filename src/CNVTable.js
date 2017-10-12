@@ -7,7 +7,7 @@ import JsonTable from 'react-json-table';
 import './CNVTable.css';
 
 
-// WARNING: OLD function - Retrieve CNV information 
+// WARNING: OLD function - parse CNV/CSV information 
 /*function RetrieveTable (location) {
 	console.log("Retrieving table from file...");
 
@@ -63,8 +63,7 @@ import './CNVTable.css';
 // Filter CVN data using location information (from ViewConfig) 
 function FilterInfo(location,data) {
     console.log("Filtering CNV information...");
-    // Temporary information: viewConfig Box
-    //var location = [4, 12859180, 19, 59080857];
+
     var Keys = Object.keys(data[0]);
 
     var output = [];
@@ -130,6 +129,7 @@ class CNVTable extends Component {
     this.FilterCNVInfo();
   }
 
+  // Compare incoming Props with current props: new filtering and update when needed
   componentWillReceiveProps(nextProps) {
     console.log("In componentWillReceiveProps");
     var ThisLocationString = this.props.location.toString();
@@ -143,7 +143,7 @@ class CNVTable extends Component {
     }
   }
 
-  // Process 
+  // Filter data and update table 
   FilterCNVInfo() {
     // Old function to retrieve info from csvString
     //var CNVData = RetrieveTable(this.props.location);
@@ -152,6 +152,7 @@ class CNVTable extends Component {
     this.UpdateTable(TableInfo);
   }
 
+  // Filter data based on incoming props, and update table
   FilterCNVInfo2(nextProps) {
     var TableInfo = FilterInfo(nextProps.location,nextProps.CNVData);
     console.log('TableInfo (post-filtering)',TableInfo);
@@ -175,5 +176,11 @@ class CNVTable extends Component {
 		)
 	}
 }
+
+CNVTable.propTypes = {
+  CNVData: PropTypes.array.isRequired,
+  location: PropTypes.array.isRequired
+}
+
 
 export default CNVTable;

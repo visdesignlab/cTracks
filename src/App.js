@@ -13,6 +13,7 @@ import './App.css';
 
 //import './Components/HiGlassLauncher.scss';
 
+// Parse CNV BED file as a CSV file
 function ParseFile(file, callback) {
   console.log("Parsing CNV file...");
 
@@ -38,18 +39,19 @@ class App extends Component {
       APIInfo: null,
       CNVData: null,
     };
-    this.UpdateLocation = this.UpdateLocation.bind(this);
-    this.UpdateLocation2 = this.UpdateLocation2.bind(this);
+    this.RetrieveLocation_Static = this.RetrieveLocation_Static.bind(this);
+    this.RetrieveLocation = this.RetrieveLocation.bind(this);
     this.UpdateAPIInfo = this.UpdateAPIInfo.bind(this);
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.UpdateCNVData = this.UpdateCNVData.bind(this);
   }
 
   componentDidMount() {
-    //this.UpdateLocation();
-    //this.UpdateLocation2();
+    //this.RetrieveLocation_Static();
+    //this.RetrieveLocation();
   }
 
+  // Update state of APIInfo (API location)
   UpdateAPIInfo(location) {
     console.log("APIInfo:", location);
     this.setState(function () {
@@ -59,12 +61,24 @@ class App extends Component {
     })
   }
 
-  UpdateLocation() {
+  // Retrieve location (one by one) using API.get
+  RetrieveLocation_Static() {
     console.log("Updating location...");
-    //HiglassAPI.fetchLocation('aa')
-    HiglassAPI.fetchLocationAuto()
+    //HiglassAPI.fetchLocation_ViewUID('aa')
+    HiglassAPI.fetchLocation()
       .then(function(location) {
         this.UpdateAPIInfo(location);
+      }.bind(this));
+  }
+
+
+  // Retrieve location automatically using API.on
+  RetrieveLocation() {
+    console.log("Updating location2...");
+    HiglassAPI.fetchViewConfig()
+      .then(function(ViewID) {
+        console.log("ViewID_in", ViewID);
+        window.hgApi.on('location', this.UpdateAPIInfo, ViewID , this.ListenerID);
       }.bind(this));
   }
 
@@ -72,18 +86,7 @@ class App extends Component {
     console.log('Listener ID:', id);
   } 
 
-  UpdateLocation2() {
-    console.log("Updating location2...");
-    HiglassAPI.fetchViewConfig()
-      .then(function(ViewID) {
-        console.log("ViewID_in", ViewID);
-        window.hgApi.on('location', this.UpdateAPIInfo, ViewID , this.ListenerID);
-      }.bind(this));
-
-    //window.hgApi.on('location', this.UpdateAPIInfo, 'aa' , this.ListenerID);
-
-  }
-
+  // Process CNV BED file: upload, parse and update state 
   ProcessCNVFile (files) {
     console.log("Processing CNVFile...");
     // Loading file
@@ -97,6 +100,7 @@ class App extends Component {
     ParseFile(files[0], this.UpdateCNVData);  
   }
 
+  // Update state of CNV data
   UpdateCNVData(data) {
     console.log("CNVData:", data);
     this.setState(function () {
@@ -119,7 +123,7 @@ class App extends Component {
           <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
             <button>Upload CNV File</button>
           </ReactFileReader>
-          <button onClick={this.UpdateLocation2}>Initialize Table</button>
+          <button onClick={this.RetrieveLocation}>Initialize Table</button>
         </div>
         <div>
           {this.state.APIInfo && this.state.CNVData && <CNVTable CNVData = {this.state.CNVData} location={this.state.APIInfo} />}
