@@ -1012,7 +1012,7 @@ var ViewConfig_DualView =
         3308767330.621793
       ],
       "initialYDomain": [
-        1285463088.836465,
+        1224557763.339768,
         1320266131.9774342
       ],
       "layout": {
@@ -1033,14 +1033,14 @@ var ViewConfig_DualView =
         690472424.9999747
       ],
       "initialYDomain": [
-        1039004341.4545453,
-        1037204137.5454549
+        1034889589.6623386,
+        1037204137.545455
       ],
       "autocompleteSource": "http://higlass.io/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
       "genomePositionSearchBox": {
         "autocompleteId": "OHJakQICQD6gTD7skx4EWA",
         "autocompleteServer": "http://higlass.io/api/v1",
-        "chromInfoId": "hg19",
+        "chromInfoId": "b37",
         "chromInfoServer": "http://higlass.io/api/v1",
         "visible": true
       },
