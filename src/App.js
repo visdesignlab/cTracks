@@ -5,6 +5,8 @@ import * as ViewConfig_Test from './ViewConfig_Test';
 import HiglassUI from './HiglassUI';
 import CNVTable from './CNVTable';
 import HiglassAPI from './utils/HiglassAPI';
+import ChromView from './ChromView';
+
 import ReactFileReader from 'react-file-reader';
 import Papa from 'papaparse';
 
@@ -36,19 +38,43 @@ class App extends Component {
     super(props);
     this.listenerID = null;
     this.state = {
+      ViewID: null,
       APIInfo: null,
       CNVData: null,
     };
+    this.RetrieveViewID = this.RetrieveViewID.bind(this);
     this.RetrieveLocation_Static = this.RetrieveLocation_Static.bind(this);
     this.RetrieveLocation = this.RetrieveLocation.bind(this);
     this.UpdateAPIInfo = this.UpdateAPIInfo.bind(this);
+    this.UpdateViewID = this.UpdateViewID.bind(this);
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.UpdateCNVData = this.UpdateCNVData.bind(this);
+
   }
 
   componentDidMount() {
     //this.RetrieveLocation_Static();
+    this.RetrieveViewID();
     this.RetrieveLocation();
+  }
+
+  // Retrieve ViewID
+  RetrieveViewID() {
+    console.log("Retrieving ViewID (static)...");
+    HiglassAPI.fetchViewConfig()
+      .then(function(ViewUID) {
+        this.UpdateViewID(ViewUID);
+      }.bind(this));
+  }
+
+  // Update state of ViewID
+  UpdateViewID(ViewUID) {
+    console.log("ViewUID:", ViewUID);
+    this.setState(function () {
+      return {
+        ViewID: ViewUID
+      }
+    })
   }
 
   // Update state of APIInfo (API location)
@@ -75,11 +101,12 @@ class App extends Component {
   // Retrieve location automatically using API.on
   RetrieveLocation() {
     console.log("Retrieving location...");
+
     HiglassAPI.fetchViewConfig()
       .then(function(ViewID) {
-        console.log("ViewID_in", ViewID);
         window.hgApi.on('location', this.UpdateAPIInfo, ViewID , this.ListenerID);
       }.bind(this));
+
   }
 
   ListenerID (id) {
@@ -124,6 +151,7 @@ class App extends Component {
             <button>Upload CNV File</button>
           </ReactFileReader>
           <button onClick={this.RetrieveLocation}>Initialize Table</button>
+          <ChromView />
         </div>
         <div>
           {this.state.APIInfo && this.state.CNVData && <CNVTable CNVData = {this.state.CNVData} location={this.state.APIInfo} />}

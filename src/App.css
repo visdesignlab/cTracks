@@ -4,9 +4,9 @@
 
 
 .Button {
-  width: 400px;
+  width: 500px;
   margin: 10px;
-  margin-left: 250px;
+  margin-left: 150px;
   padding: 10px;
   display: flex;
   justify-content: space-around;
