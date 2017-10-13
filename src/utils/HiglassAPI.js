@@ -12,7 +12,6 @@ export default {
 		return window.hgApi.get('viewConfig')
       .then(function (viewConfig) {
         var vc = JSON.parse(viewConfig);
-        console.log('viewUID:',vc.views[1].uid);
         return vc.views[1].uid;
       })
       .then (function (viewUID) {
