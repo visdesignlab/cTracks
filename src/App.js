@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+// Note: this two class will be removed
 import * as ViewConfig from './ViewConfig';
 import * as ViewConfig_Test from './ViewConfig_Test';
+// Note: final file to generate viewconfig
+import GenerateViewConfig from './utils/GenerateViewConfig';
 
 import HiglassUI from './HiglassUI';
 import CNVTable from './CNVTable';
@@ -36,12 +39,21 @@ function ParseFile(file, callback) {
 class App extends Component {
   constructor (props) {
     super(props);
+    // ListenerID for HiglassAPI
     this.listenerID = null;
+    // Input JSON file provided by ARUP
+    this.InputConfigFile = 'InputConfigFile';
+    // Generated Higlass View, based on input data and config template
+    this.HiglassView = null;
+    // ViewID: ViewID of Higlass view (not directly used right now...)
+    // APIInfo: API location
+    // CNVData: BED File information
     this.state = {
       ViewID: null,
       APIInfo: null,
       CNVData: null,
     };
+
     this.RetrieveViewID = this.RetrieveViewID.bind(this);
     this.RetrieveLocation_Static = this.RetrieveLocation_Static.bind(this);
     this.RetrieveLocation = this.RetrieveLocation.bind(this);
@@ -49,13 +61,24 @@ class App extends Component {
     this.UpdateViewID = this.UpdateViewID.bind(this);
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.UpdateCNVData = this.UpdateCNVData.bind(this);
+  }
 
+  componentWillMount() {
+    this.GenerateView();
   }
 
   componentDidMount() {
     //this.RetrieveLocation_Static();
     this.RetrieveViewID();
     this.RetrieveLocation();
+  }
+
+  // Generate View for Higlass
+  GenerateView() {
+    var HiglassViewConfig = new GenerateViewConfig(this.InputConfigFile);
+    HiglassViewConfig.CreateDefaultViewConfig();
+    HiglassViewConfig.CreateViewConfig();
+    this.HiglassView = HiglassViewConfig.getViewConfig();
   }
 
   // Retrieve ViewID
@@ -79,7 +102,7 @@ class App extends Component {
 
   // Update state of APIInfo (API location)
   UpdateAPIInfo(location) {
-    console.log("APIInfo:", location);
+    //console.log("APIInfo:", location);
     this.setState(function () {
       return {
         APIInfo: location
@@ -100,7 +123,7 @@ class App extends Component {
 
   // Retrieve location automatically using API.on
   RetrieveLocation() {
-    console.log("Retrieving location...");
+    //console.log("Retrieving location...");
 
     HiglassAPI.fetchViewConfig()
       .then(function(ViewID) {
@@ -140,11 +163,11 @@ class App extends Component {
   render() {
     // Feature: can add button to choose our initial ViewConfig
     //var MyViewConfig = ViewConfig_Test.ViewConfig_Artificial_LocalData;
-    var MyViewConfig = ViewConfig.ViewConfig_DualView;
+    //var MyViewConfig = ViewConfig.ViewConfig_DualView;
     return (
       <div className="App">
         <div>
-          <HiglassUI ViewConfig = {MyViewConfig} />
+          <HiglassUI ViewConfig = {this.HiglassView} />
         </div>
         <div className = "Button">
           <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
