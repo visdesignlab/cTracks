@@ -104,8 +104,8 @@ function FilterInfo(location,data) {
         }
     }
 
-    console.log("Data_Index_Lower:", Index_Lower);
-    console.log("Data_Index_Upper:", Index_Upper);
+    //console.log("Data_Index_Lower:", Index_Lower);
+    //console.log("Data_Index_Upper:", Index_Upper);
 
     // Step3: return filtered table
     for (let i = Index_Lower; i < Index_Upper; i++)
@@ -136,8 +136,8 @@ class CNVTable extends Component {
     var NextLocationString = nextProps.location.toString();
     var ThisCNVDataLength = this.props.CNVData.length;
     var NextCNVDataLength = nextProps.CNVData.length;
-    console.log('ThisCNVDataLength', ThisCNVDataLength);
-    console.log('NextCNVDataLength', NextCNVDataLength);
+    //console.log('ThisCNVDataLength', ThisCNVDataLength);
+    //console.log('NextCNVDataLength', NextCNVDataLength);
     if ((ThisLocationString !== NextLocationString) | (ThisCNVDataLength !== NextCNVDataLength)) {
       this.FilterCNVInfo2(nextProps);
     }
@@ -148,14 +148,14 @@ class CNVTable extends Component {
     // Old function to retrieve info from csvString
     //var CNVData = RetrieveTable(this.props.location);
     var TableInfo = FilterInfo(this.props.location,this.props.CNVData);
-    console.log('TableInfo (post-filtering)',TableInfo);
+    //console.log('TableInfo (post-filtering)',TableInfo);
     this.UpdateTable(TableInfo);
   }
 
   // Filter data based on incoming props, and update table
   FilterCNVInfo2(nextProps) {
     var TableInfo = FilterInfo(nextProps.location,nextProps.CNVData);
-    console.log('TableInfo (post-filtering)',TableInfo);
+    //console.log('TableInfo (post-filtering)',TableInfo);
     this.UpdateTable(TableInfo);
   }
 
