@@ -8,7 +8,7 @@ class ChromView extends Component {
     super(props);
     this.chromSizes = null;
     this.state = {
-    	value: "chr1"
+    	value: "chr3"
     };
 
     this.InitChromSizes = this.InitChromSizes.bind(this);
@@ -52,7 +52,7 @@ class ChromView extends Component {
 			{"chrom":"chrY","size":59373566},
 			{"chrom":"chrMT","size":16569},
 		];
-		console.log('chromSizes:',this.chromSizes);
+		//console.log('chromSizes:',this.chromSizes);
   }
 
   // Get specific chromosome size
@@ -68,7 +68,7 @@ class ChromView extends Component {
   }
 
   handleChange(event) {
-  	console.log('chrom:',event.target.value);
+  	//console.log('chrom:',event.target.value);
     this.setState({value: event.target.value});
   }
 
