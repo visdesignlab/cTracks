@@ -54,6 +54,7 @@ class App extends Component {
       CNVData: null,
     };
 
+    this.GenerateHiglassView = this.GenerateHiglassView.bind(this);
     this.RetrieveViewID = this.RetrieveViewID.bind(this);
     this.RetrieveLocation_Static = this.RetrieveLocation_Static.bind(this);
     this.RetrieveLocation = this.RetrieveLocation.bind(this);
@@ -64,7 +65,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.GenerateView();
+    this.GenerateHiglassView();
   }
 
   componentDidMount() {
@@ -73,12 +74,12 @@ class App extends Component {
     this.RetrieveLocation();
   }
 
-  // Generate View for Higlass
-  GenerateView() {
+  // Generate ViewConfig for Higlass
+  GenerateHiglassView() {
     var HiglassViewConfig = new GenerateViewConfig(this.InputConfigFile);
-    HiglassViewConfig.CreateDefaultViewConfig();
     HiglassViewConfig.CreateViewConfig();
     this.HiglassView = HiglassViewConfig.getViewConfig();
+    console.log('HiglassView',this.HiglassView);
   }
 
   // Retrieve ViewID

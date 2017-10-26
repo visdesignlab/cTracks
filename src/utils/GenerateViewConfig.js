@@ -1,45 +1,38 @@
 import axios from 'axios';
+import RandomGenerator from './random';
 
-// Default viewconfig - empty view with docker source server
-var ViewConfig_Default_Single =
+// WARNING: TEMPORARY Input Config File - it will be replaced by ARUP API JSON file
+var TMP_InputConfigFile =
 {
-  "editable": true,
-  "zoomFixed": false,
-  "trackSourceServers": [
-    "http://higlass.io/api/v1",
-    "http://localhost:8989/api/v1"
-  ],
-  "exportViewUrl": "http://localhost:8989/api/v1/viewconfs/",
-  "views": [
+  "server": "http://localhost:8989/api/v1",
+  "referralAddress": "https://ngs-web-address/variant?sampleCatalogId=2&chr={chr}&start={start}&end={end}&ref={ref}&alt={alt}",
+  "tracks": [
     {
-      
-      "tracks": {
-        "top": [],
-        "left": [],
-        "center": [],
-        "right": [],
-        "bottom": []
-      },
-      "initialXDomain": [ 0, 3200000000 ],
-      "initialYDomain": [ 0, 3200000000 ],
-      "layout": {
-        "w": 12,
-        "h": 12,
-        "x": 0,
-        "y": 0,
-        "moved": false,
-        "static": false
-      }
+      "name": "sim_02_sorted.ballele.hitile",
+      "tilesetUid": "hitile-ballele_sim02",
+      "label": "sim_02_sorted.ballele"
+    },
+    {
+      "name": "sim_02_sorted.log2_log2.hitile",
+      "tilesetUid": "hitile-log2_log2_sim02",
+      "label": "sim_02_sorted.log2_log2"
+    },
+    {
+      "name": "sim_02_sorted.log2_qual.hitile",
+      "tilesetUid": "hitile-log2_qual_sim02",
+      "label": "sim_02_sorted.log2_qual"
+    },
+    {
+      "name": "sim_02_sorted.cnv_log2.hitile",
+      "tilesetUid": "hitile-cnv_log2_sim02",
+      "label": "sim_02_sorted.cnv_log2"
+    },
+    {
+      "name": "sim_02_sorted.reads.hitile",
+      "tilesetUid": "hitile-reads_sim02",
+      "label": "sim_02_sorted.reads"
     }
-  ],
-  "zoomLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  },
-  "locationLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  }
+  ]
 }
 
 // My Template for dual view
@@ -649,8 +642,8 @@ var ViewConfig_DualView_Init =
   }
 }
 
-// Track information for Top View (using sim_02 data)
-var Track_Top = 
+// Template information for Top View (track and viewport)
+var Track_Top_Template = 
 {
   "type": "combined",
   "uid": "WTom2np0Sq60RM4AEgeTqQ",
@@ -658,11 +651,10 @@ var Track_Top =
   "width": 770,
   "contents": [
     {
-      "name": "sim_02_sorted.ballele.hitile",
-      "created": "2017-08-23T00:28:24.510319Z",
-      "server": "http://localhost:8989/api/v1",
-      "tilesetUid": "hitile-ballele_sim02",
-      "uid": "O037fITLR5ytaM-OwFz9sQ",
+      "name": "template.hitile",
+      "server": "http://servertemplate.com/api/v1",
+      "tilesetUid": "template_tilesetUid",
+      "uid": "uid",
       "type": "horizontal-point",
       "options": {
         "labelColor": "black",
@@ -674,14 +666,14 @@ var Track_Top =
         "trackBorderWidth": 1,
         "trackBorderColor": "grey",
         "labelTextOpacity": 0.4,
-        "name": "sim_02_sorted.ballele.hitile"
+        "name": "template_label"
       },
       "width": 770,
       "height": 38,
       "position": "top"
     },
     {
-      "uid": "Z2Qq5wzuSkugGNASkT-wSA",
+      "uid": "viewport_uid",
       "type": "viewport-projection-horizontal",
       "fromViewUid": "cc",
       "options": {
@@ -698,14 +690,13 @@ var Track_Top =
   "options": {}
 }
 
-// Track information for Bottom View (using sim_02 data)
-var Track_Bottom = 
+// Template information for Bottom View
+var Track_Bottom_Template = 
 {
-  "name": "sim_02_sorted.ballele.hitile",
-  "created": "2017-08-23T00:28:24.510319Z",
-  "server": "http://localhost:8989/api/v1",
-  "tilesetUid": "hitile-ballele_sim02",
-  "uid": "O037fITLR5ytaM-OwFz9sQ",
+  "name": "template.hitile",
+  "server": "http://servertemplate.com/api/v1",
+  "tilesetUid": "template_tilesetUid",
+  "uid": "uid",
   "type": "horizontal-point",
   "options": {
     "labelColor": "black",
@@ -717,11 +708,48 @@ var Track_Bottom =
     "trackBorderWidth": 1,
     "trackBorderColor": "grey",
     "labelTextOpacity": 0.4,
-    "name": "sim_02_sorted.ballele.hitile"
+    "name": "template_label"
   },
   "width": 770,
   "height": 38,
   "position": "top"
+}
+
+// Create Track for TopView
+function CreateTrack_TopView (Server, InputTrack, TrackColor) {
+  var OutputTrack = JSON.parse(JSON.stringify(Track_Top_Template));
+
+  // Update values for specific keys
+  OutputTrack.contents[0].name = InputTrack.name;
+  OutputTrack.contents[0].server = Server;
+  OutputTrack.contents[0].tilesetUid = InputTrack.tilesetUid;
+  OutputTrack.contents[0].options.name = InputTrack.label;
+  OutputTrack.contents[0].options.pointColor = TrackColor;
+  // Need to create random uid Number (for higlass view)
+  // UID for combined component
+  OutputTrack.uid = RandomGenerator.string(22);
+  // UID for track 
+  OutputTrack.contents[0].uid = RandomGenerator.string(22);
+  // UID for viewport-projection
+  OutputTrack.contents[1].uid = RandomGenerator.string(22);
+
+  return OutputTrack;
+}
+
+//Create Track for BottomView
+function CreateTrack_BottomView (Server, InputTrack, TrackColor) {
+  var OutputTrack = JSON.parse(JSON.stringify(Track_Bottom_Template));
+
+  // Update values for specific keys
+  OutputTrack.name = InputTrack.name;
+  OutputTrack.server = Server;
+  OutputTrack.tilesetUid = InputTrack.tilesetUid;
+  OutputTrack.options.name = InputTrack.label;
+  OutputTrack.options.pointColor = TrackColor;
+  // Need to create random uid Number (for higlass view)
+  OutputTrack.uid = RandomGenerator.string(22);
+
+  return OutputTrack;
 }
 
 
@@ -730,11 +758,10 @@ class GenerateViewConfig {
 		this.inputConfigFile = InputConfigFile;
 		this.HiglassViewConfig = null;
 
-		this.CreateViewConfig = this.CreateViewConfig.bind(this);
-	}
+    //Temporary: create hard-coded JSON InputConfigFile
+    this.inputConfigFile = TMP_InputConfigFile;
 
-	CreateDefaultViewConfig() {
-		this.HiglassViewConfig = ViewConfig_Default_Dual;
+		this.CreateViewConfig = this.CreateViewConfig.bind(this);
 	}
 
 	getViewConfig() {
@@ -742,19 +769,30 @@ class GenerateViewConfig {
 	}
 
 	CreateViewConfig() {
-//		this.HiglassViewConfig = ViewConfig_DualView_Init;
-//		var XDomain = this.HiglassViewConfig.views[0].initialXDomain;
-//		console.log("XDomain2:",this.HiglassViewConfig.views[0].initialXDomain);
-		console.log('HiglassViewConfig_IN', this.HiglassViewConfig);
-		this.HiglassViewConfig.views[0].tracks.top[1] = Track_Top;
-		this.HiglassViewConfig.views[1].tracks.top[1] = Track_Bottom;
-		console.log('HiglassViewConfig_NEW', this.HiglassViewConfig);
+    // Assign default viewconfig with dual view 
+    this.HiglassViewConfig = JSON.parse(JSON.stringify(ViewConfig_Default_Dual));
+
+    // Step 1 - Update trackSourceServer
+    this.HiglassViewConfig.trackSourceServers[1] = TMP_InputConfigFile.server;
+
+    var Colors = ["red","orange","green","turquoise","blue"];
+
+    // Step 2 - add individual tracks (TopView and BottomView)
+    for (let TrackId in TMP_InputConfigFile.tracks) {
+      let TrackColor = Colors[TrackId % Colors.length];
+      // Adding Track to TopView
+      let Track_Top = CreateTrack_TopView(TMP_InputConfigFile.server, TMP_InputConfigFile.tracks[TrackId], TrackColor);
+      this.HiglassViewConfig.views[0].tracks.top.push(Track_Top);
+      // Adding Track to BottomView
+      let Track_Bottom = CreateTrack_BottomView(TMP_InputConfigFile.server, TMP_InputConfigFile.tracks[TrackId], TrackColor);
+      this.HiglassViewConfig.views[1].tracks.top.push(Track_Bottom);
+    }
 
     // Test Higlass webserver API
-		var count = axios.get('http://localhost:8989/api/v1/tilesets/').then(function (results) {
-			console.log('WEBSERVER API:',results.data);
-			return results.data;
-		});
+		// var count = axios.get('http://localhost:8989/api/v1/tilesets/').then(function (results) {
+		// 	console.log('WEBSERVER API:',results.data);
+		// 	return results.data;
+		// });
 	}
 }
 
