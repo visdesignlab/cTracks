@@ -77,9 +77,10 @@ class App extends Component {
   // Generate ViewConfig for Higlass
   GenerateHiglassView() {
     var HiglassViewConfig = new GenerateViewConfig(this.InputConfigFile);
+    //HiglassViewConfig.CreateViewConfigDefault();
     HiglassViewConfig.CreateViewConfig();
     this.HiglassView = HiglassViewConfig.getViewConfig();
-    console.log('HiglassView',this.HiglassView);
+    console.log('HIGLASS_VIEW',this.HiglassView);
   }
 
   // Retrieve ViewID
