@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "HOST=$localhost react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build; cd build; zip -r ../dist.zip *; cd ..",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
