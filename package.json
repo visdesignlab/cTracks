@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "bootstrap": "^3.3.7",
+    "higlass": "^0.9.7",
     "papaparse": "^4.3.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -16,7 +17,7 @@
   },
   "scripts": {
     "start": "HOST=$localhost react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build; cd build; zip -r ../dist.zip *; cd ..",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
