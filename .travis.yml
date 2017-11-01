@@ -10,7 +10,7 @@ before_script:
 - npm install --quiet -g gulp
 - npm install
 before_deploy:
-- npm run build
+- travis_wait npm run build
 deploy:
   provider: releases
   api_key:
