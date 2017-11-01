@@ -28,3 +28,4 @@ yarn-error.log*
 
 # build file
 *.zip
+*.log
