@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // Note: this two class will be removed
-import * as ViewConfig from './ViewConfig';
-import * as ViewConfig_Test from './ViewConfig_Test';
+// import * as ViewConfig from './ViewConfig';
+// import * as ViewConfig_Test from './ViewConfig_Test';
 // Note: final file to generate viewconfig
 import GenerateViewConfig from './utils/GenerateViewConfig';
 
@@ -145,7 +145,7 @@ class App extends Component {
     var reader = new FileReader();
     reader.onload = function(e) {
       // Use reader.result
-      var text = reader.result;
+      // var text = reader.result;
     }
     //reader.readAsText(files[0]);
 

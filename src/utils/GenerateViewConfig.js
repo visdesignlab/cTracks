@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import RandomGenerator from './random';
 
 // WARNING: TEMPORARY Input Config File - it will be replaced by ARUP API JSON file
@@ -167,6 +167,7 @@ var ViewConfig_Default_Dual =
 }
 
 // Example with DualView (using sim_02 data)
+  /*
 var ViewConfig_DualView_Init = 
 {
   "editable": true,
@@ -641,6 +642,7 @@ var ViewConfig_DualView_Init =
     "locksDict": {}
   }
 }
+*/
 
 // Template information for Top View (track and viewport)
 var Track_Top_Template = 

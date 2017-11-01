@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Papa from 'papaparse';
+// import Papa from 'papaparse';
 import JsonTable from 'react-json-table';
 
 import './CNVTable.css';
@@ -84,7 +84,7 @@ function FilterInfo(location,data) {
     {
         if (data[i][searchField1] < searchVal1) {
           continue;
-        } else if ((data[i][searchField1] > searchVal1) | ((data[i][searchField1] == searchVal1) & (data[i][searchField2] >= searchVal2)))
+        } else if ((data[i][searchField1] > searchVal1) | ((data[i][searchField1] === searchVal1) & (data[i][searchField2] >= searchVal2)))
         {
           Index_Lower = i;
           break;
@@ -96,7 +96,7 @@ function FilterInfo(location,data) {
     {
         if (data[i][searchField1] < searchVal3) {
           continue;
-        } if ((data[i][searchField1] > searchVal3) | ((data[i][searchField1] == searchVal3) & (data[i][searchField3] > searchVal4)))
+        } if ((data[i][searchField1] > searchVal3) | ((data[i][searchField1] === searchVal3) & (data[i][searchField3] > searchVal4)))
         {
           //console.log("In Upper loop...");
           Index_Upper = i;
