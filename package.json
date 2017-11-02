@@ -1,6 +1,6 @@
 {
   "name": "copy-number",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "dependencies": {
     "axios": "^0.17.0",
