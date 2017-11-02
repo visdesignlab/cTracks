@@ -84,7 +84,14 @@ var ViewConfig_Default_Dual =
         "moved": false,
         "static": false
       },
-      "uid": "eN9c0VphSmOaptnJ6cOTdg"
+      "uid": "eN9c0VphSmOaptnJ6cOTdg",
+      "genomePositionSearchBox": {
+        "autocompleteId": "OHJakQICQD6gTD7skx4EWA",
+        "autocompleteServer": "http://higlass.io/api/v1",
+        "chromInfoId": "b37",
+        "chromInfoServer": "http://higlass.io/api/v1",
+        "visible": true
+      },
     },
     {
       "uid": "cc",
@@ -96,7 +103,6 @@ var ViewConfig_Default_Dual =
         1034889589.6623386,
         1037204137.545455
       ],
-      "autocompleteSource": "http://higlass.io/api/v1/suggest/?d=OHJakQICQD6gTD7skx4EWA&",
       "genomePositionSearchBox": {
         "autocompleteId": "OHJakQICQD6gTD7skx4EWA",
         "autocompleteServer": "http://higlass.io/api/v1",
