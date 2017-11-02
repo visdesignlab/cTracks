@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "HOST=$localhost react-scripts start",
-    "build": "react-scripts build; cd build; mv static wstatic; sed -i '.bak' 's/static/wstatic/g' index.html; zip -r ../dist.zip *; cd ..",
+    "build": "react-scripts build; cd build; zip -r ../dist.zip *; cd ..",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
