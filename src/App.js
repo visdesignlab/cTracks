@@ -197,7 +197,7 @@ class App extends Component {
         <div>
           { this.state.HiglassView ?
             <HiglassUI 
-            onHiglassUpdated = {this.props.handleHiGlassUpdated}
+            onHiglassUpdated = {this.handleHiGlassUpdated.bind(this)}
             ViewConfig = {this.state.HiglassView} 
             /> : null 
           }
