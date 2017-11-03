@@ -767,7 +767,7 @@ class GenerateViewConfig {
 		this.HiglassViewConfig = null;
 
     //Temporary: create hard-coded JSON InputConfigFile
-    this.inputConfigFile = TMP_InputConfigFile;
+    //this.inputConfigFile = TMP_InputConfigFile;
 
     this.CreateViewConfigDefault = this.CreateViewConfigDefault.bind(this);
 		this.CreateViewConfig = this.CreateViewConfig.bind(this);
@@ -787,18 +787,18 @@ class GenerateViewConfig {
     this.HiglassViewConfig = JSON.parse(JSON.stringify(ViewConfig_Default_Dual));
 
     // Step 1 - Update trackSourceServer
-    this.HiglassViewConfig.trackSourceServers[1] = TMP_InputConfigFile.server;
+    this.HiglassViewConfig.trackSourceServers[1] = this.inputConfigFile.server;
 
     var Colors = ["red","orange","green","turquoise","blue"];
 
     // Step 2 - add individual tracks (TopView and BottomView)
-    for (let TrackId in TMP_InputConfigFile.tracks) {
+    for (let TrackId in this.inputConfigFile.tracks) {
       let TrackColor = Colors[TrackId % Colors.length];
       // Adding Track to TopView
-      let Track_Top = CreateTrack_TopView(TMP_InputConfigFile.server, TMP_InputConfigFile.tracks[TrackId], TrackColor);
+      let Track_Top = CreateTrack_TopView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
       this.HiglassViewConfig.views[0].tracks.top.push(Track_Top);
       // Adding Track to BottomView
-      let Track_Bottom = CreateTrack_BottomView(TMP_InputConfigFile.server, TMP_InputConfigFile.tracks[TrackId], TrackColor);
+      let Track_Bottom = CreateTrack_BottomView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
       this.HiglassViewConfig.views[1].tracks.top.push(Track_Bottom);
     }
 
