@@ -71,11 +71,17 @@ function FilterInfo(location,data) {
     var searchField2 = Keys[1]; // "start"
     var searchField3 = Keys[2]; // "stop"
     var searchVal1 = location[0].replace('chr','');
+    if (!isNaN(searchVal1)) {
+      searchVal1 = parseInt(searchVal1,10);
+    }
     var searchVal2 = location[1];
     var searchVal3 = location[2].replace('chr','');
+    if (!isNaN(searchVal3)) {
+      searchVal3 = parseInt(searchVal3,10);
+    }
     var searchVal4 = location[3];
 
-    
+
     // Multiple rounds for search: 
     var Index_Lower = 0;
     var Index_Upper = data.length;
