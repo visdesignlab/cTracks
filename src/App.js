@@ -36,13 +36,47 @@ function ParseFile(file, callback) {
   });
 }
 
+// WARNING: TEMPORARY Input Config File - it will be replaced by ARUP API JSON file
+var TMP_InputConfigFile =
+{
+  "server": "http://155.98.19.129:8989/api/v1",
+  "referralAddress": "https://ngs-web-address/variant?sampleCatalogId=2&chr={chr}&start={start}&end={end}&ref={ref}&alt={alt}",
+  "tracks": [
+    {
+      "name": "sim_02_sorted.ballele.hitile",
+      "tilesetUid": "hitile-ballele_sim02",
+      "label": "sim_02_sorted.ballele"
+    },
+    {
+      "name": "sim_02_sorted.log2_log2.hitile",
+      "tilesetUid": "hitile-log2_log2_sim02",
+      "label": "sim_02_sorted.log2_log2"
+    },
+    {
+      "name": "sim_02_sorted.log2_qual.hitile",
+      "tilesetUid": "hitile-log2_qual_sim02",
+      "label": "sim_02_sorted.log2_qual"
+    },
+    {
+      "name": "sim_02_sorted.cnv_log2.hitile",
+      "tilesetUid": "hitile-cnv_log2_sim02",
+      "label": "sim_02_sorted.cnv_log2"
+    },
+    {
+      "name": "sim_02_sorted.reads.hitile",
+      "tilesetUid": "hitile-reads_sim02",
+      "label": "sim_02_sorted.reads"
+    }
+  ]
+}
+
 class App extends Component {
   constructor (props) {
     super(props);
     // ListenerID for HiglassAPI
     this.listenerID = null;
     // Input JSON file provided by ARUP
-    this.InputConfigFile = 'InputConfigFile';
+    this.InputConfigFile = TMP_InputConfigFile;
     // Generated Higlass View, based on input data and config template
     this.HiglassView = null;
     // ViewID: ViewID of Higlass view (not directly used right now...)
