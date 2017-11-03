@@ -5,6 +5,26 @@ import * as hglib from 'higlass';
 import './HiglassUI.css'
 
 class HiglassUI extends Component {
+  constructor(props) {
+    super(props);
+
+    this.prevViewConfig = JSON.stringify(props.ViewConfig)
+  }
+
+  shouldComponentUpdate(newProps, newState) {
+    if (this.prevViewConfig === JSON.stringify(newProps.ViewConfig))
+      return false;
+
+    console.log('here', newProps.ViewConfig);
+    this.prevViewConfig = JSON.stringify(newProps.ViewConfig);
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('HiGlass updated');
+    this.props.onHiglassUpdated();
+  }
+
   render () {
   	return (
   		  <div className = "HiglassUI">
@@ -19,11 +39,10 @@ class HiglassUI extends Component {
   		  </div>
   		)
   }
-
 }
 
 HiglassUI.propTypes = {
-  ViewConfig: PropTypes.object.isRequired
+  ViewConfig: PropTypes.object
 }
 
 export default HiglassUI;
