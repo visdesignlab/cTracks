@@ -11,7 +11,7 @@ class HiglassUI extends Component {
   		  	{hglib.createHgComponent(
 		        document.getElementById('higlass'),
 		        this.props.ViewConfig,
-		        { bounded: true },
+		        { bounded: false },
 		        function (api) {
 		          window.hgApi = api;
 		        }
