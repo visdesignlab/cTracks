@@ -9,6 +9,7 @@ import HiglassUI from './HiglassUI';
 import CNVTable from './CNVTable';
 import HiglassAPI from './utils/HiglassAPI';
 import ChromView from './ChromView';
+import TracksMenu from './TracksMenu';
 
 import ReactFileReader from 'react-file-reader';
 import Papa from 'papaparse';
@@ -41,34 +42,46 @@ var TMP_InputConfigFile =
 {
   "server": "http://155.98.19.129:8989/api/v1",
   "referralAddress": "https://ngs-web-address/variant?sampleCatalogId=2&chr={chr}&start={start}&end={end}&ref={ref}&alt={alt}",
+  "CNVBEDLocation": "https://ngs-web-address/variant?sampleCatalogId=2&BED=cnv.bed",
   "tracks": [
     {
       "name": "sim_02_sorted.ballele.hitile",
       "tilesetUid": "hitile-ballele_sim02",
-      "label": "sim_02_sorted.ballele"
+      "label": "sim_02_sorted.ballele",
+      "trackType": "ballele",
+      "display": true
     },
     {
       "name": "sim_02_sorted.log2_log2.hitile",
       "tilesetUid": "hitile-log2_log2_sim02",
-      "label": "sim_02_sorted.log2_log2"
+      "label": "sim_02_sorted.log2_log2",
+      "trackType": "log2",
+      "display": true
     },
     {
       "name": "sim_02_sorted.log2_qual.hitile",
       "tilesetUid": "hitile-log2_qual_sim02",
-      "label": "sim_02_sorted.log2_qual"
+      "label": "sim_02_sorted.log2_qual",
+      "trackType": "log2_qual",
+      "display": true
     },
     {
       "name": "sim_02_sorted.cnv_log2.hitile",
       "tilesetUid": "hitile-cnv_log2_sim02",
-      "label": "sim_02_sorted.cnv_log2"
+      "label": "sim_02_sorted.cnv_log2",
+      "trackType": "cnv",
+      "display": true
     },
     {
       "name": "sim_02_sorted.reads.hitile",
       "tilesetUid": "hitile-reads_sim02",
-      "label": "sim_02_sorted.reads"
+      "label": "sim_02_sorted.reads",
+      "trackType": "reads",
+      "display": true
     }
   ]
 }
+
 
 class App extends Component {
   constructor (props) {
@@ -77,25 +90,28 @@ class App extends Component {
     this.listenerID = null;
     // Input JSON file provided by ARUP
     this.InputConfigFile = TMP_InputConfigFile;
-    // Generated Higlass View, based on input data and config template
-    this.HiglassView = null;
     // ViewID: ViewID of Higlass view (not directly used right now...)
     // APIInfo: API location
     // CNVData: BED File information
+    // HiglassView: ViewConfig for Higlass
     this.state = {
       ViewID: null,
       APIInfo: null,
       CNVData: null,
+      HiglassView: null
     };
 
     this.GenerateHiglassView = this.GenerateHiglassView.bind(this);
+    this.UpdateHiglassView = this.UpdateHiglassView.bind(this);
     this.RetrieveViewID = this.RetrieveViewID.bind(this);
     this.RetrieveLocation_Static = this.RetrieveLocation_Static.bind(this);
     this.RetrieveLocation = this.RetrieveLocation.bind(this);
-    this.UpdateAPIInfo = this.UpdateAPIInfo.bind(this);
     this.UpdateViewID = this.UpdateViewID.bind(this);
-    this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
+    this.UpdateAPIInfo = this.UpdateAPIInfo.bind(this);
     this.UpdateCNVData = this.UpdateCNVData.bind(this);
+    this.UpdateHiglassView = this.UpdateHiglassView.bind(this);
+    this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
+
   }
 
   componentWillMount() {
@@ -113,13 +129,23 @@ class App extends Component {
     var HiglassViewConfig = new GenerateViewConfig(this.InputConfigFile);
     //HiglassViewConfig.CreateViewConfigDefault();
     HiglassViewConfig.CreateViewConfig();
-    this.HiglassView = HiglassViewConfig.getViewConfig();
-    console.log('HIGLASS_VIEW',this.HiglassView);
+    var HiglassView = HiglassViewConfig.getViewConfig();
+    this.UpdateHiglassView(HiglassView);
+    //console.log('HIGLASS_VIEW',HiglassView);
+  }
+
+
+  UpdateHiglassView (HiglassView) {
+    this.setState(function () {
+      return {
+        HiglassView: HiglassView
+      }
+    })    
   }
 
   // Retrieve ViewID
   RetrieveViewID() {
-    console.log("Retrieving ViewID (static)...");
+    //console.log("Retrieving ViewID (static)...");
     HiglassAPI.fetchViewConfig()
       .then(function(ViewUID) {
         this.UpdateViewID(ViewUID);
@@ -128,7 +154,7 @@ class App extends Component {
 
   // Update state of ViewID
   UpdateViewID(ViewUID) {
-    console.log("ViewUID:", ViewUID);
+    //console.log("ViewUID:", ViewUID);
     this.setState(function () {
       return {
         ViewID: ViewUID
@@ -169,7 +195,7 @@ class App extends Component {
   }
 
   ListenerID (id) {
-    console.log('Listener ID:', id);
+    //console.log('Listener ID:', id);
   } 
 
   // Process CNV BED file: upload, parse and update state 
@@ -203,7 +229,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <HiglassUI ViewConfig = {this.HiglassView} />
+          <HiglassUI ViewConfig = {this.state.HiglassView} />
         </div>
         <div className = "Button">
           <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
@@ -213,6 +239,9 @@ class App extends Component {
           <ChromView />
         </div>
         <div>
+          <TracksMenu ConfigFile = {this.InputConfigFile} UpdateDisplay = {this.GenerateHiglassView}/>
+        </div>
+        <div>
           {this.state.APIInfo && this.state.CNVData && <CNVTable CNVData = {this.state.CNVData} location={this.state.APIInfo} />}
         </div>
       </div>
@@ -220,4 +249,5 @@ class App extends Component {
   }
 }
 
+ 
 export default App;
