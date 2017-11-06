@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // import * as ViewConfig_Test from './ViewConfig_Test';
 // Note: final file to generate viewconfig
 import GenerateViewConfig from './utils/GenerateViewConfig';
+import {TMP_InputConfigFile} from './utils/GenerateViewConfig';
 
 import HiglassUI from './HiglassUI';
 import CNVTable from './CNVTable';
@@ -42,7 +43,7 @@ class App extends Component {
     // ListenerID for HiglassAPI
     this.listenerID = null;
     // Input JSON file provided by ARUP
-    this.InputConfigFile = 'InputConfigFile';
+    this.InputConfigFile = TMP_InputConfigFile;
     // Generated Higlass View, based on input data and config template
 
     // ViewID: ViewID of Higlass view (not directly used right now...)
@@ -100,7 +101,6 @@ class App extends Component {
 
   // Retrieve ViewID
   RetrieveViewID() {
-    console.trace("Retrieving ViewID (static)...");
     HiglassAPI.fetchViewConfig()
       .then(function(ViewUID) {
         this.UpdateViewID(ViewUID);
@@ -155,6 +155,16 @@ class App extends Component {
     reader.onload = (event) => {
       var obj = JSON.parse(event.target.result);
       console.log('obj', obj);
+
+      let HiglassViewConfig = new GenerateViewConfig(obj);
+      HiglassViewConfig.CreateViewConfig();
+      let newViewConfig = HiglassViewConfig.getViewConfig();
+
+      console.log('newViewConfig:', newViewConfig);
+
+      this.setState({
+        HiglassView: newViewConfig,
+      });
     };
 
     reader.readAsText(files[0]);

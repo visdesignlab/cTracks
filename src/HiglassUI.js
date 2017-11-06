@@ -12,6 +12,8 @@ class HiglassUI extends Component {
   }
 
   shouldComponentUpdate(newProps, newState) {
+    console.log('newProps.ViewConfig:', newProps.ViewConfig);
+
     if (this.prevViewConfig === JSON.stringify(newProps.ViewConfig))
       return false;
 
@@ -37,6 +39,7 @@ class HiglassUI extends Component {
   }
 
   componentDidUpdate() {
+    this.launchHg();
     console.log('HiGlass updated');
     this.props.onHiglassUpdated();
   }
