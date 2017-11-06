@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // import * as ViewConfig_Test from './ViewConfig_Test';
 // Note: final file to generate viewconfig
 import GenerateViewConfig from './utils/GenerateViewConfig';
+import {TMP_InputConfigFile} from './utils/GenerateViewConfig';
 
 import HiglassUI from './HiglassUI';
 import CNVTable from './CNVTable';
@@ -42,9 +43,9 @@ class App extends Component {
     // ListenerID for HiglassAPI
     this.listenerID = null;
     // Input JSON file provided by ARUP
-    this.InputConfigFile = 'InputConfigFile';
+    this.InputConfigFile = TMP_InputConfigFile;
     // Generated Higlass View, based on input data and config template
-    this.HiglassView = null;
+
     // ViewID: ViewID of Higlass view (not directly used right now...)
     // APIInfo: API location
     // CNVData: BED File information
@@ -52,6 +53,7 @@ class App extends Component {
       ViewID: null,
       APIInfo: null,
       CNVData: null,
+      HiglassView: null,
     };
 
     this.GenerateHiglassView = this.GenerateHiglassView.bind(this);
@@ -62,14 +64,23 @@ class App extends Component {
     this.UpdateViewID = this.UpdateViewID.bind(this);
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.UpdateCNVData = this.UpdateCNVData.bind(this);
+    this.LoadConfigFile = this.LoadConfigFile.bind(this);
   }
 
   componentWillMount() {
-    this.GenerateHiglassView();
   }
 
   componentDidMount() {
     //this.RetrieveLocation_Static();
+    this.GenerateHiglassView();
+  }
+
+  componentDidUpdate() {
+
+  }
+
+  handleHiGlassUpdated() {
+    console.log('handle higlass updated');
     this.RetrieveViewID();
     this.RetrieveLocation();
   }
@@ -80,12 +91,16 @@ class App extends Component {
     //HiglassViewConfig.CreateViewConfigDefault();
     HiglassViewConfig.CreateViewConfig();
     this.HiglassView = HiglassViewConfig.getViewConfig();
+
+    this.setState({
+      HiglassView : HiglassViewConfig.getViewConfig(),
+    });
+
     console.log('HIGLASS_VIEW',this.HiglassView);
   }
 
   // Retrieve ViewID
   RetrieveViewID() {
-    console.log("Retrieving ViewID (static)...");
     HiglassAPI.fetchViewConfig()
       .then(function(ViewUID) {
         this.UpdateViewID(ViewUID);
@@ -134,6 +149,27 @@ class App extends Component {
 
   }
 
+  LoadConfigFile(files) {
+    //this.GenerateHiglassView();
+    let reader = new FileReader();
+    reader.onload = (event) => {
+      var obj = JSON.parse(event.target.result);
+      console.log('obj', obj);
+
+      let HiglassViewConfig = new GenerateViewConfig(obj);
+      HiglassViewConfig.CreateViewConfig();
+      let newViewConfig = HiglassViewConfig.getViewConfig();
+
+      console.log('newViewConfig:', newViewConfig);
+
+      this.setState({
+        HiglassView: newViewConfig,
+      });
+    };
+
+    reader.readAsText(files[0]);
+  }
+
   ListenerID (id) {
     console.log('Listener ID:', id);
   } 
@@ -169,9 +205,17 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <HiglassUI ViewConfig = {this.HiglassView} />
+          { this.state.HiglassView ?
+            <HiglassUI 
+            onHiglassUpdated = {this.handleHiGlassUpdated.bind(this)}
+            ViewConfig = {this.state.HiglassView} 
+            /> : null 
+          }
         </div>
         <div className = "Button">
+          <ReactFileReader handleFiles={this.LoadConfigFile} fileTypes={'*'}>
+            <button>Load Config File</button>
+          </ReactFileReader>
           <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
             <button>Upload CNV File</button>
           </ReactFileReader>
