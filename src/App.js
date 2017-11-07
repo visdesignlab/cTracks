@@ -111,15 +111,23 @@ class App extends Component {
     this.UpdateCNVData = this.UpdateCNVData.bind(this);
     this.UpdateHiglassView = this.UpdateHiglassView.bind(this);
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
-
+    this.LoadConfigFile = this.LoadConfigFile.bind(this);
   }
 
   componentWillMount() {
-    this.GenerateHiglassView();
   }
 
   componentDidMount() {
     //this.RetrieveLocation_Static();
+    this.GenerateHiglassView();
+  }
+
+  componentDidUpdate() {
+
+  }
+
+  handleHiGlassUpdated() {
+    console.log('handle higlass updated');
     this.RetrieveViewID();
     this.RetrieveLocation();
   }
@@ -133,7 +141,6 @@ class App extends Component {
     this.UpdateHiglassView(HiglassView);
     //console.log('HIGLASS_VIEW',HiglassView);
   }
-
 
   UpdateHiglassView (HiglassView) {
     this.setState(function () {
@@ -194,6 +201,27 @@ class App extends Component {
 
   }
 
+  LoadConfigFile(files) {
+    //this.GenerateHiglassView();
+    let reader = new FileReader();
+    reader.onload = (event) => {
+      var obj = JSON.parse(event.target.result);
+      console.log('obj', obj);
+
+      let HiglassViewConfig = new GenerateViewConfig(obj);
+      HiglassViewConfig.CreateViewConfig();
+      let newViewConfig = HiglassViewConfig.getViewConfig();
+
+      console.log('newViewConfig:', newViewConfig);
+
+      this.setState({
+        HiglassView: newViewConfig,
+      });
+    };
+
+    reader.readAsText(files[0]);
+  }
+
   ListenerID (id) {
     //console.log('Listener ID:', id);
   } 
@@ -229,9 +257,17 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <HiglassUI ViewConfig = {this.state.HiglassView} />
+          { this.state.HiglassView ?
+            <HiglassUI 
+            onHiglassUpdated = {this.handleHiGlassUpdated.bind(this)}
+            ViewConfig = {this.state.HiglassView} 
+            /> : null 
+          }
         </div>
         <div className = "Button">
+          <ReactFileReader handleFiles={this.LoadConfigFile} fileTypes={'*'}>
+            <button>Load Config File</button>
+          </ReactFileReader>
           <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
             <button>Upload CNV File</button>
           </ReactFileReader>
