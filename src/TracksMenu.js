@@ -60,7 +60,7 @@ class TracksMenu extends Component {
 	render () {
 		return (
       <div className="TracksMenu">
-  			<p>TracksMenu:</p>
+  			<label>Tracks Menu:</label>
         <form onSubmit={this.handleFormSubmit}>
           {this.createCheckBoxes()}
           <button className="btn btn-default" type="submit">UpdateDisplay</button>
