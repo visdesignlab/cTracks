@@ -1,7 +1,7 @@
 @import '../node_modules/higlass/build/hglib.css';
 
 #higlass{
-  height: 630px;
+
   width: 800px;
   padding-top:10px;
   padding-bottom:10px;
@@ -9,6 +9,9 @@
   margin-bottom: 20px;
   border:10px;
 }
+
+/*  height: 630px;/*
+
 /*
 #higlass-viewer {
   position: top;
