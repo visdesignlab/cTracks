@@ -28,9 +28,10 @@
 .Box {
   width: 250px;
   margin: 10px;
-  margin-left: 50px;
+  margin-left: 20px;
   padding: 10px;
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .RightBox {
@@ -39,6 +40,7 @@
   /*margin-left: 50px;*/
   /*padding: 10px;*/
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .FileReader {
