@@ -59,11 +59,11 @@ class TracksMenu extends Component {
 
 	render () {
 		return (
-      <div className="TracksMenu">
-  			<label>Tracks Menu:</label>
+      <div>
+  			<label>Tracks Menu</label>
         <form onSubmit={this.handleFormSubmit}>
           {this.createCheckBoxes()}
-          <button className="btn btn-default" type="submit">UpdateDisplay</button>
+          <button className="btn btn-default" type="submit">Update Display</button>
         </form>
       </div>
 		)

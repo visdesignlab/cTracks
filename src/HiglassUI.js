@@ -50,14 +50,12 @@ class HiglassUI extends Component {
 
   render () {
   	return (
-		  <div>
         <div className = "higlass"
           ref={this.launchHgLib(
             this.props.ViewConfig,
             { bounded: false }
           )}>
         </div>
-		  </div>
 		)
   }
 }

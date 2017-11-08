@@ -255,30 +255,55 @@ class App extends Component {
     //var MyViewConfig = ViewConfig.ViewConfig_DualView;
     return (
       <div className="App">
-        <div>
-          { this.state.HiglassView ?
-            <HiglassUI 
-            onHiglassUpdated = {this.handleHiGlassUpdated.bind(this)}
-            ViewConfig = {this.state.HiglassView} 
-            /> : null 
-          }
+        <div className="App-header">
+          <h2>cTracks</h2>
         </div>
-        <div className = "Button">
-          <ReactFileReader handleFiles={this.LoadConfigFile} fileTypes={'*'}>
-            <button>Load Config File</button>
-          </ReactFileReader>
-          <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
-            <button>Upload CNV File</button>
-          </ReactFileReader>
-          <button onClick={this.RetrieveLocation}>Initialize Table</button>
-          <ChromView />
+
+        <div className = "TopContainer">
+
+          <div className = "LeftPanel">
+            <div className = "Box">
+              <label>Input files</label>
+
+              <div className = "FileReader">
+                <ReactFileReader  handleFiles={this.LoadConfigFile} fileTypes={'*'}>
+                  <button className="btn btn-default">Load Input Config File</button>
+                </ReactFileReader>
+              </div>
+
+              <div className = "FileReader">
+                <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
+                  <button className="btn btn-default">Load CNV BED File</button>
+                </ReactFileReader>
+              </div>              
+            </div>
+
+            <div className = "Box">
+              <TracksMenu ConfigFile = {this.InputConfigFile} UpdateDisplay = {this.GenerateHiglassView}/>
+            </div>
+
+            <div className = "Box">
+              <label>Update location</label>
+              <ChromView />
+            </div>
+          </div>
+
+          <div className = "RightPanel">
+            <div className = "RightBox">
+              { this.state.HiglassView ?
+                <HiglassUI 
+                onHiglassUpdated = {this.handleHiGlassUpdated.bind(this)}
+                ViewConfig = {this.state.HiglassView} 
+                /> : null 
+              }
+            </div>
+            <div>
+              {this.state.APIInfo && this.state.CNVData && <CNVTable CNVData = {this.state.CNVData} location={this.state.APIInfo} />}
+            </div>
+          </div>
+
         </div>
-        <div>
-          <TracksMenu ConfigFile = {this.InputConfigFile} UpdateDisplay = {this.GenerateHiglassView}/>
-        </div>
-        <div>
-          {this.state.APIInfo && this.state.CNVData && <CNVTable CNVData = {this.state.CNVData} location={this.state.APIInfo} />}
-        </div>
+
       </div>
     )
   }

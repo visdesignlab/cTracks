@@ -1,20 +1,4 @@
 
-.App-header {
-  display:table;
-  width: 100%;
-  background-color: #222;
-  height: 60px;
-  padding: 5px;
-}
-
-.App-header h2 {
-  display: table-cell;
-  top:50%;
-  color: white;
-  text-align: center;
-  vertical-align: middle;
-}
-
 body {
   margin: 0;
   padding: 0;

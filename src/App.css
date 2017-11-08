@@ -2,12 +2,56 @@
   text-align: left;
 }
 
-.Button {
+.App-header {
+  background-color: #222;
+  height: 60px;
+  padding: 0px;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.TopContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.LeftPanel {
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.Box {
+  width: 250px;
+  margin: 10px;
+  margin-left: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.RightBox {
+  width: 800px;
+  margin: 10px;
+  /*margin-left: 50px;*/
+  /*padding: 10px;*/
+  border: 1px solid #ccc;
+}
+
+.FileReader {
+  margin-top: 10px;
+}
+
+.OptionsContainer {
   width: 600px;
   margin: 10px;
   margin-left: 150px;
   padding: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
