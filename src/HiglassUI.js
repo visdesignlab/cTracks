@@ -22,33 +22,43 @@ class HiglassUI extends Component {
     return true;
   }
 
-  launchHg() {
-    hglib.createHgComponent(
-      document.getElementById('higlass'),
-      this.props.ViewConfig,
-      { bounded: false },
-      function (api) {
-        window.hgApi = api;
+
+  launchHgLib(ViewConfig, options) {
+    return (element) => {
+      if (element && ViewConfig) {
+        hglib.createHgComponent(
+          element,
+          ViewConfig,
+          options,
+              function (api) {
+                window.hgApi = api;
+              }
+        );
       }
-    )
+    }
   }
 
+
   componentDidMount() {
-    this.launchHg();
     this.props.onHiglassUpdated();
   }
 
   componentDidUpdate() {
-    this.launchHg();
     console.log('HiGlass updated');
     this.props.onHiglassUpdated();
   }
 
   render () {
   	return (
-  		  <div className = "HiglassUI">
-  		  </div>
-  		)
+		  <div>
+        <div className = "higlass"
+          ref={this.launchHgLib(
+            this.props.ViewConfig,
+            { bounded: false }
+          )}>
+        </div>
+		  </div>
+		)
   }
 }
 
