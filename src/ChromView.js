@@ -115,7 +115,7 @@ class ChromView extends Component {
 	          <option value="chrY">chrY</option>
 	          <option value="chrM">chrM</option>
 	        </select>
-	        <input type="submit" value="Update Location" />
+	        <input className="btn btn-default" type="submit" value="Update Location" />
 	      </form>
     );
   }

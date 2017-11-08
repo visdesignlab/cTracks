@@ -1,39 +1,6 @@
 // import axios from 'axios';
 import RandomGenerator from './random';
 
-// WARNING: TEMPORARY Input Config File - it will be replaced by ARUP API JSON file
-export const TMP_InputConfigFile =
-{
-  "server": "http://155.98.19.129:8989/api/v1",
-  "referralAddress": "https://ngs-web-address/variant?sampleCatalogId=2&chr={chr}&start={start}&end={end}&ref={ref}&alt={alt}",
-  "tracks": [
-    {
-      "name": "sim_02_sorted.ballele.hitile",
-      "tilesetUid": "hitile-ballele_sim02",
-      "label": "sim_02_sorted.ballele"
-    },
-    {
-      "name": "sim_02_sorted.log2_log2.hitile",
-      "tilesetUid": "hitile-log2_log2_sim02",
-      "label": "sim_02_sorted.log2_log2"
-    },
-    {
-      "name": "sim_02_sorted.log2_qual.hitile",
-      "tilesetUid": "hitile-log2_qual_sim02",
-      "label": "sim_02_sorted.log2_qual"
-    },
-    {
-      "name": "sim_02_sorted.cnv_log2.hitile",
-      "tilesetUid": "hitile-cnv_log2_sim02",
-      "label": "sim_02_sorted.cnv_log2"
-    },
-    {
-      "name": "sim_02_sorted.reads.hitile",
-      "tilesetUid": "hitile-reads_sim02",
-      "label": "sim_02_sorted.reads"
-    }
-  ]
-}
 
 // My Template for dual view
 var ViewConfig_Default_Dual =
@@ -794,12 +761,15 @@ class GenerateViewConfig {
     // Step 2 - add individual tracks (TopView and BottomView)
     for (let TrackId in this.inputConfigFile.tracks) {
       let TrackColor = Colors[TrackId % Colors.length];
-      // Adding Track to TopView
-      let Track_Top = CreateTrack_TopView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
-      this.HiglassViewConfig.views[0].tracks.top.push(Track_Top);
-      // Adding Track to BottomView
-      let Track_Bottom = CreateTrack_BottomView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
-      this.HiglassViewConfig.views[1].tracks.top.push(Track_Bottom);
+      if (this.inputConfigFile.tracks[TrackId].display) {
+        // Adding Track to TopView
+        let Track_Top = CreateTrack_TopView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
+        this.HiglassViewConfig.views[0].tracks.top.push(Track_Top);
+
+        // Adding Track to BottomView
+        let Track_Bottom = CreateTrack_BottomView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
+        this.HiglassViewConfig.views[1].tracks.top.push(Track_Bottom);
+      }
     }
 
     // Test Higlass webserver API
