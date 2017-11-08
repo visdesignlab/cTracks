@@ -214,9 +214,8 @@ class App extends Component {
 
       console.log('newViewConfig:', newViewConfig);
 
-      this.setState({
-        HiglassView: newViewConfig,
-      });
+      this.UpdateHiglassView(newViewConfig);
+   
     };
 
     reader.readAsText(files[0]);
