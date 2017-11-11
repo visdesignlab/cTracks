@@ -690,6 +690,15 @@ var Track_Bottom_Template =
   "position": "top"
 }
 
+var Overlay_Bottom_Template = 
+  {
+      "uid": "overlay1",
+      "includes": ["YLnxkBvQQxG-UNLxP9wR8g", "BEEMEjU7QCa2krDO9C0yOQ"],
+      "options": {
+          "extent": [[1000000000, 2000000000]]
+      }
+  }
+
 // Create Track for TopView
 function CreateTrack_TopView (Server, InputTrack, TrackColor) {
   var OutputTrack = JSON.parse(JSON.stringify(Track_Top_Template));
@@ -702,11 +711,11 @@ function CreateTrack_TopView (Server, InputTrack, TrackColor) {
   OutputTrack.contents[0].options.pointColor = TrackColor;
   // Need to create random uid Number (for higlass view)
   // UID for combined component
-  OutputTrack.uid = RandomGenerator.string(22);
+  OutputTrack.uid = 'tt-' + InputTrack.tilesetUid;
   // UID for track 
-  OutputTrack.contents[0].uid = RandomGenerator.string(22);
+  OutputTrack.contents[0].uid = 'ttc0-' + InputTrack.tilesetUid;
   // UID for viewport-projection
-  OutputTrack.contents[1].uid = RandomGenerator.string(22);
+  OutputTrack.contents[1].uid = 'ttc1-' + InputTrack.tilesetUid;
 
   return OutputTrack;
 }
@@ -722,15 +731,16 @@ function CreateTrack_BottomView (Server, InputTrack, TrackColor) {
   OutputTrack.options.name = InputTrack.label;
   OutputTrack.options.pointColor = TrackColor;
   // Need to create random uid Number (for higlass view)
-  OutputTrack.uid = RandomGenerator.string(22);
+  OutputTrack.uid = "bt-" + InputTrack.tilesetUid;
 
   return OutputTrack;
 }
 
 
 class GenerateViewConfig {
-	constructor (InputConfigFile) {
+	constructor (InputConfigFile, highlightRegion) {
 		this.inputConfigFile = InputConfigFile;
+    this.highlightRegion = highlightRegion;
 		this.HiglassViewConfig = null;
 
     //Temporary: create hard-coded JSON InputConfigFile
@@ -758,6 +768,8 @@ class GenerateViewConfig {
 
     var Colors = ["red","orange","green","turquoise","blue"];
 
+    let newBottomTrackUids = [];
+
     // Step 2 - add individual tracks (TopView and BottomView)
     for (let TrackId in this.inputConfigFile.tracks) {
       let TrackColor = Colors[TrackId % Colors.length];
@@ -769,6 +781,20 @@ class GenerateViewConfig {
         // Adding Track to BottomView
         let Track_Bottom = CreateTrack_BottomView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
         this.HiglassViewConfig.views[1].tracks.top.push(Track_Bottom);
+
+        newBottomTrackUids.push(Track_Bottom.uid);
+
+      }
+
+      if (this.highlightRegion) {
+        // we need to add an overlay
+        let overlayTemplate = JSON.parse(JSON.stringify(Overlay_Bottom_Template));
+        overlayTemplate.options.extent[0] = this.highlightRegion;
+        overlayTemplate.includes = newBottomTrackUids;
+
+        this.HiglassViewConfig.views[1].overlays = [
+          overlayTemplate
+        ];
       }
     }
 
