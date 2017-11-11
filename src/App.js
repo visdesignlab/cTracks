@@ -90,6 +90,7 @@ class App extends Component {
 
     // ListenerID for HiglassAPI
     this.listenerID = null;
+
     // Input JSON file provided by ARUP
     this.InputConfigFile = TMP_InputConfigFile;
     // ViewID: ViewID of Higlass view (not directly used right now...)
@@ -167,7 +168,7 @@ class App extends Component {
   UpdateHiglassView (HiglassView) {
     this.setState(function () {
       return {
-        HiglassView: HiglassView
+        HiglassView: JSON.stringify(HiglassView)
       }
     })    
   }
@@ -218,9 +219,15 @@ class App extends Component {
 
     HiglassAPI.fetchViewConfig()
       .then(function(ViewID) {
-        window.hgApi.on('location', this.UpdateAPIInfo, ViewID , this.ListenerID);
+        if (this.listenerId) {
+          // if we already have a location listener, we need to remove
+          // it before adding a new one
+          window.hgApi.off('location', this.listenerId, ViewID);
+        }
+        window.hgApi.on('location', this.UpdateAPIInfo, 
+          ViewID , 
+          this.ListenerID.bind(this));
       }.bind(this));
-
   }
 
   LoadConfigFile(files) {
@@ -247,7 +254,7 @@ class App extends Component {
   }
 
   ListenerID (id) {
-    // console.log('Listener ID:', id);
+    this.listenerId = id;
   } 
 
   // Process CNV BED file: upload, parse and update state 
@@ -274,7 +281,11 @@ class App extends Component {
     });
   }
 
-  handleTableHover(row) {
+  handleRowLeave(row) {
+
+  }
+
+  handleRowEnter(row) {
     /**
      * The user has hovered over a row of the CNV table so 
      * we may want to update the view and highlight the region
@@ -360,7 +371,8 @@ class App extends Component {
               <CNVTable 
                 CNVData={this.state.CNVData} 
                 location={this.state.APIInfo} 
-                onTableHover={this.handleTableHover.bind(this)}
+                onRowEnter={this.handleRowEnter.bind(this)}
+                onRowLeave={this.handleRowLeave.bind(this)}
               />}
             </div>
           </div>

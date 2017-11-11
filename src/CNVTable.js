@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // import Papa from 'papaparse';
-import JsonTable from 'react-json-table';
+import JsonTable from './rjt.js';
 
 import './CNVTable.css';
 
@@ -166,7 +166,8 @@ class CNVTable extends Component {
         {this.state.Table && 
         <JsonTable 
           rows = {this.state.Table} 
-          onClickRow = { (e,item) => this.props.onTableHover(item) }
+          onRowEnter = { (e,item) => this.props.onRowEnter(item) }
+          onRowLeave = { (e,item) => this.props.onRowLeave(item) }
         />
         }
       </div>
