@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // import * as ViewConfig_Test from './ViewConfig_Test';
 // Note: final file to generate viewconfig
 import GenerateViewConfig from './utils/GenerateViewConfig';
+import * as hglib from 'higlass';
 
 import HiglassUI from './HiglassUI';
 import CNVTable from './CNVTable';
@@ -14,6 +15,8 @@ import TracksMenu from './TracksMenu';
 import ReactFileReader from 'react-file-reader';
 import Papa from 'papaparse';
 
+import {testCNVTable} from './TestCNVTable.js';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -21,8 +24,6 @@ import './App.css';
 
 // Parse CNV BED file as a CSV file
 function ParseFile(file, callback) {
-  console.log("Parsing CNV file...");
-
   Papa.parse(file, {
     //download: true,
     newline: "\n",
@@ -86,8 +87,10 @@ var TMP_InputConfigFile =
 class App extends Component {
   constructor (props) {
     super(props);
+
     // ListenerID for HiglassAPI
     this.listenerID = null;
+
     // ViewID: ViewID of Higlass view (not directly used right now...)
     // APIInfo: API location
     // CNVData: BED File information
@@ -101,6 +104,9 @@ class App extends Component {
       InputConfigFile: TMP_InputConfigFile
     };
 
+    this.highlightRegion = null;   // a region that we want highlighted
+                                  // in the zoomed-in higlass view
+                                  // should be updated in handleTableHover
     this.GenerateHiglassView = this.GenerateHiglassView.bind(this);
     this.UpdateHiglassView = this.UpdateHiglassView.bind(this);
     this.RetrieveViewID = this.RetrieveViewID.bind(this);
@@ -113,6 +119,15 @@ class App extends Component {
     this.UpdateConfigFile = this.UpdateConfigFile.bind(this);
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.LoadConfigFile = this.LoadConfigFile.bind(this);
+
+    this.chromInfo = null;
+    // fetch ChromosomeInfo from HiGlass
+    // this needs to be specified in a config file somewhere
+    hglib.ChromosomeInfo('http://higlass.io/api/v1/chrom-sizes/?id=Ajn_ttUUQbqgtOD4nOt-IA',
+      (chromInfo) => {
+        this.chromInfo = chromInfo;
+        console.log('chromInfo:', chromInfo);
+      });
   }
 
   componentWillMount() {
@@ -121,6 +136,11 @@ class App extends Component {
   componentDidMount() {
     //this.RetrieveLocation_Static();
     this.GenerateHiglassView();
+    console.log('testCNVTable:', testCNVTable);
+
+    this.setState({
+      CNVData: testCNVTable,
+    });
   }
 
   componentDidUpdate() {
@@ -128,14 +148,18 @@ class App extends Component {
   }
 
   handleHiGlassUpdated() {
-    console.log('handle higlass updated');
+    //console.log('handle higlass updated');
     this.RetrieveViewID();
     this.RetrieveLocation();
   }
 
   // Generate ViewConfig for Higlass
   GenerateHiglassView() {
-    var HiglassViewConfig = new GenerateViewConfig(this.state.InputConfigFile);
+    var HiglassViewConfig = new GenerateViewConfig(
+      this.state.InputConfigFile,
+      this.highlightRegion
+    );
+
     //HiglassViewConfig.CreateViewConfigDefault();
     HiglassViewConfig.CreateViewConfig();
     var HiglassView = HiglassViewConfig.getViewConfig();
@@ -146,7 +170,7 @@ class App extends Component {
   UpdateHiglassView (HiglassView) {
     this.setState(function () {
       return {
-        HiglassView: HiglassView
+        HiglassView: JSON.stringify(HiglassView)
       }
     })    
   }
@@ -182,7 +206,7 @@ class App extends Component {
 
   // Retrieve location (one by one) using API.get
   RetrieveLocation_Static() {
-    console.log("Retrieving location (static)...");
+    // console.log("Retrieving location (static)...");
     //HiglassAPI.fetchLocation_ViewUID('aa')
     HiglassAPI.fetchLocation()
       .then(function(location) {
@@ -193,13 +217,19 @@ class App extends Component {
 
   // Retrieve location automatically using API.on
   RetrieveLocation() {
-    //console.log("Retrieving location...");
+    // console.log("Retrieving location...");
 
     HiglassAPI.fetchViewConfig()
       .then(function(ViewID) {
-        window.hgApi.on('location', this.UpdateAPIInfo, ViewID , this.ListenerID);
+        if (this.listenerId) {
+          // if we already have a location listener, we need to remove
+          // it before adding a new one
+          window.hgApi.off('location', this.listenerId, ViewID);
+        }
+        window.hgApi.on('location', this.UpdateAPIInfo, 
+          ViewID , 
+          this.ListenerID.bind(this));
       }.bind(this));
-
   }
 
   LoadConfigFile(files) {
@@ -207,15 +237,19 @@ class App extends Component {
     let reader = new FileReader();
     reader.onload = (event) => {
       var obj = JSON.parse(event.target.result);
-      console.log('obj', obj);
+      // console.log('obj', obj);
+
+      let HiglassViewConfig = new GenerateViewConfig(
+        obj,
+        this.highlightRegion
+      );
 
       this.UpdateConfigFile(obj);
 
-      let HiglassViewConfig = new GenerateViewConfig(obj);
       HiglassViewConfig.CreateViewConfig();
       let newViewConfig = HiglassViewConfig.getViewConfig();
 
-      console.log('newViewConfig:', newViewConfig);
+      // console.log('newViewConfig:', newViewConfig);
 
       this.UpdateHiglassView(newViewConfig);
    
@@ -233,12 +267,12 @@ class App extends Component {
   }
 
   ListenerID (id) {
-    //console.log('Listener ID:', id);
+    this.listenerId = id;
   } 
 
   // Process CNV BED file: upload, parse and update state 
   ProcessCNVFile (files) {
-    console.log("Processing CNVFile...");
+    // console.log("Processing CNVFile...");
     // Loading file
     var reader = new FileReader();
     reader.onload = function(e) {
@@ -252,12 +286,49 @@ class App extends Component {
 
   // Update state of CNV data
   UpdateCNVData(data) {
-    console.log("CNVData:", data);
+    console.log("CNVData:", JSON.stringify(data, null, 2));
     this.setState(function () {
       return {
         CNVData: data
       }
     });
+  }
+
+  handleRowLeave(row) {
+
+  }
+
+  handleRowEnter(row) {
+    /**
+     * The user has hovered over a row of the CNV table so 
+     * we may want to update the view and highlight the region
+     * that was highlighted.
+     *
+     * Parameters
+     * ----------
+     *  chr: string
+     *  startPos: int
+     *  endPos: int
+     *
+     * Returns
+     * -------
+     *  (nothing)
+     *    Just has side effects
+     */
+    if (!this.chromInfo) {
+      // we don't have any assembly information so we can't
+      // highlight this region
+      return;
+    }
+
+    const rowStart = this.chromInfo
+      .chrPositions[row['#chrom']].pos + +row.start;
+
+    const rowEnd = this.chromInfo
+      .chrPositions[row['#chrom']].pos + +row.stop;
+
+    this.highlightRegion = [rowStart, rowEnd];
+    this.GenerateHiglassView();
   }
 
   render() {
@@ -309,7 +380,13 @@ class App extends Component {
               }
             </div>
             <div>
-              {this.state.APIInfo && this.state.CNVData && <CNVTable CNVData = {this.state.CNVData} location={this.state.APIInfo} />}
+              {this.state.APIInfo && this.state.CNVData && 
+              <CNVTable 
+                CNVData={this.state.CNVData} 
+                location={this.state.APIInfo} 
+                onRowEnter={this.handleRowEnter.bind(this)}
+                onRowLeave={this.handleRowLeave.bind(this)}
+              />}
             </div>
           </div>
 

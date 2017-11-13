@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // import Papa from 'papaparse';
-import JsonTable from 'react-json-table';
+import JsonTable from './rjt.js';
 
 import './CNVTable.css';
 
 
 // WARNING: OLD function - parse CNV/CSV information 
 /*function RetrieveTable (location) {
-	console.log("Retrieving table from file...");
 
 
  // Retrieve information from csvString
@@ -33,7 +32,6 @@ import './CNVTable.css';
 
   // CSV parser
   var results = Papa.parse(csvString,Papa_Config);
-  console.log("CSVInfo:",results);
 
 
 
@@ -47,10 +45,8 @@ import './CNVTable.css';
   // Papa.parse(CSVFile_DataBase3, {
   //   download: true,
   //   error: function(error) {
-  //     console.log("ERROR Parse:",error);
   //   },
   //   complete: function(results) {
-  //     console.log("CSVInfo_DataBase:",results);
   //   }
   // });
 
@@ -62,8 +58,6 @@ import './CNVTable.css';
 
 // Filter CVN data using location information (from ViewConfig) 
 function FilterInfo(location,data) {
-    console.log("Filtering CNV information...");
-
     var Keys = Object.keys(data[0]);
 
     var output = [];
@@ -104,14 +98,10 @@ function FilterInfo(location,data) {
           continue;
         } if ((data[i][searchField1] > searchVal3) | ((data[i][searchField1] === searchVal3) & (data[i][searchField3] > searchVal4)))
         {
-          //console.log("In Upper loop...");
           Index_Upper = i;
           break;
         }
     }
-
-    //console.log("Data_Index_Lower:", Index_Lower);
-    //console.log("Data_Index_Upper:", Index_Upper);
 
     // Step3: return filtered table
     for (let i = Index_Lower; i < Index_Upper; i++)
@@ -133,17 +123,15 @@ class CNVTable extends Component {
 
   componentDidMount() {
     this.FilterCNVInfo();
+
   }
 
   // Compare incoming Props with current props: new filtering and update when needed
   componentWillReceiveProps(nextProps) {
-    console.log("In componentWillReceiveProps");
     var ThisLocationString = this.props.location.toString();
     var NextLocationString = nextProps.location.toString();
     var ThisCNVDataLength = this.props.CNVData.length;
     var NextCNVDataLength = nextProps.CNVData.length;
-    //console.log('ThisCNVDataLength', ThisCNVDataLength);
-    //console.log('NextCNVDataLength', NextCNVDataLength);
     if ((ThisLocationString !== NextLocationString) | (ThisCNVDataLength !== NextCNVDataLength)) {
       this.FilterCNVInfo2(nextProps);
     }
@@ -154,14 +142,12 @@ class CNVTable extends Component {
     // Old function to retrieve info from csvString
     //var CNVData = RetrieveTable(this.props.location);
     var TableInfo = FilterInfo(this.props.location,this.props.CNVData);
-    //console.log('TableInfo (post-filtering)',TableInfo);
     this.UpdateTable(TableInfo);
   }
 
   // Filter data based on incoming props, and update table
   FilterCNVInfo2(nextProps) {
     var TableInfo = FilterInfo(nextProps.location,nextProps.CNVData);
-    //console.log('TableInfo (post-filtering)',TableInfo);
     this.UpdateTable(TableInfo);
   }
 
@@ -177,7 +163,13 @@ class CNVTable extends Component {
 	render () {
 		return (
       <div className="CNVTable">
-  			{this.state.Table && <JsonTable rows = {this.state.Table} />}
+        {this.state.Table && 
+        <JsonTable 
+          rows = {this.state.Table} 
+          onRowEnter = { (e,item) => this.props.onRowEnter(item) }
+          onRowLeave = { (e,item) => this.props.onRowLeave(item) }
+        />
+        }
       </div>
 		)
 	}
