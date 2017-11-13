@@ -153,21 +153,18 @@ var JsonTable = React.createClass({
 	},
 
 	onClickRow: function( e, item ){
-    console.log('click:', item);
 		if( this.props.onClickRow ){
 			this.props.onClickRow( e, item );
 		}
 	},
 
 	onRowEnter: function( e, item ){
-    console.log('enter:', item);
 		if( this.props.onRowEnter ){
 			this.props.onRowEnter( e, item );
 		}
 	},
 
 	onRowLeave: function( e, item ){
-    console.log('leave', item);
 		if( this.props.onRowLeave ){
 			this.props.onRowLeave( e, item );
 		}
