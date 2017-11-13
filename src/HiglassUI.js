@@ -13,13 +13,11 @@ class HiglassUI extends Component {
 
   shouldComponentUpdate(newProps, newState) {
     if (this.prevViewConfig === newProps.ViewConfig) {
-      console.log('no');
       return false;
     }
 
     //console.log('yes', newProps.ViewConfig);
     this.prevViewConfig = newProps.ViewConfig;
-    console.log('yes')
     return true;
   }
 

@@ -125,7 +125,6 @@ class App extends Component {
     hglib.ChromosomeInfo('http://higlass.io/api/v1/chrom-sizes/?id=Ajn_ttUUQbqgtOD4nOt-IA',
       (chromInfo) => {
         this.chromInfo = chromInfo;
-        console.log('chromInfo:', chromInfo);
       });
   }
 
@@ -135,7 +134,6 @@ class App extends Component {
   componentDidMount() {
     //this.RetrieveLocation_Static();
     this.GenerateHiglassView();
-    console.log('testCNVTable:', testCNVTable);
 
     this.setState({
       CNVData: testCNVTable,
@@ -147,7 +145,6 @@ class App extends Component {
   }
 
   handleHiGlassUpdated() {
-    //console.log('handle higlass updated');
     this.RetrieveViewID();
     this.RetrieveLocation();
   }
