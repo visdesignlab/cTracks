@@ -13,11 +13,13 @@ import TracksMenu from './TracksMenu';
 
 import ReactFileReader from 'react-file-reader';
 import Papa from 'papaparse';
-
+import queryString from 'query-string';
+import axios from 'axios';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 //import './Components/HiGlassLauncher.scss';
+
 
 // Parse CNV BED file as a CSV file
 function ParseFile(file, callback) {
@@ -98,7 +100,7 @@ class App extends Component {
       APIInfo: null,
       CNVData: null,
       HiglassView: null,
-      InputConfigFile: TMP_InputConfigFile
+      InputConfigFile: null,
     };
 
     this.GenerateHiglassView = this.GenerateHiglassView.bind(this);
@@ -116,15 +118,47 @@ class App extends Component {
   }
 
   componentWillMount() {
+
   }
 
   componentDidMount() {
     //this.RetrieveLocation_Static();
-    this.GenerateHiglassView();
+
+    this.ReadInputAPI();
   }
 
   componentDidUpdate() {
 
+  }
+
+  // Read Input API from ARUP
+  // If no API, read hard-coded config file
+  ReadInputAPI() {
+    var InputAPI = queryString.parse(this.props.location.search);
+    var InputAPI_String = JSON.stringify(InputAPI);
+
+    if (InputAPI_String === '{}') {
+      console.log('Warning: no input API!');
+      this.UpdateConfigFile(TMP_InputConfigFile);
+      this.GenerateHiglassView(TMP_InputConfigFile);
+    }
+    else {
+      console.log('Reading input API...');
+
+      // Warning reading proxyURL due to CORS issue when using the current mock API
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      //const url = 'http://ngsmockapi.azurewebsites.net/api/config/';
+      const url = InputAPI["config"];
+
+      axios.get(proxyurl + url)
+        .then( response => {
+          var ConfigFile = response.data;
+          this.UpdateConfigFile(ConfigFile);
+          this.GenerateHiglassView(ConfigFile);
+          console.log('ConfigFile',ConfigFile);
+      })
+        .catch(error => console.log("Error",error));
+    }
   }
 
   handleHiGlassUpdated() {
@@ -134,8 +168,11 @@ class App extends Component {
   }
 
   // Generate ViewConfig for Higlass
-  GenerateHiglassView() {
-    var HiglassViewConfig = new GenerateViewConfig(this.state.InputConfigFile);
+  GenerateHiglassView(ConfigFile) {
+
+    if (ConfigFile === undefined) ConfigFile = this.state.InputConfigFile;
+
+    var HiglassViewConfig = new GenerateViewConfig(ConfigFile);
     //HiglassViewConfig.CreateViewConfigDefault();
     HiglassViewConfig.CreateViewConfig();
     var HiglassView = HiglassViewConfig.getViewConfig();
@@ -143,6 +180,7 @@ class App extends Component {
     //console.log('HIGLASS_VIEW',HiglassView);
   }
 
+  // Update state of HiglassView
   UpdateHiglassView (HiglassView) {
     this.setState(function () {
       return {
@@ -203,27 +241,20 @@ class App extends Component {
   }
 
   LoadConfigFile(files) {
-    //this.GenerateHiglassView();
     let reader = new FileReader();
     reader.onload = (event) => {
       var obj = JSON.parse(event.target.result);
       console.log('obj', obj);
 
       this.UpdateConfigFile(obj);
-
-      let HiglassViewConfig = new GenerateViewConfig(obj);
-      HiglassViewConfig.CreateViewConfig();
-      let newViewConfig = HiglassViewConfig.getViewConfig();
-
-      console.log('newViewConfig:', newViewConfig);
-
-      this.UpdateHiglassView(newViewConfig);
+      this.GenerateHiglassView(obj);
    
     };
 
     reader.readAsText(files[0]);
   }
 
+  // Update state of InputConfigFile
   UpdateConfigFile (File) {
     this.setState (function () {
       return {
@@ -290,7 +321,10 @@ class App extends Component {
             </div>
 
             <div className = "Box">
-              <TracksMenu ConfigFile = {this.state.InputConfigFile} UpdateDisplay = {this.GenerateHiglassView}/>
+              { this.state.InputConfigFile ?
+                <TracksMenu ConfigFile = {this.state.InputConfigFile} UpdateDisplay = {this.GenerateHiglassView}
+                /> : null
+              }
             </div>
 
             <div className = "Box">
