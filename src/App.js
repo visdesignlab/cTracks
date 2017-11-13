@@ -91,17 +91,17 @@ class App extends Component {
     // ListenerID for HiglassAPI
     this.listenerID = null;
 
-    // Input JSON file provided by ARUP
-    this.InputConfigFile = TMP_InputConfigFile;
     // ViewID: ViewID of Higlass view (not directly used right now...)
     // APIInfo: API location
     // CNVData: BED File information
     // HiglassView: ViewConfig for Higlass
+    // InputConfigFile: Input JSON file provided by ARUP
     this.state = {
       ViewID: null,
       APIInfo: null,
       CNVData: null,
       HiglassView: null,
+      InputConfigFile: TMP_InputConfigFile
     };
 
     this.highlightRegion = null;   // a region that we want highlighted
@@ -116,6 +116,7 @@ class App extends Component {
     this.UpdateAPIInfo = this.UpdateAPIInfo.bind(this);
     this.UpdateCNVData = this.UpdateCNVData.bind(this);
     this.UpdateHiglassView = this.UpdateHiglassView.bind(this);
+    this.UpdateConfigFile = this.UpdateConfigFile.bind(this);
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.LoadConfigFile = this.LoadConfigFile.bind(this);
 
@@ -152,9 +153,10 @@ class App extends Component {
   // Generate ViewConfig for Higlass
   GenerateHiglassView() {
     var HiglassViewConfig = new GenerateViewConfig(
-      this.InputConfigFile,
+      this.state.InputConfigFile,
       this.highlightRegion
     );
+
     //HiglassViewConfig.CreateViewConfigDefault();
     HiglassViewConfig.CreateViewConfig();
     var HiglassView = HiglassViewConfig.getViewConfig();
@@ -238,6 +240,9 @@ class App extends Component {
         obj,
         this.highlightRegion
       );
+
+      this.UpdateConfigFile(obj);
+
       HiglassViewConfig.CreateViewConfig();
       let newViewConfig = HiglassViewConfig.getViewConfig();
 
@@ -248,6 +253,14 @@ class App extends Component {
     };
 
     reader.readAsText(files[0]);
+  }
+
+  UpdateConfigFile (File) {
+    this.setState (function () {
+      return {
+        InputConfigFile: File
+      }
+    })    
   }
 
   ListenerID (id) {
@@ -345,7 +358,7 @@ class App extends Component {
             </div>
 
             <div className = "Box">
-              <TracksMenu ConfigFile = {this.InputConfigFile} UpdateDisplay = {this.GenerateHiglassView}/>
+              <TracksMenu ConfigFile = {this.state.InputConfigFile} UpdateDisplay = {this.GenerateHiglassView}/>
             </div>
 
             <div className = "Box">
