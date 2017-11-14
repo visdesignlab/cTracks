@@ -1,11 +1,12 @@
 {
+
   "name": "cTracks",
   "version": "0.1.12",
   "private": true,
   "dependencies": {
     "axios": "^0.17.0",
     "bootstrap": "^3.3.7",
-    "higlass": "^0.9.10",
+    "higlass": "^0.10.1-0",
     "papaparse": "^4.3.6",
     "query-string": "^5.0.1",
     "react": "^15.6.1",
