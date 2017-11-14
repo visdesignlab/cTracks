@@ -1,7 +1,6 @@
 {
-
   "name": "cTracks",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": true,
   "dependencies": {
     "axios": "^0.17.0",
