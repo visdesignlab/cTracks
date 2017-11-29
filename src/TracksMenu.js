@@ -68,7 +68,7 @@ class TracksMenu extends Component {
   createCheckBox (track, index) {
     var KeyTop = track.label + '_topView';
     var KeyBottom = track.label + '_bottomView';
-    return <div className = "CheckBoxItem">
+    return <div key={index} className = "CheckBoxItem">
       <CheckBox
         label={track.label}
         InitialState={track.display.top}
