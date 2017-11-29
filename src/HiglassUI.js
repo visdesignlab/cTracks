@@ -17,6 +17,7 @@ class HiglassUI extends Component {
     }
 
     //console.log('yes', newProps.ViewConfig);
+    console.log("shouldComponentUpdate: HiglassUI");
     this.prevViewConfig = newProps.ViewConfig;
     return true;
   }

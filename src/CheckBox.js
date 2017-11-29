@@ -9,7 +9,11 @@ class CheckBox extends Component {
     this.state = {
       isChecked: this.props.InitialState
     }
+
+    this.prevlabel = this.props.label;
+    this.prevInitialState = this.props.InitialState;
   }
+
 
   toggleCheckBoxChange = () => {
     const { handleCheckBoxChange, label } = this.props;
@@ -45,6 +49,7 @@ class CheckBox extends Component {
 
 CheckBox.propTypes = {
   label: PropTypes.string.isRequired,
+  InitialState: PropTypes.bool.isRequired,
   handleCheckBoxChange: PropTypes.func.isRequired,
 };
 

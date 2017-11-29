@@ -106,6 +106,8 @@ class App extends Component {
       InputConfigFile: null,
     };
 
+    this.InitialInputConfigFile = null;
+
     this.highlightRegion = null;   // a region that we want highlighted
                                   // in the zoomed-in higlass view
                                   // should be updated in handleTableHover
@@ -121,6 +123,7 @@ class App extends Component {
     this.UpdateConfigFile = this.UpdateConfigFile.bind(this);
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.LoadConfigFile = this.LoadConfigFile.bind(this);
+    this.Reset = this.Reset.bind(this);
 
     this.chromInfo = null;
     // fetch ChromosomeInfo from HiGlass
@@ -157,6 +160,7 @@ class App extends Component {
 
     if (InputAPI_String === '{}') {
       console.log('Warning: no input API!');
+      this.InitialInputConfigFile = JSON.parse(JSON.stringify(TMP_InputConfigFile));
       this.UpdateConfigFile(TMP_InputConfigFile);
       this.GenerateHiglassView(TMP_InputConfigFile);
     }
@@ -171,9 +175,10 @@ class App extends Component {
       axios.get(proxyurl + url)
         .then( response => {
           var ConfigFile = response.data;
+          this.InitialInputConfigFile = JSON.parse(JSON.stringify(ConfigFile));
           this.UpdateConfigFile(ConfigFile);
           this.GenerateHiglassView(ConfigFile);
-          console.log('ConfigFile',ConfigFile);
+          //console.log('ConfigFile',ConfigFile);
       })
         .catch(error => console.log("Error",error));
     }
@@ -198,7 +203,9 @@ class App extends Component {
     HiglassViewConfig.CreateViewConfig();
     var HiglassView = HiglassViewConfig.getViewConfig();
     this.UpdateHiglassView(HiglassView);
-    //console.log('HIGLASS_VIEW',HiglassView);
+
+    console.log('ConfigFile',ConfigFile);
+    console.log('HIGLASS_VIEW',HiglassView);
   }
 
   // Update state of HiglassView
@@ -283,6 +290,7 @@ class App extends Component {
 
   // Update state of InputConfigFile
   UpdateConfigFile (File) {
+    console.log("In function: UpdateConfigFile");
     this.setState (function () {
       return {
         InputConfigFile: File
@@ -316,6 +324,13 @@ class App extends Component {
         CNVData: data
       }
     });
+  }
+
+  Reset () {
+    console.log("RESET");
+    console.log("InitialInputConfigFile",this.InitialInputConfigFile);
+    this.UpdateConfigFile(this.InitialInputConfigFile);
+    this.GenerateHiglassView(this.InitialInputConfigFile);
   }
 
   handleRowLeave(row) {
@@ -369,7 +384,7 @@ class App extends Component {
 
           <div className = "LeftPanel">
             <div className = "Box">
-              <label>Input files</label>
+              <label>Loading Input files</label>
 
               <div className = "FileReader">
                 <ReactFileReader  handleFiles={this.LoadConfigFile} fileTypes={'*'}>
@@ -381,7 +396,15 @@ class App extends Component {
                 <ReactFileReader handleFiles={this.ProcessCNVFile} fileTypes={'.bed, .tsv'}>
                   <button className="btn btn-default">Load CNV BED File</button>
                 </ReactFileReader>
-              </div>              
+              </div>    
+
+            </div>
+
+            <div className = "Box">
+              <label>Reset View</label>
+              <div className = "FileReader">
+                  <button className="btn btn-default" onClick={this.Reset}>Reset</button>
+              </div>
             </div>
 
             <div className = "Box">
