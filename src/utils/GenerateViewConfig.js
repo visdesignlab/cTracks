@@ -699,8 +699,18 @@ var Overlay_Bottom_Template =
       }
   }
 
+// Color map: association between trackType and default color
+var Track_ColorMap = 
+{
+  "ballele":"red",
+  "log2":"orange",
+  "log2_qual":"green",
+  "cnv":"turquoise",
+  "reads":"blue",
+}
+
 // Create Track for TopView
-function CreateTrack_TopView (Server, InputTrack, TrackColor) {
+function CreateTrack_TopView (Server, InputTrack) {
   var OutputTrack = JSON.parse(JSON.stringify(Track_Top_Template));
 
   // Update values for specific keys
@@ -708,7 +718,7 @@ function CreateTrack_TopView (Server, InputTrack, TrackColor) {
   OutputTrack.contents[0].server = Server;
   OutputTrack.contents[0].tilesetUid = InputTrack.tilesetUid;
   OutputTrack.contents[0].options.name = InputTrack.label;
-  OutputTrack.contents[0].options.pointColor = TrackColor;
+  OutputTrack.contents[0].options.pointColor = Track_ColorMap[InputTrack.trackType];
   // Need to create random uid Number (for higlass view)
   // UID for combined component
   OutputTrack.uid = 'tt-' + InputTrack.tilesetUid;
@@ -721,7 +731,7 @@ function CreateTrack_TopView (Server, InputTrack, TrackColor) {
 }
 
 //Create Track for BottomView
-function CreateTrack_BottomView (Server, InputTrack, TrackColor) {
+function CreateTrack_BottomView (Server, InputTrack) {
   var OutputTrack = JSON.parse(JSON.stringify(Track_Bottom_Template));
 
   // Update values for specific keys
@@ -729,7 +739,7 @@ function CreateTrack_BottomView (Server, InputTrack, TrackColor) {
   OutputTrack.server = Server;
   OutputTrack.tilesetUid = InputTrack.tilesetUid;
   OutputTrack.options.name = InputTrack.label;
-  OutputTrack.options.pointColor = TrackColor;
+  OutputTrack.options.pointColor = Track_ColorMap[InputTrack.trackType];
   // Need to create random uid Number (for higlass view)
   OutputTrack.uid = "bt-" + InputTrack.tilesetUid;
 
@@ -766,22 +776,19 @@ class GenerateViewConfig {
     // Step 1 - Update trackSourceServer
     this.HiglassViewConfig.trackSourceServers[1] = this.inputConfigFile.server;
 
-    var Colors = ["red","orange","green","turquoise","blue"];
-
     let newBottomTrackUids = [];
 
     // Step 2 - add individual tracks (TopView and BottomView)
     for (let TrackId in this.inputConfigFile.tracks) {
-      let TrackColor = Colors[TrackId % Colors.length];
       if (this.inputConfigFile.tracks[TrackId].display.top) {
         // Adding Track to TopView
-        let Track_Top = CreateTrack_TopView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
+        let Track_Top = CreateTrack_TopView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId]);
         this.HiglassViewConfig.views[0].tracks.top.push(Track_Top);
       }
       if (this.inputConfigFile.tracks[TrackId].display.bottom) {
 
         // Adding Track to BottomView
-        let Track_Bottom = CreateTrack_BottomView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
+        let Track_Bottom = CreateTrack_BottomView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId]);
         this.HiglassViewConfig.views[1].tracks.top.push(Track_Bottom);
 
         newBottomTrackUids.push(Track_Bottom.uid);
