@@ -6,7 +6,21 @@
 	border: 1px solid #ccc;
 }
 
+.CheckBoxItem {
+	width: 225px;
+	margin: 0px;
+	padding: 0px;
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+}
+
 .Button {
 	margin: 10px;
 	padding: 10px;
+}
+
+.CheckBoxLabel {
+	margin-left: 5px;
+	font-weight: normal;
 }

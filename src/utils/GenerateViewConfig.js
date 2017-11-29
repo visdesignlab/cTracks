@@ -773,10 +773,12 @@ class GenerateViewConfig {
     // Step 2 - add individual tracks (TopView and BottomView)
     for (let TrackId in this.inputConfigFile.tracks) {
       let TrackColor = Colors[TrackId % Colors.length];
-      if (this.inputConfigFile.tracks[TrackId].display) {
+      if (this.inputConfigFile.tracks[TrackId].display.top) {
         // Adding Track to TopView
         let Track_Top = CreateTrack_TopView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);
         this.HiglassViewConfig.views[0].tracks.top.push(Track_Top);
+      }
+      if (this.inputConfigFile.tracks[TrackId].display.bottom) {
 
         // Adding Track to BottomView
         let Track_Bottom = CreateTrack_BottomView(this.inputConfigFile.server, this.inputConfigFile.tracks[TrackId], TrackColor);

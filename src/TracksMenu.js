@@ -9,9 +9,12 @@ class TracksMenu extends Component {
   constructor (props) {
     super(props);
 
-    this.toggleCheckBox = this.toggleCheckBox.bind(this);
+    this.toggleCheckBoxTop = this.toggleCheckBoxTop.bind(this);
+    this.toggleCheckBoxBottom = this.toggleCheckBoxBottom.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.createCheckBox = this.createCheckBox.bind(this);
+    //this.createCheckBoxTop = this.createCheckBoxTop.bind(this);
+    //this.createCheckBoxBottom = this.createCheckBoxBottom.bind(this);
     this.createCheckBoxes = this.createCheckBoxes.bind(this);
 
     this.prevConfigFile = JSON.stringify(props.ConfigFile);
@@ -29,19 +32,24 @@ class TracksMenu extends Component {
   }
 
 	componentWillMount () {
-		//this.selectedCheckBoxes = new Set();
 	}
 
 
-  toggleCheckBox (label) {
-    // if (this.selectedCheckBoxes.has(label)) {
-    //   this.selectedCheckBoxes.delete(label);
-    // } else {
-    //   this.selectedCheckBoxes.add(label);
-    // }
+  toggleCheckBoxTop (label) {
+
     for (var i = 0; i < this.props.ConfigFile.tracks.length; i++) {
       if (this.props.ConfigFile.tracks[i].label === label) {
-        this.props.ConfigFile.tracks[i].display = !this.props.ConfigFile.tracks[i].display;
+        this.props.ConfigFile.tracks[i].display.top = !this.props.ConfigFile.tracks[i].display.top;
+        break;
+      }
+    }
+  }
+
+  toggleCheckBoxBottom (label) {
+
+    for (var i = 0; i < this.props.ConfigFile.tracks.length; i++) {
+      if (this.props.ConfigFile.tracks[i].label === label) {
+        this.props.ConfigFile.tracks[i].display.bottom = !this.props.ConfigFile.tracks[i].display.bottom;
         break;
       }
     }
@@ -58,17 +66,40 @@ class TracksMenu extends Component {
   }
 
   createCheckBox (track, index) {
-    return <CheckBox
-      label={track.label}
-      InitialState={track.display}
-      handleCheckBoxChange={this.toggleCheckBox}
-      key={track.label+track.display}
-    />;
+    var KeyTop = track.label + '_topView';
+    var KeyBottom = track.label + '_bottomView';
+    return <div className = "CheckBoxItem">
+      <CheckBox
+        label={track.label}
+        InitialState={track.display.top}
+        handleCheckBoxChange={this.toggleCheckBoxTop}
+        key={KeyTop}
+      />
+      <CheckBox
+        label={track.label}
+        InitialState={track.display.bottom}
+        handleCheckBoxChange={this.toggleCheckBoxBottom}
+        key={KeyBottom}
+      />
+      <label className="CheckBoxLabel">
+        {track.label}
+      </label>
+    </div>;
   }
 
   createCheckBoxes () {
-  	return this.props.ConfigFile.tracks.map(this.createCheckBox);
-  }
+      // <div className = "CheckBoxItem">
+      //   <label className="CheckBoxLabel">Top</label>
+      //   <label className="CheckBoxLabel">Bottom</label>
+      //   <label className="CheckBoxLabel">TrackName</label>
+      // </div>
+  	return <div>
+
+      <div>
+        {this.props.ConfigFile.tracks.map(this.createCheckBox)}
+      </div>
+    </div>;
+}
 
 	render () {
 		return (

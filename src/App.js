@@ -52,35 +52,50 @@ var TMP_InputConfigFile =
       "tilesetUid": "hitile-ballele_sim02",
       "label": "sim_02_sorted.ballele",
       "trackType": "ballele",
-      "display": true
+      "display": {
+        "top": true,
+        "bottom": true
+      }
     },
     {
       "name": "sim_02_sorted.log2_log2.hitile",
       "tilesetUid": "hitile-log2_log2_sim02",
       "label": "sim_02_sorted.log2_log2",
       "trackType": "log2",
-      "display": true
+      "display": {
+        "top": true,
+        "bottom": true
+      }
     },
     {
       "name": "sim_02_sorted.log2_qual.hitile",
       "tilesetUid": "hitile-log2_qual_sim02",
       "label": "sim_02_sorted.log2_qual",
       "trackType": "log2_qual",
-      "display": true
+      "display": {
+        "top": true,
+        "bottom": true
+      }
     },
     {
       "name": "sim_02_sorted.cnv_log2.hitile",
       "tilesetUid": "hitile-cnv_log2_sim02",
       "label": "sim_02_sorted.cnv_log2",
       "trackType": "cnv",
-      "display": true
+      "display": {
+        "top": true,
+        "bottom": true
+      }
     },
     {
       "name": "sim_02_sorted.reads.hitile",
       "tilesetUid": "hitile-reads_sim02",
       "label": "sim_02_sorted.reads",
       "trackType": "reads",
-      "display": true
+      "display": {
+        "top": true,
+        "bottom": true
+      }
     }
   ]
 }
