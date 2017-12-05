@@ -305,7 +305,7 @@ class App extends Component {
 
   // Update state of InputConfigFile
   UpdateConfigFile (File) {
-    console.log("In function: UpdateConfigFile");
+    //console.log("In function: UpdateConfigFile");
     this.setState (function () {
       return {
         InputConfigFile: File
@@ -416,13 +416,6 @@ class App extends Component {
             </div>
 
             <div className = "Box">
-              <label>Reset View</label>
-              <div className = "FileReader">
-                  <button className="btn btn-default" onClick={this.Reset}>Reset</button>
-              </div>
-            </div>
-
-            <div className = "Box">
               { this.state.InputConfigFile ?
                 <TracksMenu ConfigFile = {this.state.InputConfigFile} UpdateDisplay = {this.GenerateHiglassView}
                 /> : null
@@ -462,5 +455,11 @@ class App extends Component {
   }
 }
 
- 
+            // <div className = "Box">
+            //   <label>Reset View</label>
+            //   <div className = "FileReader">
+            //       <button className="btn btn-default" onClick={this.Reset}>Reset</button>
+            //   </div>
+            // </div>
+
 export default App;
