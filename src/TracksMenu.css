@@ -12,7 +12,7 @@
 	padding: 0px;
   display: flex;
   align-content: center;
-  justify-content: flex-start;
+  justify-content: space-start;
 }
 
 .Button {
@@ -20,7 +20,19 @@
 	padding: 10px;
 }
 
-.CheckBoxLabel {
-	margin-left: 5px;
+.CheckBox {
+	margin-left: 10px;
 	font-weight: normal;
+}
+
+.CheckBoxLabel {
+	margin-left: 15px;
+	font-weight: normal;
+	font-size: normal;
+}
+
+.CheckBoxTitle {
+	margin-left: 5px;
+	font-weight: lighter;
+	font-size: x-small;
 }

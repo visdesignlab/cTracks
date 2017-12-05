@@ -25,8 +25,8 @@ class TracksMenu extends Component {
       return false;
     }
 
-    console.log("shouldComponentUpdate: TracksMenu");
-    console.log('YES', newProps.ConfigFile);
+    //console.log("shouldComponentUpdate: TracksMenu");
+    //console.log('YES', newProps.ConfigFile);
     this.prevConfigFile = newProps.ConfigFile;
     return true;
   }
@@ -69,13 +69,13 @@ class TracksMenu extends Component {
     var KeyTop = track.label + '_topView';
     var KeyBottom = track.label + '_bottomView';
     return <div key={index} className = "CheckBoxItem">
-      <CheckBox
+      <CheckBox className="CheckBox"
         label={track.label}
         InitialState={track.display.top}
         handleCheckBoxChange={this.toggleCheckBoxTop}
         key={KeyTop}
       />
-      <CheckBox
+      <CheckBox className="CheckBox"
         label={track.label}
         InitialState={track.display.bottom}
         handleCheckBoxChange={this.toggleCheckBoxBottom}
@@ -88,13 +88,13 @@ class TracksMenu extends Component {
   }
 
   createCheckBoxes () {
-      // <div className = "CheckBoxItem">
-      //   <label className="CheckBoxLabel">Top</label>
-      //   <label className="CheckBoxLabel">Bottom</label>
-      //   <label className="CheckBoxLabel">TrackName</label>
-      // </div>
-  	return <div>
 
+  	return <div>
+      <div className = "CheckBoxItem">
+        <label className="CheckBoxTitle">Top</label>
+        <label className="CheckBoxTitle">Bottom</label>
+        <label className="CheckBoxTitle">TrackName</label>
+      </div>
       <div>
         {this.props.ConfigFile.tracks.map(this.createCheckBox)}
       </div>
