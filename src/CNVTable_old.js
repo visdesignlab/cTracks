@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 // import Papa from 'papaparse';
 import JsonTable from './rjt.js';
 
-// New table
-import ReactTable from 'react-table';
-import checkboxHOC from './checkboxHOC';
-import 'react-table/react-table.css';
 
 
 import './CNVTable.css';
@@ -123,72 +119,25 @@ class CNVTable extends Component {
     this.state = {
       Table: null,
     };
-    this.Columns = null;
 
     //this.UpdateTable = this.UpdateTable.bind(this);
   }
 
   componentDidMount() {
-    //this.FilterCNVInfo();
-    this.CreateCNVData();
+    this.FilterCNVInfo();
+
   }
 
   // Compare incoming Props with current props: new filtering and update when needed
   componentWillReceiveProps(nextProps) {
-    // var ThisLocationString = this.props.location.toString();
-    // var NextLocationString = nextProps.location.toString();
-    // var ThisCNVDataLength = this.props.CNVData.length;
-    // var NextCNVDataLength = nextProps.CNVData.length;
-    // if ((ThisLocationString !== NextLocationString) | (ThisCNVDataLength !== NextCNVDataLength)) {
-    //   this.FilterCNVInfo2(nextProps);
-    // }
+    var ThisLocationString = this.props.location.toString();
+    var NextLocationString = nextProps.location.toString();
+    var ThisCNVDataLength = this.props.CNVData.length;
+    var NextCNVDataLength = nextProps.CNVData.length;
+    if ((ThisLocationString !== NextLocationString) | (ThisCNVDataLength !== NextCNVDataLength)) {
+      this.FilterCNVInfo2(nextProps);
+    }
   }
-
-  CreateCNVData () {
-    this.UpdateTable(this.props.CNVData);
-    var ColumnTable = Object.keys(this.props.CNVData);
-    this.Columns = [
-      {
-        Header: "Chromosome",
-        columns: [
-          {
-            Header: "Number",
-            accessor: "#chrom"
-          },
-          {
-            Header: "Start",
-            accessor: "start"
-          },
-          {
-            Header: "End",
-            accessor: "stop"
-          }
-        ]
-      },
-      {
-        Header: "Measurements",
-        columns: [
-          {
-            Header: "log2",
-            accessor: "log2"
-          },
-          {
-            Header: "Quality",
-            accessor: "qual"
-          },
-          {
-            Header: "Ploidy",
-            accessor: "ploidy"
-          },
-          {
-            Header: "Exons",
-            accessor: "exons"
-          }
-        ]
-      }
-    ];
-  }
-
 
   // Filter data and update table 
   FilterCNVInfo() {
@@ -214,62 +163,19 @@ class CNVTable extends Component {
   }
 
 	render () {
-    const data = [{
-      name: 'Tanner Linsley',
-      age: 26,
-      friend: {
-        name: 'Jason Maurer',
-        age: 23,
-      }
-    }];
-    const columns = [{
-        Header: 'Name',
-        accessor: 'name' // String-based value accessors!
-      }, {
-        Header: 'Age',
-        accessor: 'age',
-        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-      }, {
-        id: 'friendName', // Required because our accessor is not a string
-        Header: 'Friend Name',
-        accessor: d => d.friend.name // Custom value accessors!
-      }, {
-        Header: props => <span>Friend Age</span>, // Custom header components!
-        accessor: 'friend.age'
-      }];
 		return (
-      <div>
-        <div className="CNVTable">
-          {this.state.Table && 
-          <JsonTable 
-            rows = {this.state.Table} 
-            onRowEnter = { (e,item) => this.props.onRowEnter(item) }
-            onRowLeave = { (e,item) => this.props.onRowLeave(item) }
-          />
-          }
-        </div>
-        <div>
-          {this.state.Table && 
-          <ReactTable
-            data = {this.state.Table}
-            columns = {this.Columns}
-            defaultPageSize={50}
-            className="-striped -highlight"
-          />
-          }
-        </div>
+      <div className="CNVTable">
+        {this.state.Table && 
+        <JsonTable 
+          rows = {this.state.Table} 
+          onRowEnter = { (e,item) => this.props.onRowEnter(item) }
+          onRowLeave = { (e,item) => this.props.onRowLeave(item) }
+        />
+        }
       </div>
 		)
 	}
 }
-
-      // <div>
-      //   {data &&
-      //     <ReactTable
-      //       data = {data}
-      //     />
-      //   }
-      // <div>
 
 CNVTable.propTypes = {
   CNVData: PropTypes.array.isRequired,

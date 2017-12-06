@@ -7,7 +7,7 @@ export const testCNVTable =
     "log2": -0.9868,
     "qual": 87.61,
     "ploidy": 1,
-    "exons\r": 231
+    "exons": 231
   },
   {
     "#chrom": 1,
@@ -16,7 +16,7 @@ export const testCNVTable =
     "log2": 1.0046,
     "qual": 87.94,
     "ploidy": 4,
-    "exons\r": 223
+    "exons": 223
   },
   {
     "#chrom": 1,
@@ -25,7 +25,7 @@ export const testCNVTable =
     "log2": 0.9748,
     "qual": 83.39,
     "ploidy": 4,
-    "exons\r": 139
+    "exons": 139
   },
   {
     "#chrom": 1,
@@ -34,7 +34,7 @@ export const testCNVTable =
     "log2": 0.5504,
     "qual": 49.98,
     "ploidy": 3,
-    "exons\r": 731
+    "exons": 731
   },
   {
     "#chrom": 1,
@@ -43,7 +43,7 @@ export const testCNVTable =
     "log2": -1.0069,
     "qual": 89.8,
     "ploidy": 1,
-    "exons\r": 862
+    "exons": 862
   },
   {
     "#chrom": 1,
@@ -52,7 +52,7 @@ export const testCNVTable =
     "log2": -0.9994,
     "qual": 87.05,
     "ploidy": 1,
-    "exons\r": 523
+    "exons": 523
   },
   {
     "#chrom": 2,
@@ -61,7 +61,7 @@ export const testCNVTable =
     "log2": -1.0468,
     "qual": 87.46,
     "ploidy": 1,
-    "exons\r": 550
+    "exons": 550
   },
   {
     "#chrom": 2,
@@ -70,7 +70,7 @@ export const testCNVTable =
     "log2": -1.0012,
     "qual": 88.83,
     "ploidy": 1,
-    "exons\r": 806
+    "exons": 806
   },
   {
     "#chrom": 2,
@@ -79,7 +79,7 @@ export const testCNVTable =
     "log2": 0.5756,
     "qual": 47.13,
     "ploidy": 3,
-    "exons\r": 956
+    "exons": 956
   },
   {
     "#chrom": 2,
@@ -88,7 +88,7 @@ export const testCNVTable =
     "log2": -1.0549,
     "qual": 91.42,
     "ploidy": 1,
-    "exons\r": 650
+    "exons": 650
   },
   {
     "#chrom": 2,
@@ -97,7 +97,7 @@ export const testCNVTable =
     "log2": 0.5696,
     "qual": 45.83,
     "ploidy": 3,
-    "exons\r": 533
+    "exons": 533
   },
   {
     "#chrom": 3,
@@ -106,7 +106,7 @@ export const testCNVTable =
     "log2": 0.5779,
     "qual": 46.75,
     "ploidy": 3,
-    "exons\r": 547
+    "exons": 547
   },
   {
     "#chrom": 3,
@@ -115,7 +115,7 @@ export const testCNVTable =
     "log2": 0.5796,
     "qual": 46.9,
     "ploidy": 3,
-    "exons\r": 699
+    "exons": 699
   },
   {
     "#chrom": 3,
@@ -124,7 +124,7 @@ export const testCNVTable =
     "log2": 0.5741,
     "qual": 47.29,
     "ploidy": 3,
-    "exons\r": 536
+    "exons": 536
   },
   {
     "#chrom": 4,
@@ -133,7 +133,7 @@ export const testCNVTable =
     "log2": 0.993,
     "qual": 89.07,
     "ploidy": 4,
-    "exons\r": 393
+    "exons": 393
   },
   {
     "#chrom": 4,
@@ -142,7 +142,7 @@ export const testCNVTable =
     "log2": -0.9993,
     "qual": 83.64,
     "ploidy": 1,
-    "exons\r": 592
+    "exons": 592
   },
   {
     "#chrom": 4,
@@ -151,7 +151,7 @@ export const testCNVTable =
     "log2": 0.5506,
     "qual": 46.15,
     "ploidy": 3,
-    "exons\r": 781
+    "exons": 781
   },
   {
     "#chrom": 5,
@@ -160,7 +160,7 @@ export const testCNVTable =
     "log2": 0.5845,
     "qual": 47.09,
     "ploidy": 3,
-    "exons\r": 732
+    "exons": 732
   },
   {
     "#chrom": 5,
@@ -169,7 +169,7 @@ export const testCNVTable =
     "log2": 0.545,
     "qual": 49.94,
     "ploidy": 3,
-    "exons\r": 617
+    "exons": 617
   },
   {
     "#chrom": 5,
@@ -178,7 +178,7 @@ export const testCNVTable =
     "log2": -1.0036,
     "qual": 88.66,
     "ploidy": 1,
-    "exons\r": 221
+    "exons": 221
   },
   {
     "#chrom": 6,
@@ -187,7 +187,7 @@ export const testCNVTable =
     "log2": -1.0095,
     "qual": 85.23,
     "ploidy": 1,
-    "exons\r": 58
+    "exons": 58
   },
   {
     "#chrom": 6,
@@ -196,7 +196,7 @@ export const testCNVTable =
     "log2": -1.036,
     "qual": 88.06,
     "ploidy": 1,
-    "exons\r": 589
+    "exons": 589
   },
   {
     "#chrom": 6,
@@ -205,7 +205,7 @@ export const testCNVTable =
     "log2": 0.5858,
     "qual": 47.46,
     "ploidy": 3,
-    "exons\r": 665
+    "exons": 665
   },
   {
     "#chrom": 6,
@@ -214,7 +214,7 @@ export const testCNVTable =
     "log2": 0.5784,
     "qual": 45.79,
     "ploidy": 3,
-    "exons\r": 503
+    "exons": 503
   },
   {
     "#chrom": 7,
@@ -223,7 +223,7 @@ export const testCNVTable =
     "log2": -1.0058,
     "qual": 87.65,
     "ploidy": 1,
-    "exons\r": 464
+    "exons": 464
   },
   {
     "#chrom": 7,
@@ -232,7 +232,7 @@ export const testCNVTable =
     "log2": 0.584,
     "qual": 47.96,
     "ploidy": 3,
-    "exons\r": 868
+    "exons": 868
   },
   {
     "#chrom": 7,
@@ -241,7 +241,7 @@ export const testCNVTable =
     "log2": 0.5816,
     "qual": 46.81,
     "ploidy": 3,
-    "exons\r": 835
+    "exons": 835
   },
   {
     "#chrom": 7,
@@ -250,7 +250,7 @@ export const testCNVTable =
     "log2": 0.5811,
     "qual": 48.92,
     "ploidy": 3,
-    "exons\r": 433
+    "exons": 433
   },
   {
     "#chrom": 7,
@@ -259,7 +259,7 @@ export const testCNVTable =
     "log2": 0.5913,
     "qual": 47.24,
     "ploidy": 3,
-    "exons\r": 166
+    "exons": 166
   },
   {
     "#chrom": 8,
@@ -268,7 +268,7 @@ export const testCNVTable =
     "log2": 0.5679,
     "qual": 46.07,
     "ploidy": 3,
-    "exons\r": 153
+    "exons": 153
   },
   {
     "#chrom": 8,
@@ -277,7 +277,7 @@ export const testCNVTable =
     "log2": 0.5436,
     "qual": 49.71,
     "ploidy": 3,
-    "exons\r": 940
+    "exons": 940
   },
   {
     "#chrom": 9,
@@ -286,7 +286,7 @@ export const testCNVTable =
     "log2": -1.0091,
     "qual": 88.51,
     "ploidy": 1,
-    "exons\r": 702
+    "exons": 702
   },
   {
     "#chrom": 9,
@@ -295,7 +295,7 @@ export const testCNVTable =
     "log2": -0.9958,
     "qual": 91.69,
     "ploidy": 1,
-    "exons\r": 82
+    "exons": 82
   },
   {
     "#chrom": 10,
@@ -304,7 +304,7 @@ export const testCNVTable =
     "log2": -1.0024,
     "qual": 89.69,
     "ploidy": 1,
-    "exons\r": 40
+    "exons": 40
   },
   {
     "#chrom": 11,
@@ -313,7 +313,7 @@ export const testCNVTable =
     "log2": -0.9932,
     "qual": 89.97,
     "ploidy": 1,
-    "exons\r": 440
+    "exons": 440
   },
   {
     "#chrom": 11,
@@ -322,7 +322,7 @@ export const testCNVTable =
     "log2": -1.0119,
     "qual": 90.57,
     "ploidy": 1,
-    "exons\r": 234
+    "exons": 234
   },
   {
     "#chrom": 11,
@@ -331,7 +331,7 @@ export const testCNVTable =
     "log2": 0.9645,
     "qual": 91.8,
     "ploidy": 4,
-    "exons\r": 853
+    "exons": 853
   },
   {
     "#chrom": 11,
@@ -340,7 +340,7 @@ export const testCNVTable =
     "log2": -1.0085,
     "qual": 86.13,
     "ploidy": 1,
-    "exons\r": 349
+    "exons": 349
   },
   {
     "#chrom": 12,
@@ -349,7 +349,7 @@ export const testCNVTable =
     "log2": -1.0058,
     "qual": 88.38,
     "ploidy": 1,
-    "exons\r": 395
+    "exons": 395
   },
   {
     "#chrom": 12,
@@ -358,7 +358,7 @@ export const testCNVTable =
     "log2": 0.5791,
     "qual": 46.2,
     "ploidy": 3,
-    "exons\r": 769
+    "exons": 769
   },
   {
     "#chrom": 12,
@@ -367,7 +367,7 @@ export const testCNVTable =
     "log2": 0.5855,
     "qual": 49.42,
     "ploidy": 3,
-    "exons\r": 360
+    "exons": 360
   },
   {
     "#chrom": 14,
@@ -376,7 +376,7 @@ export const testCNVTable =
     "log2": 0.9527,
     "qual": 89.07,
     "ploidy": 4,
-    "exons\r": 954
+    "exons": 954
   },
   {
     "#chrom": 14,
@@ -385,7 +385,7 @@ export const testCNVTable =
     "log2": -1.0002,
     "qual": 88.34,
     "ploidy": 1,
-    "exons\r": 460
+    "exons": 460
   },
   {
     "#chrom": 15,
@@ -394,7 +394,7 @@ export const testCNVTable =
     "log2": -0.997,
     "qual": 88.79,
     "ploidy": 1,
-    "exons\r": 123
+    "exons": 123
   },
   {
     "#chrom": 15,
@@ -403,7 +403,7 @@ export const testCNVTable =
     "log2": 0.5655,
     "qual": 47.16,
     "ploidy": 3,
-    "exons\r": 684
+    "exons": 684
   },
   {
     "#chrom": 15,
@@ -412,7 +412,7 @@ export const testCNVTable =
     "log2": -1.0129,
     "qual": 87.33,
     "ploidy": 1,
-    "exons\r": 405
+    "exons": 405
   },
   {
     "#chrom": 16,
@@ -421,7 +421,7 @@ export const testCNVTable =
     "log2": -0.9952,
     "qual": 86.81,
     "ploidy": 1,
-    "exons\r": 945
+    "exons": 945
   },
   {
     "#chrom": 16,
@@ -430,7 +430,7 @@ export const testCNVTable =
     "log2": 0.5782,
     "qual": 47.41,
     "ploidy": 3,
-    "exons\r": 983
+    "exons": 983
   },
   {
     "#chrom": 17,
@@ -439,7 +439,7 @@ export const testCNVTable =
     "log2": -1.0045,
     "qual": 88.17,
     "ploidy": 1,
-    "exons\r": 616
+    "exons": 616
   },
   {
     "#chrom": 17,
@@ -448,7 +448,7 @@ export const testCNVTable =
     "log2": -0.9945,
     "qual": 89.06,
     "ploidy": 1,
-    "exons\r": 491
+    "exons": 491
   },
   {
     "#chrom": 17,
@@ -457,7 +457,7 @@ export const testCNVTable =
     "log2": -1.0076,
     "qual": 90.07,
     "ploidy": 1,
-    "exons\r": 597
+    "exons": 597
   },
   {
     "#chrom": 18,
@@ -466,7 +466,7 @@ export const testCNVTable =
     "log2": -1.0315,
     "qual": 87.37,
     "ploidy": 1,
-    "exons\r": 343
+    "exons": 343
   },
   {
     "#chrom": 19,
@@ -475,7 +475,7 @@ export const testCNVTable =
     "log2": -1.0778,
     "qual": 91.83,
     "ploidy": 1,
-    "exons\r": 80
+    "exons": 80
   },
   {
     "#chrom": 19,
@@ -484,7 +484,7 @@ export const testCNVTable =
     "log2": 0.9959,
     "qual": 89.61,
     "ploidy": 4,
-    "exons\r": 984
+    "exons": 984
   },
   {
     "#chrom": 19,
@@ -493,7 +493,7 @@ export const testCNVTable =
     "log2": 0.5923,
     "qual": 50.62,
     "ploidy": 3,
-    "exons\r": 216
+    "exons": 216
   },
   {
     "#chrom": 19,
@@ -502,7 +502,7 @@ export const testCNVTable =
     "log2": -1.0044,
     "qual": 90.11,
     "ploidy": 1,
-    "exons\r": 851
+    "exons": 851
   },
   {
     "#chrom": 19,
@@ -511,7 +511,7 @@ export const testCNVTable =
     "log2": 0.5726,
     "qual": 48.33,
     "ploidy": 3,
-    "exons\r": 212
+    "exons": 212
   },
   {
     "#chrom": 19,
@@ -520,7 +520,7 @@ export const testCNVTable =
     "log2": 0.5704,
     "qual": 48.23,
     "ploidy": 3,
-    "exons\r": 445
+    "exons": 445
   },
   {
     "#chrom": 20,
@@ -529,7 +529,7 @@ export const testCNVTable =
     "log2": 0.5758,
     "qual": 48.84,
     "ploidy": 3,
-    "exons\r": 927
+    "exons": 927
   },
   {
     "#chrom": 22,
@@ -538,7 +538,7 @@ export const testCNVTable =
     "log2": 0.5738,
     "qual": 48.43,
     "ploidy": 3,
-    "exons\r": 81
+    "exons": 81
   },
   {
     "#chrom": "X",
@@ -547,7 +547,7 @@ export const testCNVTable =
     "log2": 0.5572,
     "qual": 42.79,
     "ploidy": 3,
-    "exons\r": 181
+    "exons": 181
   },
   {
     "#chrom": "X",
@@ -556,7 +556,7 @@ export const testCNVTable =
     "log2": -1.0305,
     "qual": 91.03,
     "ploidy": 1,
-    "exons\r": 483
+    "exons": 483
   },
   {
     "#chrom": "X",
@@ -565,7 +565,7 @@ export const testCNVTable =
     "log2": 0.5541,
     "qual": 43.89,
     "ploidy": 3,
-    "exons\r": 411
+    "exons": 411
   },
   {
     "#chrom": ""

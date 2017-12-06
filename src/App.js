@@ -440,10 +440,8 @@ class App extends Component {
             <div>
               {this.state.APIInfo && this.state.CNVData && 
               <CNVTable 
-                CNVData={this.state.CNVData} 
-                location={this.state.APIInfo} 
-                onRowEnter={this.handleRowEnter.bind(this)}
-                onRowLeave={this.handleRowLeave.bind(this)}
+                CNVData={this.state.CNVData}
+                location={this.state.APIInfo}
               />}
             </div>
           </div>
@@ -454,6 +452,16 @@ class App extends Component {
     )
   }
 }
+
+            // <div>
+            //   {this.state.APIInfo && this.state.CNVData && 
+            //   <CNVTable 
+            //     CNVData={this.state.CNVData} 
+            //     location={this.state.APIInfo} 
+            //     onRowEnter={this.handleRowEnter.bind(this)}
+            //     onRowLeave={this.handleRowLeave.bind(this)}
+            //   />}
+            // </div>
 
             // <div className = "Box">
             //   <label>Reset View</label>
