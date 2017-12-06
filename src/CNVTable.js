@@ -1,66 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// import Papa from 'papaparse';
 import JsonTable from './rjt.js';
 
 // New table
 import ReactTable from 'react-table';
 import checkboxHOC from './checkboxHOC';
+
 import 'react-table/react-table.css';
-
-
 import './CNVTable.css';
 
+// include Higher Order Component (HOC) to React Table
+const CheckboxTable = checkboxHOC(ReactTable);
 
-// WARNING: OLD function - parse CNV/CSV information 
-/*function RetrieveTable (location) {
-
-
- // Retrieve information from csvString
-  var csvString = "chrom\tstart\tstop\tlog2\tqual\tploidy\texons\n\
-1\t22174138\t25571909\t0.5818\t47.55\t3\t460\n\
-1\t46743451\t47607963\t-1.0420\t90.82\t1\t140\n\
-1\t91779506\t109358978\t0.5739\t44.73\t3\t880\n\
-1\t156304475\t156785685\t-0.9756\t86.83\t1\t175\n\
-1\t158637631\t159803219\t0.5772\t49.00\t3\t94\n\
-1\t179314027\t182642016\t-1.0196\t89.08\t1\t282\n\
-1\t202470926\t206681403\t-1.0056\t89.35\t1\t605\n\
-10\t26506726\t38304994\t0.5555\t45.44\t3\t541\n\
-10\t75527561\t79569516\t-1.0038\t88.85\t1\t255\n\
-10\t101451090\t101496098\t0.5722\t47.34\t3\t23";
-
-  var Papa_Config = {
-    newline: "\n",
-    header: true,
-    dynamicTyping: true
-  };
-
-  // CSV parser
-  var results = Papa.parse(csvString,Papa_Config);
-
-
-
-  // Retrieve information from url
-  // var CSVFile_URL = "http://sci.utah.edu/~cvachet/Documents/BIDAC/Project_ARUP/data/test_data.tsv";
-  // var CSVFile_DataBase = "http://localhost:8989/api/v1/tiles/?d=test_data";
-  // var CSVFile_DataBase2 = "http://localhost:8000/test_data.tsv";
-  // var CSVFile_DataBase3 = "http://scis-macbook-pro.local:3000/src/data/test_data.tsv";
-  // var CSVFile_DataBase4 = "/data/test_data.tsv";
-
-  // Papa.parse(CSVFile_DataBase3, {
-  //   download: true,
-  //   error: function(error) {
-  //   },
-  //   complete: function(results) {
-  //   }
-  // });
-
-
-	// Filter data with location information
-	return results.data;
-}
-*/
 
 // Filter CVN data using location information (from ViewConfig) 
 function FilterInfo(location,data) {
@@ -117,20 +69,51 @@ function FilterInfo(location,data) {
     return output;
 }
 
+// generate data with ID information
+function GenerateTableData(inputData)
+{
+  var Keys = Object.keys(inputData[0]);
+  const data = inputData.map((item)=>{
+    const _id = 'chr' + item[Keys[0]] + '-' + item[Keys[1]];
+    return {
+      _id,
+      ...item,
+    }
+  })
+  //console.log("TableData - 1st row",data[0]);
+  return data;
+}
+
+// generate automated column information for Table
+function GenerateColumns(data)
+{
+  const columns = [];
+  const sample = data[0];
+  Object.keys(sample).forEach((key)=>{
+    if(key!=='_id') 
+    {
+      columns.push({
+        accessor: key,
+        Header: key,
+      })
+    }
+  })
+  return columns;
+}
+
 class CNVTable extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      Table: null,
+      TableData: null,
+      TableColumns: null,
+      selection: [],
     };
-    this.Columns = null;
-
-    //this.UpdateTable = this.UpdateTable.bind(this);
   }
 
   componentDidMount() {
     //this.FilterCNVInfo();
-    this.CreateCNVData();
+    this.CreateTableInfo();
   }
 
   // Compare incoming Props with current props: new filtering and update when needed
@@ -144,50 +127,6 @@ class CNVTable extends Component {
     // }
   }
 
-  CreateCNVData () {
-    this.UpdateTable(this.props.CNVData);
-    var ColumnTable = Object.keys(this.props.CNVData);
-    this.Columns = [
-      {
-        Header: "Chromosome",
-        columns: [
-          {
-            Header: "Number",
-            accessor: "#chrom"
-          },
-          {
-            Header: "Start",
-            accessor: "start"
-          },
-          {
-            Header: "End",
-            accessor: "stop"
-          }
-        ]
-      },
-      {
-        Header: "Measurements",
-        columns: [
-          {
-            Header: "log2",
-            accessor: "log2"
-          },
-          {
-            Header: "Quality",
-            accessor: "qual"
-          },
-          {
-            Header: "Ploidy",
-            accessor: "ploidy"
-          },
-          {
-            Header: "Exons",
-            accessor: "exons"
-          }
-        ]
-      }
-    ];
-  }
 
 
   // Filter data and update table 
@@ -195,7 +134,7 @@ class CNVTable extends Component {
     // Old function to retrieve info from csvString
     //var CNVData = RetrieveTable(this.props.location);
     var TableInfo = FilterInfo(this.props.location,this.props.CNVData);
-    this.UpdateTable(TableInfo);
+    this.UpdateTableData(TableInfo);
   }
 
   // Filter data based on incoming props, and update table
@@ -204,72 +143,107 @@ class CNVTable extends Component {
     this.UpdateTable(TableInfo);
   }
 
-  // Update state of Table
-  UpdateTable (TableInfo) {
+  // Update state of TableData
+  UpdateTableData (data) {
     this.setState(function () {
       return {
-        Table: TableInfo
+        TableData: data
       }
     });
   }
 
-	render () {
-    const data = [{
-      name: 'Tanner Linsley',
-      age: 26,
-      friend: {
-        name: 'Jason Maurer',
-        age: 23,
+  // Update state of TableData
+  UpdateTableColumns (columns) {
+    this.setState(function () {
+      return {
+        TableColumns: columns
       }
-    }];
-    const columns = [{
-        Header: 'Name',
-        accessor: 'name' // String-based value accessors!
-      }, {
-        Header: 'Age',
-        accessor: 'age',
-        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-      }, {
-        id: 'friendName', // Required because our accessor is not a string
-        Header: 'Friend Name',
-        accessor: d => d.friend.name // Custom value accessors!
-      }, {
-        Header: props => <span>Friend Age</span>, // Custom header components!
-        accessor: 'friend.age'
-      }];
+    });
+  }
+
+
+  CreateTableInfo () {
+    // Create Table data including uid
+    var Data = GenerateTableData(this.props.CNVData);
+    this.UpdateTableData(Data);
+    // Create column information
+    var Columns = GenerateColumns(Data);
+    this.UpdateTableColumns(Columns);
+  }
+  
+  toggleSelection = (key, shift, row) => {
+    /*
+      Implementation of how to manage the selection state is up to the developer.
+      This implementation uses an array stored in the component state.
+      Other implementations could use object keys, a Javascript Set, or Redux... etc.
+    */
+    // start off with the existing state
+    let selection = [
+      ...this.state.selection
+    ];
+    const keyIndex = selection.indexOf(key);
+    // check to see if the key exists
+    if (keyIndex >= 0) {
+      // it does exist so we will remove it using destructing
+      selection = [
+        ...selection.slice(0, keyIndex),
+        ...selection.slice(keyIndex + 1)
+      ]
+    } else {
+      // it does not exist so add it
+      selection.push(key);
+    }
+    // update the state
+    this.setState({ selection });
+  }
+
+  isSelected = (key) => {
+    /*
+      Instead of passing our external selection state we provide an 'isSelected'
+      callback and detect the selection state ourselves. This allows any implementation
+      for selection (either an array, object keys, or even a Javascript Set object).
+    */
+    return this.state.selection.includes(key);
+  }
+
+  logSelection = () => {
+    console.log('selection:', this.state.selection);
+  }
+
+	render () {
+    const { toggleSelection, isSelected, logSelection } = this;
+    const { TableData, TableColumns, selectAll, } = this.state;
+
+    const checkboxProps = {
+      isSelected,
+      toggleSelection
+    };
+
 		return (
       <div>
-        <div className="CNVTable">
-          {this.state.Table && 
-          <JsonTable 
-            rows = {this.state.Table} 
-            onRowEnter = { (e,item) => this.props.onRowEnter(item) }
-            onRowLeave = { (e,item) => this.props.onRowLeave(item) }
-          />
-          }
+
+        <div>
+          <button onClick={logSelection}>Log Selection</button>
         </div>
         <div>
-          {this.state.Table && 
-          <ReactTable
-            data = {this.state.Table}
-            columns = {this.Columns}
-            defaultPageSize={50}
-            className="-striped -highlight"
-          />
+          {TableData && 
+        <CheckboxTable
+          ref={(r)=>this.checkboxTable=r}
+          data={TableData}
+          columns={TableColumns}
+          defaultPageSize={100}
+          style={{
+            height: "400px"
+          }}
+          className="-striped -highlight"
+          {...checkboxProps}
+        />
           }
         </div>
       </div>
 		)
 	}
 }
-
-      // <div>
-      //   {data &&
-      //     <ReactTable
-      //       data = {data}
-      //     />
-      //   }
-      // <div>
 
 CNVTable.propTypes = {
   CNVData: PropTypes.array.isRequired,
