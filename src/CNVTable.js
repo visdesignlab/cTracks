@@ -14,6 +14,39 @@ import './CNVTable.css';
 const CheckboxTable = checkboxHOC(ReactTable);
 
 
+// OPTIONAL: New TrComponent to handle Hover in the future...
+// class MyTrComponent extends React.Component {
+//   constructor () {
+//     super()
+//     this.state = {
+//       background: null
+//     }
+//   }
+//   render () {
+//     const {children, className, style, ...rest} = this.props
+//     //console.log(rest)
+//     return (
+//       <div
+//         className={'rt-tr ' + className}
+//         style={{
+//           ...style,
+//           ...this.state
+//         }}
+//         {...rest}
+//         onMouseEnter={() => this.setState({
+//           background: 'yellow'
+//         })}
+//         onMouseLeave={() => this.setState({
+//           background: null
+//         })}
+//       >
+//         {children}
+//       </div>
+//     )
+//   }
+// }
+
+
 // Filter CVN data using location information (from ViewConfig) 
 function FilterInfo(location,data) {
     var Keys = Object.keys(data[0]);
@@ -249,6 +282,16 @@ class CNVTable extends Component {
     this.props.onRowEnter(rowInfo.row);
   }
 
+  // handle Table background info
+  handleRowBackground (rowInfo) {
+    var Color = null;
+    if (rowInfo.original._id === 'chr3-63821946') {
+      //Color = "rgb(182,190,254)";  
+      Color = 'PowderBlue';
+    }
+    return Color;
+  }
+
 	render () {
     const { toggleSelection, isSelected, logSelection } = this;
     const { TableData, TableColumns } = this.state;
@@ -275,6 +318,7 @@ class CNVTable extends Component {
               height: "400px"
             }}
             className="-striped -highlight"
+
             {...checkboxProps}
             getTrProps={(state, rowInfo) => {
               const props = {
@@ -282,7 +326,7 @@ class CNVTable extends Component {
                   return this.handleRowClick(rowInfo);
                 },
                 style: {
-                  background: rowInfo.row.qual > 90 ? 'LightGreen' : null,  
+                  background: this.handleRowBackground(rowInfo),  
                 },
               };
               return props;
@@ -296,6 +340,8 @@ class CNVTable extends Component {
 		)
 	}
 }
+
+//           TrComponent={MyTrComponent}
 
           // NOTE: THIS WORKS
           //   getTrProps={(state, rowInfo) => {
