@@ -44,7 +44,7 @@ function ParseFile(file, callback) {
 var TMP_InputConfigFile =
 {
   "server": "http://155.98.19.129:8989/api/v1",
-  "referralAddress": "https://ngs-web-address/variant?sampleCatalogId=2&chr={chr}&start={start}&end={end}&ref={ref}&alt={alt}",
+  "referralAddress": "https://ngs-web-address/variant?sampleCatalogId=2&id={id}",
   "CNVBEDLocation": "https://ngs-web-address/variant?sampleCatalogId=2&BED=cnv.bed",
   "tracks": [
     {
