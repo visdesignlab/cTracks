@@ -109,6 +109,7 @@ class CNVTable extends Component {
       TableColumns: null,
       selection: [],
     };
+
   }
 
   componentDidMount() {
@@ -163,12 +164,14 @@ class CNVTable extends Component {
 
 
   CreateTableInfo () {
-    // Create Table data including uid
+    // Create Table Data including uid
     var Data = GenerateTableData(this.props.CNVData);
     this.UpdateTableData(Data);
-    // Create column information
+    console.log("TABLE - Data ", Data);
+    // Create Table Column information
     var Columns = GenerateColumns(Data);
     this.UpdateTableColumns(Columns);
+    console.log("TABLE - Columns ", Columns);
   }
   
   toggleSelection = (key, shift, row) => {
@@ -206,13 +209,49 @@ class CNVTable extends Component {
     return this.state.selection.includes(key);
   }
 
+  // Button to log selected rows
   logSelection = () => {
     console.log('selection:', this.state.selection);
   }
 
+// NOTES: Test doesn't work
+  // TrProps = (state, rowInfo, column, instance) => {
+  //   //console.log('TABLE - rowInfo:', rowInfo);
+  //   const props = {
+  //     onClick: () => {
+  //       that.setState({
+  //         selectedRowIndex: rowInfo.index,
+  //       });
+  //     },
+  //     style: {
+  //       background: rowInfo.index === that.state.selectedRowIndex ? 'rgba(0, 175, 236, 0.3)' : null,
+  //       background: rowInfo.row.qual > 90 ? 'green' : null,  
+  //     },
+  //   };
+  //   return props;
+  // }
+
+// NOTE: this is an example
+  // onRowClick = (state, rowInfo, column, instance) => {
+  //   return {
+  //       onClick: e => {
+  //           console.log('A Td Element was clicked!')
+  //           console.log('it produced this event:', e)
+  //           console.log('It was in this column:', column)
+  //           console.log('It was in this row:', rowInfo)
+  //           console.log('It was in this table instance:', instance)
+  //       }
+  //   }
+  // }
+
+  // function to handle row click
+  handleRowClick (rowInfo) {
+    this.props.onRowEnter(rowInfo.row);
+  }
+
 	render () {
     const { toggleSelection, isSelected, logSelection } = this;
-    const { TableData, TableColumns, selectAll, } = this.state;
+    const { TableData, TableColumns } = this.state;
 
     const checkboxProps = {
       isSelected,
@@ -226,24 +265,55 @@ class CNVTable extends Component {
           <button onClick={logSelection}>Log Selection</button>
         </div>
         <div>
-          {TableData && 
-        <CheckboxTable
-          ref={(r)=>this.checkboxTable=r}
-          data={TableData}
-          columns={TableColumns}
-          defaultPageSize={100}
-          style={{
-            height: "400px"
-          }}
-          className="-striped -highlight"
-          {...checkboxProps}
-        />
+          {TableData && TableColumns && 
+          <CheckboxTable
+            ref={(r)=>this.checkboxTable=r}
+            data={TableData}
+            columns={TableColumns}
+            defaultPageSize={50}
+            style={{
+              height: "400px"
+            }}
+            className="-striped -highlight"
+            {...checkboxProps}
+            getTrProps={(state, rowInfo) => {
+              const props = {
+                onClick: e => {
+                  return this.handleRowClick(rowInfo);
+                },
+                style: {
+                  background: rowInfo.row.qual > 90 ? 'LightGreen' : null,  
+                },
+              };
+              return props;
+            }}
+            />
+          }
+          />
           }
         </div>
       </div>
 		)
 	}
 }
+
+          // NOTE: THIS WORKS
+          //   getTrProps={(state, rowInfo) => {
+          //   const props = {
+          //     onClick: () => {
+          //       this.setState({
+          //         selectedRowIndex: rowInfo.index,
+          //       });
+          //     },
+          //     style: {
+          //       background: rowInfo.index === this.state.selectedRowIndex ? 'rgba(0, 175, 236, 0.3)' : null,
+          //       background: rowInfo.row.qual > 90 ? 'green' : null,  
+          //     },
+          //   };
+          //   return props;
+          // }}
+          // />
+          // }
 
 CNVTable.propTypes = {
   CNVData: PropTypes.array.isRequired,

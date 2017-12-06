@@ -442,6 +442,7 @@ class App extends Component {
               <CNVTable 
                 CNVData={this.state.CNVData}
                 location={this.state.APIInfo}
+                onRowEnter={this.handleRowEnter.bind(this)}
               />}
             </div>
           </div>
