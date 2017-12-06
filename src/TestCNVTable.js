@@ -566,8 +566,5 @@ export const testCNVTable =
     "qual": 43.89,
     "ploidy": 3,
     "exons": 411
-  },
-  {
-    "#chrom": ""
   }
 ]
