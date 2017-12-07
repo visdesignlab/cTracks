@@ -102,8 +102,9 @@ function FilterInfo(location,data) {
     return output;
 }
 
+
 //Get list of Id from filtered data
-function GetListId (JSONdata) {
+function GetFilteredListId (JSONdata) {
   var MyArray = [];
   for (let i = 0 ; i < JSONdata.length ; i++) {
     MyArray.push(JSONdata[i]["_id"]);
@@ -154,39 +155,60 @@ class CNVTable extends Component {
       selection: [],
     };
 
+    //this.prevCNVData = JSON.stringify(props.CNVData);
   }
 
   componentDidMount() {
     //this.FilterCNVInfo();
-    this.CreateTableInfo();
+    this.GenerateTableInfo();
   }
+
+  // NOTE: this create issues with table checkbox
+  // shouldComponentUpdate(nextProps) {
+  //   if (this.prevCNVData === nextProps.CNVData) {
+  //     return false;
+  //   }
+
+  //   console.log('yes', nextProps.CNVData);
+  //   console.log("shouldComponentUpdate: CNVTable");
+  //   this.prevCNVData = nextProps.CNVData;
+  //   return true;
+  // }
 
   // Compare incoming Props with current props: new filtering and update when needed
   componentWillReceiveProps(nextProps) {
-    // var ThisLocationString = this.props.location.toString();
-    // var NextLocationString = nextProps.location.toString();
-    // var ThisCNVDataLength = this.props.CNVData.length;
-    // var NextCNVDataLength = nextProps.CNVData.length;
-    // if ((ThisLocationString !== NextLocationString) | (ThisCNVDataLength !== NextCNVDataLength)) {
-    //   this.FilterCNVInfo2(nextProps);
-    // }
+    var ThisLocationString = this.props.location.toString();
+    var NextLocationString = nextProps.location.toString();
+
+    if (ThisLocationString !== NextLocationString) {
+      console.log("nextProps ", nextProps.location);
+      this.FilterCNVInformation(nextProps.location,this.state.TableData);
+    }
   }
 
 
+  // // Compare incoming Props with current props: new filtering and update when needed
+  // componentWillReceiveProps_old(nextProps) {
+  //   // var ThisLocationString = this.props.location.toString();
+  //   // var NextLocationString = nextProps.location.toString();
+  //   // var ThisCNVDataLength = this.props.CNVData.length;
+  //   // var NextCNVDataLength = nextProps.CNVData.length;
+  //   // if ((ThisLocationString !== NextLocationString) | (ThisCNVDataLength !== NextCNVDataLength)) {
+  //   //   this.FilterCNVInfo2(nextProps);
+  //   // }
+  // }
 
-  // Filter data and update table 
-  FilterCNVInfo() {
-    // Old function to retrieve info from csvString
-    //var CNVData = RetrieveTable(this.props.location);
-    var TableInfo = FilterInfo(this.props.location,this.props.CNVData);
-    this.UpdateTableData(TableInfo);
-  }
+  // // Filter data and update table 
+  // FilterCNVInfo() {
+  //   var TableInfo = FilterInfo(this.props.location,this.props.CNVData);
+  //   this.UpdateTableData(TableInfo);
+  // }
 
-  // Filter data based on incoming props, and update table
-  FilterCNVInfo2(nextProps) {
-    var TableInfo = FilterInfo(nextProps.location,nextProps.CNVData);
-    this.UpdateTable(TableInfo);
-  }
+  // // Filter data based on incoming props, and update table
+  // FilterCNVInfo2(nextProps) {
+  //   var TableInfo = FilterInfo(nextProps.location,nextProps.CNVData);
+  //   this.UpdateTable(TableInfo);
+  // }
 
   // Update state of TableData
   UpdateTableData (data) {
@@ -224,24 +246,30 @@ class CNVTable extends Component {
     });
   }
 
-  CreateTableInfo () {
+  GenerateTableInfo () {
     // Create Table Data including uid
     var Data = GenerateTableData(this.props.CNVData);
     this.UpdateTableData(Data);
     console.log("TABLE - Data ", Data);
+
     // Create Table Column information
     var Columns = GenerateTableColumns(Data);
     this.UpdateTableColumns(Columns);
     console.log("TABLE - Columns ", Columns);
 
+    // Filter CNV Information
+    this.FilterCNVInformation(this.props.location, Data);
+  }
+
+  FilterCNVInformation(location, data) {
     // Filter CNV Info
-    var FilteredData = FilterInfo(this.props.location,Data);
+    var FilteredData = FilterInfo(location,data);
     this.UpdateFilteredData(FilteredData);
-    console.log("Location ", this.props.location);
+    console.log("Location ", location);
     console.log("Filtered Data ", FilteredData);
 
     // Get only Id in an array (instead of full filtered data)
-    var FilteredListId = GetListId(FilteredData);
+    var FilteredListId = GetFilteredListId(FilteredData);
     this.UpdateFilteredListId(FilteredListId);
         console.log("FilteredListId ", FilteredListId);
   }
