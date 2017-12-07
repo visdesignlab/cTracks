@@ -333,7 +333,7 @@ class App extends Component {
 
   // Update state of CNV data
   UpdateCNVData(data) {
-    console.log("CNVData:", JSON.stringify(data, null, 2));
+    //console.log("CNVData:", JSON.stringify(data, null, 2));
     this.setState(function () {
       return {
         CNVData: data
