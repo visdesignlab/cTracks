@@ -380,31 +380,29 @@ class CNVTable extends Component {
         </div>
         <div>
           {TableData && TableColumns && 
-          <CheckboxTable
-            ref={(r)=>this.checkboxTable=r}
-            data={TableData}
-            columns={TableColumns}
-            defaultPageSize={50}
-            style={{
-              height: "400px"
-            }}
-            className="-striped -highlight"
+            <CheckboxTable
+              ref={(r)=>this.checkboxTable=r}
+              data={TableData}
+              columns={TableColumns}
+              defaultPageSize={50}
+              style={{
+                height: "400px"
+              }}
+              className="-striped -highlight"
 
-            {...checkboxProps}
-            getTrProps={(state, rowInfo) => {
-              const props = {
-                onClick: e => {
-                  return this.handleRowClick(rowInfo);
-                },
-                style: {
-                  background: this.handleRowBackground(rowInfo),  
-                },
-              };
-              return props;
-            }}
+              {...checkboxProps}
+              getTrProps={(state, rowInfo) => {
+                const props = {
+                  onClick: e => {
+                    return this.handleRowClick(rowInfo);
+                  },
+                  style: {
+                    background: this.handleRowBackground(rowInfo),  
+                  },
+                };
+                return props;
+              }}
             />
-          }
-          />
           }
         </div>
       </div>
