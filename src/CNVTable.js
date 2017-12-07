@@ -52,9 +52,9 @@ function FilterInfo(location,data) {
     var Keys = Object.keys(data[0]);
 
     var output = [];
-    var searchField1 = Keys[0]; // "chrom"
-    var searchField2 = Keys[1]; // "start"
-    var searchField3 = Keys[2]; // "stop"
+    var searchField1 = Keys[1]; // "chrom"
+    var searchField2 = Keys[2]; // "start"
+    var searchField3 = Keys[3]; // "stop"
     var searchVal1 = location[0].replace('chr','');
     if (!isNaN(searchVal1)) {
       searchVal1 = parseInt(searchVal1,10);
@@ -102,6 +102,15 @@ function FilterInfo(location,data) {
     return output;
 }
 
+//Get list of Id from filtered data
+function GetListId (JSONdata) {
+  var MyArray = [];
+  for (let i = 0 ; i < JSONdata.length ; i++) {
+    MyArray.push(JSONdata[i]["_id"]);
+  }
+  return MyArray;
+}
+
 // generate data with ID information
 function GenerateTableData(inputData)
 {
@@ -118,7 +127,7 @@ function GenerateTableData(inputData)
 }
 
 // generate automated column information for Table
-function GenerateColumns(data)
+function GenerateTableColumns(data)
 {
   const columns = [];
   const sample = data[0];
@@ -140,6 +149,8 @@ class CNVTable extends Component {
     this.state = {
       TableData: null,
       TableColumns: null,
+      FilteredData: null,
+      FilteredListId: null,
       selection: [],
     };
 
@@ -195,6 +206,23 @@ class CNVTable extends Component {
     });
   }
 
+  // Update state of FilteredData
+  UpdateFilteredData (data) {
+    this.setState(function () {
+      return {
+        FilteredData: data
+      }
+    });
+  }
+
+  // Update state of FilteredListId
+  UpdateFilteredListId (ListId) {
+    this.setState(function () {
+      return {
+        FilteredListId: ListId
+      }
+    });
+  }
 
   CreateTableInfo () {
     // Create Table Data including uid
@@ -202,11 +230,23 @@ class CNVTable extends Component {
     this.UpdateTableData(Data);
     console.log("TABLE - Data ", Data);
     // Create Table Column information
-    var Columns = GenerateColumns(Data);
+    var Columns = GenerateTableColumns(Data);
     this.UpdateTableColumns(Columns);
     console.log("TABLE - Columns ", Columns);
+
+    // Filter CNV Info
+    var FilteredData = FilterInfo(this.props.location,Data);
+    this.UpdateFilteredData(FilteredData);
+    console.log("Location ", this.props.location);
+    console.log("Filtered Data ", FilteredData);
+
+    // Get only Id in an array (instead of full filtered data)
+    var FilteredListId = GetListId(FilteredData);
+    this.UpdateFilteredListId(FilteredListId);
+        console.log("FilteredListId ", FilteredListId);
   }
-  
+
+  // ToggleSelection in Table component
   toggleSelection = (key, shift, row) => {
     /*
       Implementation of how to manage the selection state is up to the developer.
@@ -233,6 +273,7 @@ class CNVTable extends Component {
     this.setState({ selection });
   }
 
+  // Internal function for table component
   isSelected = (key) => {
     /*
       Instead of passing our external selection state we provide an 'isSelected'
@@ -285,7 +326,9 @@ class CNVTable extends Component {
   // handle Table background info
   handleRowBackground (rowInfo) {
     var Color = null;
-    if (rowInfo.original._id === 'chr3-63821946') {
+    const isFiltered = this.state.FilteredListId.includes(rowInfo.original._id);
+    //if (rowInfo.original._id === 'chr3-63821946') {
+    if (isFiltered) {
       //Color = "rgb(182,190,254)";  
       Color = 'PowderBlue';
     }
