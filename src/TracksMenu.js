@@ -104,7 +104,7 @@ class TracksMenu extends Component {
 	render () {
 		return (
       <div>
-  			<label>Tracks Menu</label>
+  			<label>Higlass - Tracks menu</label>
         <form onSubmit={this.handleFormSubmit}>
           {this.createCheckBoxes()}
           <button className="btn btn-default" type="submit">Update Display</button>
