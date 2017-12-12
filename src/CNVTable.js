@@ -14,7 +14,7 @@ import './CNVTable.css';
 const CheckboxTable = checkboxHOC(ReactTable);
 
 
-// OPTIONAL: New TrComponent to handle Hover in the future...
+// OPTIONAL: New TrComponent to potentially handle Hover in the future...
 // class MyTrComponent extends React.Component {
 //   constructor () {
 //     super()
@@ -154,7 +154,7 @@ class CNVTable extends Component {
       FilteredListId: null,
       selection: [],
     };
-
+    this.TableDataSize = null;
     //this.prevCNVData = JSON.stringify(props.CNVData);
   }
 
@@ -251,6 +251,10 @@ class CNVTable extends Component {
     var Data = GenerateTableData(this.props.CNVData);
     this.UpdateTableData(Data);
     console.log("TABLE - Data ", Data);
+
+    // Table Data size (for table display)
+    this.TableDataSize = Data.length;
+    console.log("TABLE - DataSze ", this.TableDataSize);
 
     // Create Table Column information
     var Columns = GenerateTableColumns(Data);
@@ -384,12 +388,12 @@ class CNVTable extends Component {
               ref={(r)=>this.checkboxTable=r}
               data={TableData}
               columns={TableColumns}
-              defaultPageSize={50}
+              defaultPageSize={this.TableDataSize}
               style={{
                 height: "400px"
               }}
               className="-striped -highlight"
-
+              showPagination={false}
               {...checkboxProps}
               getTrProps={(state, rowInfo) => {
                 const props = {
