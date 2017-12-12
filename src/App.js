@@ -44,8 +44,8 @@ function ParseFile(file, callback) {
 var TMP_InputConfigFile =
 {
   "server": "http://155.98.19.129:8989/api/v1",
-  "referralAddress": "https://ngs-web-address/variant?sampleCatalogId=2&id={id}",
-  "CNVBEDLocation": "https://ngs-web-address/variant?sampleCatalogId=2&BED=cnv.bed",
+  "referralAdress": "https://ngs-web-Adress/variant?sampleCatalogId=2&id={ID}",
+  "CNVBEDLocation": "https://ngs-web-Adress/variant?sampleCatalogId=2&BED=cnv.bed",
   "tracks": [
     {
       "name": "sim_02_sorted.ballele.hitile",
@@ -126,6 +126,10 @@ class App extends Component {
     this.highlightRegion = null;   // a region that we want highlighted
                                   // in the zoomed-in higlass view
                                   // should be updated in handleTableHover
+    this.CNVSelection = null; // selected CNV data from analysis
+    this.NGSLink = null;
+
+    //Binding functions
     this.GenerateHiglassView = this.GenerateHiglassView.bind(this);
     this.UpdateHiglassView = this.UpdateHiglassView.bind(this);
     this.RetrieveViewID = this.RetrieveViewID.bind(this);
@@ -139,6 +143,8 @@ class App extends Component {
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.LoadConfigFile = this.LoadConfigFile.bind(this);
     this.Reset = this.Reset.bind(this);
+    this.GenerateNGSLink = this.GenerateNGSLink.bind(this);
+
 
     this.chromInfo = null;
     // fetch ChromosomeInfo from HiGlass
@@ -385,6 +391,34 @@ class App extends Component {
     this.GenerateHiglassView();
   }
 
+  handleCNVSelection (CNVSelection) {
+    this.CNVSelection = CNVSelection;
+    console.log("CNVSelection: ", this.CNVSelection);
+    this.GenerateNGSLink();
+  }
+
+  GenerateNGSLink() {
+    //  "referralAdress": "https://ngs-web-Adress/variant?sampleCatalogId=2&id={ID}",
+    var referralAdress = this.state.InputConfigFile.referralAdress;
+    var TemplateID = "&id={ID}";
+    var newIDList = "";
+
+    if (this.CNVSelection != null) {
+      for (var i = 0; i < this.CNVSelection.length; i++) {
+        let newID = TemplateID.replace("ID",this.CNVSelection[i]);
+        newIDList = newIDList + newID;
+      }
+      referralAdress = referralAdress.replace(TemplateID,newIDList);
+    }
+    else {
+      let newIDList = TemplateID.replace("ID","");
+      referralAdress = referralAdress.replace(TemplateID,newIDList);  
+    }
+
+    console.log("referralAdress",referralAdress);
+    this.NGSLink = referralAdress;
+  }
+
   render() {
     // Feature: can add button to choose our initial ViewConfig
     //var MyViewConfig = ViewConfig_Test.ViewConfig_Artificial_LocalData;
@@ -423,8 +457,15 @@ class App extends Component {
             </div>
 
             <div className = "Box">
-              <label>Update location</label>
+              <label>Higlass - Update bottom view</label>
               <ChromView />
+            </div>
+
+            <div className = "Box">
+              <label>CNV analysis - Send results</label>
+                <div>
+                  <a href={this.NGSLink} target="_blank">NGS Link with CNV samples</a>
+                </div>
             </div>
           </div>
 
@@ -443,6 +484,7 @@ class App extends Component {
                 CNVData={this.state.CNVData}
                 location={this.state.APIInfo}
                 onRowEnter={this.handleRowEnter.bind(this)}
+                onCNVSelection={this.handleCNVSelection.bind(this)}
               />}
             </div>
           </div>
@@ -453,6 +495,10 @@ class App extends Component {
     )
   }
 }
+
+                // <div>
+                //   <button onClick={this.NGSLink}>Continue</button>
+                // </div>
 
             // <div>
             //   {this.state.APIInfo && this.state.CNVData && 

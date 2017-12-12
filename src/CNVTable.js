@@ -163,6 +163,10 @@ class CNVTable extends Component {
     this.GenerateTableInfo();
   }
 
+  componentDidUpdate() {
+    //this.props.onCNVSelection(this.state.selection);
+  }
+
   // NOTE: this create issues with table checkbox
   // shouldComponentUpdate(nextProps) {
   //   if (this.prevCNVData === nextProps.CNVData) {
@@ -303,6 +307,9 @@ class CNVTable extends Component {
     }
     // update the state
     this.setState({ selection });
+
+    // update props CNVSelection
+    this.props.onCNVSelection(selection);
   }
 
   // Internal function for table component
@@ -436,7 +443,9 @@ class CNVTable extends Component {
 
 CNVTable.propTypes = {
   CNVData: PropTypes.array.isRequired,
-  location: PropTypes.array.isRequired
+  location: PropTypes.array.isRequired,
+  onRowEnter: PropTypes.func.isRequired,
+  onCNVSelection: PropTypes.func.isRequired
 }
 
 
