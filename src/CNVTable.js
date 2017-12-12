@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import JsonTable from './rjt.js';
-
 // New table
 import ReactTable from 'react-table';
 import checkboxHOC from './checkboxHOC';
@@ -164,7 +162,6 @@ class CNVTable extends Component {
   }
 
   componentDidUpdate() {
-    //this.props.onCNVSelection(this.state.selection);
   }
 
   // NOTE: this create issues with table checkbox
