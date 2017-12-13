@@ -93,7 +93,7 @@ class TracksMenu extends Component {
       <div className = "CheckBoxItem">
         <label className="CheckBoxTitle">Top</label>
         <label className="CheckBoxTitle">Bottom</label>
-        <label className="CheckBoxTitle">TrackName</label>
+        <label className="CheckBoxTitle">Track name</label>
       </div>
       <div>
         {this.props.ConfigFile.tracks.map(this.createCheckBox)}
@@ -104,7 +104,7 @@ class TracksMenu extends Component {
 	render () {
 		return (
       <div>
-  			<label>Tracks Menu</label>
+  			<label>Higlass - Tracks menu</label>
         <form onSubmit={this.handleFormSubmit}>
           {this.createCheckBoxes()}
           <button className="btn btn-default" type="submit">Update Display</button>
