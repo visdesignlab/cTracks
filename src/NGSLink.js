@@ -42,7 +42,7 @@ class NGSLink extends Component {
     var TemplateID = "&id={ID}";
     var newIDList = "";
 
-    if (CNVSelection != "") {
+    if (CNVSelection !== "") {
       for (let i = 0; i < CNVSelection.length; i++) {
         let newID = TemplateID.replace("ID",CNVSelection[i]);
         newIDList = newIDList + newID;
