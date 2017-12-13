@@ -182,7 +182,7 @@ class CNVTable extends Component {
     var NextLocationString = nextProps.location.toString();
 
     if (ThisLocationString !== NextLocationString) {
-      console.log("nextProps ", nextProps.location);
+      //console.log("nextProps ", nextProps.location);
       this.FilterCNVInformation(nextProps.location,this.state.TableData);
     }
   }
@@ -251,16 +251,13 @@ class CNVTable extends Component {
     // Create Table Data including uid
     var Data = GenerateTableData(this.props.CNVData);
     this.UpdateTableData(Data);
-    console.log("TABLE - Data ", Data);
 
     // Table Data size (for table display)
     this.TableDataSize = Data.length;
-    console.log("TABLE - DataSze ", this.TableDataSize);
 
     // Create Table Column information
     var Columns = GenerateTableColumns(Data);
     this.UpdateTableColumns(Columns);
-    console.log("TABLE - Columns ", Columns);
 
     // Filter CNV Information
     this.FilterCNVInformation(this.props.location, Data);
@@ -270,13 +267,11 @@ class CNVTable extends Component {
     // Filter CNV Info
     var FilteredData = FilterInfo(location,data);
     this.UpdateFilteredData(FilteredData);
-    console.log("Location ", location);
-    console.log("Filtered Data ", FilteredData);
 
     // Get only Id in an array (instead of full filtered data)
     var FilteredListId = GetFilteredListId(FilteredData);
     this.UpdateFilteredListId(FilteredListId);
-        console.log("FilteredListId ", FilteredListId);
+
   }
 
   // ToggleSelection in Table component
@@ -319,10 +314,6 @@ class CNVTable extends Component {
     return this.state.selection.includes(key);
   }
 
-  // Button to log selected rows
-  logSelection = () => {
-    console.log('selection:', this.state.selection);
-  }
 
 // NOTES: Test doesn't work
   // TrProps = (state, rowInfo, column, instance) => {
@@ -372,7 +363,7 @@ class CNVTable extends Component {
   }
 
 	render () {
-    const { toggleSelection, isSelected, logSelection } = this;
+    const { toggleSelection, isSelected } = this;
     const { TableData, TableColumns } = this.state;
 
     const checkboxProps = {
@@ -383,9 +374,6 @@ class CNVTable extends Component {
 		return (
       <div>
 
-        <div>
-          <button onClick={logSelection}>Log Selection</button>
-        </div>
         <div>
           {TableData && TableColumns && 
             <CheckboxTable
