@@ -227,8 +227,8 @@ class App extends Component {
     var HiglassView = HiglassViewConfig.getViewConfig();
     this.UpdateHiglassView(HiglassView);
 
-    console.log('ConfigFile',ConfigFile);
-    console.log('HIGLASS_VIEW',HiglassView);
+    //console.log('ConfigFile',ConfigFile);
+    //console.log('HIGLASS_VIEW',HiglassView);
   }
 
   // Update state of HiglassView
