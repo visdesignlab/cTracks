@@ -93,7 +93,7 @@ class TracksMenu extends Component {
       <div className = "CheckBoxItem">
         <label className="CheckBoxTitle">Top</label>
         <label className="CheckBoxTitle">Bottom</label>
-        <label className="CheckBoxTitle">TrackName</label>
+        <label className="CheckBoxTitle">Track name</label>
       </div>
       <div>
         {this.props.ConfigFile.tracks.map(this.createCheckBox)}

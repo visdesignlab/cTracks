@@ -12,6 +12,7 @@ import HiglassAPI from './utils/HiglassAPI';
 import ChromView from './ChromView';
 import TracksMenu from './TracksMenu';
 import {testCNVTable} from './TestCNVTable.js';
+import NGSLink from './NGSLink.js';
 
 import ReactFileReader from 'react-file-reader';
 import Papa from 'papaparse';
@@ -113,12 +114,14 @@ class App extends Component {
     // CNVData: BED File information
     // HiglassView: ViewConfig for Higlass
     // InputConfigFile: Input JSON file provided by ARUP
+    // CNVSelection: selected CNV samples from analysis
     this.state = {
       ViewID: null,
       APIInfo: null,
       CNVData: null,
       HiglassView: null,
       InputConfigFile: null,
+      CNVSelection: null,
     };
 
     this.InitialInputConfigFile = null;
@@ -126,8 +129,7 @@ class App extends Component {
     this.highlightRegion = null;   // a region that we want highlighted
                                   // in the zoomed-in higlass view
                                   // should be updated in handleTableHover
-    this.CNVSelection = null; // selected CNV data from analysis
-    this.NGSLink = null;
+    //this.NGSLink = null;
 
     //Binding functions
     this.GenerateHiglassView = this.GenerateHiglassView.bind(this);
@@ -143,7 +145,7 @@ class App extends Component {
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.LoadConfigFile = this.LoadConfigFile.bind(this);
     this.Reset = this.Reset.bind(this);
-    this.GenerateNGSLink = this.GenerateNGSLink.bind(this);
+    //this.GenerateNGSLink = this.GenerateNGSLink.bind(this);
 
 
     this.chromInfo = null;
@@ -392,32 +394,42 @@ class App extends Component {
   }
 
   handleCNVSelection (CNVSelection) {
-    this.CNVSelection = CNVSelection;
-    console.log("CNVSelection: ", this.CNVSelection);
-    this.GenerateNGSLink();
+    //this.CNVSelection = CNVSelection;
+    console.log("Table Selection: ", CNVSelection);
+    //this.GenerateNGSLink();
+    this.UpdateCNVSelection(CNVSelection);
   }
 
-  GenerateNGSLink() {
-    //  "referralAdress": "https://ngs-web-Adress/variant?sampleCatalogId=2&id={ID}",
-    var referralAdress = this.state.InputConfigFile.referralAdress;
-    var TemplateID = "&id={ID}";
-    var newIDList = "";
-
-    if (this.CNVSelection != null) {
-      for (var i = 0; i < this.CNVSelection.length; i++) {
-        let newID = TemplateID.replace("ID",this.CNVSelection[i]);
-        newIDList = newIDList + newID;
+  // Update state of CNV selection
+  UpdateCNVSelection(selection) {
+    this.setState(function () {
+      return {
+        CNVSelection: selection
       }
-      referralAdress = referralAdress.replace(TemplateID,newIDList);
-    }
-    else {
-      let newIDList = TemplateID.replace("ID","");
-      referralAdress = referralAdress.replace(TemplateID,newIDList);  
-    }
+    });
+  }  
 
-    console.log("referralAdress",referralAdress);
-    this.NGSLink = referralAdress;
-  }
+  // GenerateNGSLink() {
+  //   //  "referralAdress": "https://ngs-web-Adress/variant?sampleCatalogId=2&id={ID}",
+  //   var referralAdress = this.state.InputConfigFile.referralAdress;
+  //   var TemplateID = "&id={ID}";
+  //   var newIDList = "";
+
+  //   if (this.CNVSelection != null) {
+  //     for (var i = 0; i < this.CNVSelection.length; i++) {
+  //       let newID = TemplateID.replace("ID",this.CNVSelection[i]);
+  //       newIDList = newIDList + newID;
+  //     }
+  //     referralAdress = referralAdress.replace(TemplateID,newIDList);
+  //   }
+  //   else {
+  //     let newIDList = TemplateID.replace("ID","");
+  //     referralAdress = referralAdress.replace(TemplateID,newIDList);  
+  //   }
+
+  //   console.log("referralAdress",referralAdress);
+  //   this.NGSLink = referralAdress;
+  // }
 
   render() {
     // Feature: can add button to choose our initial ViewConfig
@@ -463,9 +475,12 @@ class App extends Component {
 
             <div className = "Box">
               <label>CNV analysis - Send results</label>
-                <div>
-                  <a href={this.NGSLink} target="_blank">NGS Link with CNV samples</a>
-                </div>
+              { this.state.InputConfigFile && this.state.CNVSelection ?
+                <NGSLink 
+                  referralAdress={this.state.InputConfigFile.referralAdress}
+                  CNVSelection={this.state.CNVSelection} 
+                /> : null
+              }
             </div>
           </div>
 
@@ -497,7 +512,7 @@ class App extends Component {
 }
 
                 // <div>
-                //   <button onClick={this.NGSLink}>Continue</button>
+                //   <a href={this.NGSLink} target="_blank">NGS Link with CNV samples</a>
                 // </div>
 
             // <div>
