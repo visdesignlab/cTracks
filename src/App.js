@@ -191,11 +191,11 @@ class App extends Component {
       console.log('Reading input API...');
 
       // Warning reading proxyURL due to CORS issue when using the current mock API
-      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      //const proxyurl = "https://cors-anywhere.herokuapp.com/";
       //const url = 'http://ngsmockapi.azurewebsites.net/api/config/';
       const url = InputAPI["config"];
 
-      axios.get(proxyurl + url)
+      axios.get(url)
         .then( response => {
           var ConfigFile = response.data;
           this.InitialInputConfigFile = JSON.parse(JSON.stringify(ConfigFile));
