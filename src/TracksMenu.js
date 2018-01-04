@@ -13,8 +13,6 @@ class TracksMenu extends Component {
     this.toggleCheckBoxBottom = this.toggleCheckBoxBottom.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.createCheckBox = this.createCheckBox.bind(this);
-    //this.createCheckBoxTop = this.createCheckBoxTop.bind(this);
-    //this.createCheckBoxBottom = this.createCheckBoxBottom.bind(this);
     this.createCheckBoxes = this.createCheckBoxes.bind(this);
 
     this.prevConfigFile = JSON.stringify(props.ConfigFile);
@@ -25,8 +23,6 @@ class TracksMenu extends Component {
       return false;
     }
 
-    //console.log("shouldComponentUpdate: TracksMenu");
-    //console.log('YES', newProps.ConfigFile);
     this.prevConfigFile = newProps.ConfigFile;
     return true;
   }
@@ -57,7 +53,6 @@ class TracksMenu extends Component {
 
   handleFormSubmit (formSubmitEvent) {
     formSubmitEvent.preventDefault();
-    //console.log('CONFIG',this.props.ConfigFile);
     this.props.UpdateDisplay();
     // console.log(this.selectedCheckBoxes);
     // for (const checkBox of this.selectedCheckBoxes) {
