@@ -54,7 +54,7 @@ class NGSLink extends Component {
       referralAdress = referralAdress.replace(TemplateID,newIDList); 
     }
 
-    console.log("referralAdress",referralAdress);
+    //console.log("referralAdress",referralAdress);
     this.UpdateNGSLink(referralAdress);
   }
 
@@ -81,10 +81,7 @@ class NGSLink extends Component {
 
 NGSLink.propTypes = {
   referralAdress: PropTypes.string.isRequired,
-
 }
-
-//   CNVSelection: PropTypes.array.isRequired,
 
 export default NGSLink;
 
