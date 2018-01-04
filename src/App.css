@@ -26,8 +26,9 @@
 }
 
 .Box {
-  width: 250px;
+  width: 350px;
   margin: 10px;
+  margin-bottom: 20px;
   margin-left: 20px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -47,7 +48,7 @@
   margin-top: 10px;
 }
 
-.OptionsContainer {
+/*.OptionsContainer {
   width: 600px;
   margin: 10px;
   margin-left: 150px;
@@ -55,7 +56,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
+}*/
 
 #variantTable{
   padding-left:50px;

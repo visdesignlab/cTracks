@@ -1,5 +1,5 @@
 .TracksMenu {
-	width: 250px;
+	width: 350px;
 	margin: 10px;
 	margin-left: 50px;
 	padding: 10px;
@@ -7,7 +7,7 @@
 }
 
 .CheckBoxItem {
-	width: 225px;
+	width: 325px;
 	margin: 0px;
 	padding: 0px;
   display: flex;
