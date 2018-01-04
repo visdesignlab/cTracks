@@ -129,7 +129,6 @@ class App extends Component {
     this.highlightRegion = null;   // a region that we want highlighted
                                   // in the zoomed-in higlass view
                                   // should be updated in handleTableHover
-    //this.NGSLink = null;
 
     //Binding functions
     this.GenerateHiglassView = this.GenerateHiglassView.bind(this);
@@ -145,7 +144,6 @@ class App extends Component {
     this.ProcessCNVFile = this.ProcessCNVFile.bind(this);
     this.LoadConfigFile = this.LoadConfigFile.bind(this);
     this.Reset = this.Reset.bind(this);
-    //this.GenerateNGSLink = this.GenerateNGSLink.bind(this);
 
 
     this.chromInfo = null;
@@ -335,7 +333,6 @@ class App extends Component {
       // var text = reader.result;
     }
     //reader.readAsText(files[0]);
-
     ParseFile(files[0], this.UpdateCNVData);  
   }
 
@@ -394,9 +391,7 @@ class App extends Component {
   }
 
   handleCNVSelection (CNVSelection) {
-    //this.CNVSelection = CNVSelection;
-    console.log("Table Selection: ", CNVSelection);
-    //this.GenerateNGSLink();
+    //console.log("Table Selection: ", CNVSelection);
     this.UpdateCNVSelection(CNVSelection);
   }
 
@@ -407,29 +402,7 @@ class App extends Component {
         CNVSelection: selection
       }
     });
-  }  
-
-  // GenerateNGSLink() {
-  //   //  "referralAdress": "https://ngs-web-Adress/variant?sampleCatalogId=2&id={ID}",
-  //   var referralAdress = this.state.InputConfigFile.referralAdress;
-  //   var TemplateID = "&id={ID}";
-  //   var newIDList = "";
-
-  //   if (this.CNVSelection != null) {
-  //     for (var i = 0; i < this.CNVSelection.length; i++) {
-  //       let newID = TemplateID.replace("ID",this.CNVSelection[i]);
-  //       newIDList = newIDList + newID;
-  //     }
-  //     referralAdress = referralAdress.replace(TemplateID,newIDList);
-  //   }
-  //   else {
-  //     let newIDList = TemplateID.replace("ID","");
-  //     referralAdress = referralAdress.replace(TemplateID,newIDList);  
-  //   }
-
-  //   console.log("referralAdress",referralAdress);
-  //   this.NGSLink = referralAdress;
-  // }
+  }
 
   render() {
     // Feature: can add button to choose our initial ViewConfig
@@ -445,7 +418,7 @@ class App extends Component {
 
           <div className = "LeftPanel">
             <div className = "Box">
-              <label>Loading Input files</label>
+              <label>Loading input files</label>
 
               <div className = "FileReader">
                 <ReactFileReader  handleFiles={this.LoadConfigFile} fileTypes={'*'}>
@@ -474,7 +447,7 @@ class App extends Component {
             </div>
 
             <div className = "Box">
-              <label>CNV analysis - Send results</label>
+              <label>CNV analysis - Apply results</label>
               { this.state.InputConfigFile && this.state.CNVSelection ?
                 <NGSLink 
                   referralAdress={this.state.InputConfigFile.referralAdress}
@@ -493,7 +466,7 @@ class App extends Component {
                 /> : null 
               }
             </div>
-            <div>
+            <div className = "RightBox">
               {this.state.APIInfo && this.state.CNVData && 
               <CNVTable 
                 CNVData={this.state.CNVData}
@@ -511,25 +484,5 @@ class App extends Component {
   }
 }
 
-                // <div>
-                //   <a href={this.NGSLink} target="_blank">NGS Link with CNV samples</a>
-                // </div>
-
-            // <div>
-            //   {this.state.APIInfo && this.state.CNVData && 
-            //   <CNVTable 
-            //     CNVData={this.state.CNVData} 
-            //     location={this.state.APIInfo} 
-            //     onRowEnter={this.handleRowEnter.bind(this)}
-            //     onRowLeave={this.handleRowLeave.bind(this)}
-            //   />}
-            // </div>
-
-            // <div className = "Box">
-            //   <label>Reset View</label>
-            //   <div className = "FileReader">
-            //       <button className="btn btn-default" onClick={this.Reset}>Reset</button>
-            //   </div>
-            // </div>
 
 export default App;
