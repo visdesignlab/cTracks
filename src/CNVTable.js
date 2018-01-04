@@ -11,40 +11,6 @@ import './CNVTable.css';
 // include Higher Order Component (HOC) to React Table
 const CheckboxTable = checkboxHOC(ReactTable);
 
-
-// OPTIONAL: New TrComponent to potentially handle Hover in the future...
-// class MyTrComponent extends React.Component {
-//   constructor () {
-//     super()
-//     this.state = {
-//       background: null
-//     }
-//   }
-//   render () {
-//     const {children, className, style, ...rest} = this.props
-//     //console.log(rest)
-//     return (
-//       <div
-//         className={'rt-tr ' + className}
-//         style={{
-//           ...style,
-//           ...this.state
-//         }}
-//         {...rest}
-//         onMouseEnter={() => this.setState({
-//           background: 'yellow'
-//         })}
-//         onMouseLeave={() => this.setState({
-//           background: null
-//         })}
-//       >
-//         {children}
-//       </div>
-//     )
-//   }
-// }
-
-
 // Filter CVN data using location information (from ViewConfig) 
 function FilterInfo(location,data) {
     var Keys = Object.keys(data[0]);
@@ -153,28 +119,15 @@ class CNVTable extends Component {
       selection: [],
     };
     this.TableDataSize = null;
-    //this.prevCNVData = JSON.stringify(props.CNVData);
   }
 
   componentDidMount() {
-    //this.FilterCNVInfo();
     this.GenerateTableInfo();
   }
 
   componentDidUpdate() {
   }
 
-  // NOTE: this create issues with table checkbox
-  // shouldComponentUpdate(nextProps) {
-  //   if (this.prevCNVData === nextProps.CNVData) {
-  //     return false;
-  //   }
-
-  //   console.log('yes', nextProps.CNVData);
-  //   console.log("shouldComponentUpdate: CNVTable");
-  //   this.prevCNVData = nextProps.CNVData;
-  //   return true;
-  // }
 
   // Compare incoming Props with current props: new filtering and update when needed
   componentWillReceiveProps(nextProps) {
@@ -185,31 +138,25 @@ class CNVTable extends Component {
       //console.log("nextProps ", nextProps.location);
       this.FilterCNVInformation(nextProps.location,this.state.TableData);
     }
+
+    var ThisCNVDataString = this.props.CNVData.toString();
+    var NextCNVDataString = nextProps.CNVData.toString();
+    if (ThisCNVDataString !== NextCNVDataString) {
+      this.ReInitializeState();
+      this.GenerateTableInfo(nextProps.CNVData);
+    }
   }
 
+  ReInitializeState() {
+    this.setState({
+      TableData: null,
+      TableColumns: null,
+      FilteredData: null,
+      FilteredListId: null,
+      selection: [],
+    })
+  }
 
-  // // Compare incoming Props with current props: new filtering and update when needed
-  // componentWillReceiveProps_old(nextProps) {
-  //   // var ThisLocationString = this.props.location.toString();
-  //   // var NextLocationString = nextProps.location.toString();
-  //   // var ThisCNVDataLength = this.props.CNVData.length;
-  //   // var NextCNVDataLength = nextProps.CNVData.length;
-  //   // if ((ThisLocationString !== NextLocationString) | (ThisCNVDataLength !== NextCNVDataLength)) {
-  //   //   this.FilterCNVInfo2(nextProps);
-  //   // }
-  // }
-
-  // // Filter data and update table 
-  // FilterCNVInfo() {
-  //   var TableInfo = FilterInfo(this.props.location,this.props.CNVData);
-  //   this.UpdateTableData(TableInfo);
-  // }
-
-  // // Filter data based on incoming props, and update table
-  // FilterCNVInfo2(nextProps) {
-  //   var TableInfo = FilterInfo(nextProps.location,nextProps.CNVData);
-  //   this.UpdateTable(TableInfo);
-  // }
 
   // Update state of TableData
   UpdateTableData (data) {
@@ -247,9 +194,12 @@ class CNVTable extends Component {
     });
   }
 
-  GenerateTableInfo () {
+  GenerateTableInfo (CNVData) {
+
+    if (CNVData === undefined) CNVData = this.props.CNVData;
+
     // Create Table Data including uid
-    var Data = GenerateTableData(this.props.CNVData);
+    var Data = GenerateTableData(CNVData);
     this.UpdateTableData(Data);
 
     // Table Data size (for table display)
@@ -315,36 +265,6 @@ class CNVTable extends Component {
   }
 
 
-// NOTES: Test doesn't work
-  // TrProps = (state, rowInfo, column, instance) => {
-  //   //console.log('TABLE - rowInfo:', rowInfo);
-  //   const props = {
-  //     onClick: () => {
-  //       that.setState({
-  //         selectedRowIndex: rowInfo.index,
-  //       });
-  //     },
-  //     style: {
-  //       background: rowInfo.index === that.state.selectedRowIndex ? 'rgba(0, 175, 236, 0.3)' : null,
-  //       background: rowInfo.row.qual > 90 ? 'green' : null,  
-  //     },
-  //   };
-  //   return props;
-  // }
-
-// NOTE: this is an example
-  // onRowClick = (state, rowInfo, column, instance) => {
-  //   return {
-  //       onClick: e => {
-  //           console.log('A Td Element was clicked!')
-  //           console.log('it produced this event:', e)
-  //           console.log('It was in this column:', column)
-  //           console.log('It was in this row:', rowInfo)
-  //           console.log('It was in this table instance:', instance)
-  //       }
-  //   }
-  // }
-
   // function to handle row click
   handleRowClick (rowInfo) {
     this.props.onRowEnter(rowInfo.row);
@@ -405,26 +325,6 @@ class CNVTable extends Component {
 		)
 	}
 }
-
-//           TrComponent={MyTrComponent}
-
-          // NOTE: THIS WORKS
-          //   getTrProps={(state, rowInfo) => {
-          //   const props = {
-          //     onClick: () => {
-          //       this.setState({
-          //         selectedRowIndex: rowInfo.index,
-          //       });
-          //     },
-          //     style: {
-          //       background: rowInfo.index === this.state.selectedRowIndex ? 'rgba(0, 175, 236, 0.3)' : null,
-          //       background: rowInfo.row.qual > 90 ? 'green' : null,  
-          //     },
-          //   };
-          //   return props;
-          // }}
-          // />
-          // }
 
 CNVTable.propTypes = {
   CNVData: PropTypes.array.isRequired,
