@@ -333,6 +333,7 @@ class App extends Component {
       // var text = reader.result;
     }
     //reader.readAsText(files[0]);
+    this.UpdateCNVSelection(null);
     ParseFile(files[0], this.UpdateCNVData);  
   }
 
