@@ -1,0 +1,14 @@
+.CheckBox {
+	margin-left: 5px;
+	padding: 0px;
+	align-self: flex-start;
+}
+
+.CheckBoxLabel {
+	margin-left: 5px;
+	font-weight: normal;
+}
+
+input[type="checkbox"] + label { 
+	margin-left: 5px;
+}

@@ -1,4 +1,8 @@
-@import '../node_modules/higlass/build/hglib.css';
+/*
+@import '../../../../node_modules/higlass/build/hglib.css';
+*/
+
+@import './hglib.css';
 
 .higlass{
 
