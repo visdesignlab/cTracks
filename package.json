@@ -1,6 +1,6 @@
 {
   "name": "cTracks",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "main": "lib/index.js",
   "private": true,
   "dependencies": {
