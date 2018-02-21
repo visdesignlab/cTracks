@@ -2,7 +2,6 @@
   "name": "ctracks",
   "version": "0.3.1",
   "main": "lib/index.js",
-  "private": true,
   "dependencies": {
     "autoprefixer": "7.1.2",
     "axios": "^0.17.0",
