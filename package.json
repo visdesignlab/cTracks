@@ -1,5 +1,5 @@
 {
-  "name": "cTracks",
+  "name": "ctracks",
   "version": "0.3.0",
   "main": "lib/index.js",
   "private": true,
