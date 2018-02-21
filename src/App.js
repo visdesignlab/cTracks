@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import CTracksComp from 'components/CTracksComp';
 
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 
