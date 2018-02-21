@@ -8,6 +8,7 @@ A docker instance is also available: [ctracks-docker](https://github.com/visdesi
 ### Installation
 
  > npm install
+
  > npm start
 
  
