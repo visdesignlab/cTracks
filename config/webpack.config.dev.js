@@ -212,6 +212,26 @@ module.exports = {
       // Make sure to add the new loader(s) before the "file" loader.
     ],
   },
+  externals: {
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react',
+      root: 'React',
+    },
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom',
+      root: 'ReactDOM',
+    },
+    'react-router-dom': {
+      commonjs: 'react-router-dom',
+      commonjs2: 'react-router-dom',
+      amd: 'react-router-dom',
+      root: 'ReactRouterDOM',
+    },
+  },
   plugins: [
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
