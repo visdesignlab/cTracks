@@ -67,6 +67,7 @@ module.exports = {
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
+    libraryTarget: 'umd',
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path
@@ -240,6 +241,12 @@ module.exports = {
       commonjs2: 'react-dom',
       amd: 'react-dom',
       root: 'ReactDOM',
+    },
+    'react-bootstrap': {
+      commonjs: 'react-bootstrap',
+      commonjs2: 'react-bootstrap',
+      amd: 'react-bootstrap',
+      root: 'ReactBootstrap',
     },
     'react-router-dom': {
       commonjs: 'react-router-dom',

@@ -65,6 +65,7 @@ module.exports = {
     chunkFilename: 'static/js/[name].chunk.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
+    libraryTarget: 'umd',
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
@@ -224,6 +225,12 @@ module.exports = {
       commonjs2: 'react-dom',
       amd: 'react-dom',
       root: 'ReactDOM',
+    },
+    'react-bootstrap': {
+      commonjs: 'react-bootstrap',
+      commonjs2: 'react-bootstrap',
+      amd: 'react-bootstrap',
+      root: 'ReactBootstrap',
     },
     'react-router-dom': {
       commonjs: 'react-router-dom',
