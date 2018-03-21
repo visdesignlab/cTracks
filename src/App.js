@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import queryString from 'query-string';
 import axios from 'axios';
 
 import CTracksComp from 'components/CTracksComp';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 
@@ -70,7 +70,7 @@ var TMP_InputConfigFile =
 }
 
 
-class App extends Component {
+class App extends React.Component {
   constructor (props) {
     super(props);
 
