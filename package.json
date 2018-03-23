@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "peerDependencies": {
     "react": "^15.6.1",
-    "react-bootstrap": "^0.31.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.2.2"
   },
@@ -42,7 +42,7 @@
     "promise": "8.0.1",
     "query-string": "^5.0.1",
     "react": "^15.6.1",
-    "react-bootstrap": "^0.31.0",
+    "react-bootstrap": "^0.32.1",
     "react-dev-utils": "^4.0.1",
     "react-dom": "^15.6.1",
     "react-file-reader": "^1.1.2",
