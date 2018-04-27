@@ -1,12 +1,14 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # local files
+package-lock.json
 
 # dependencies
 /node_modules
 
 # testing
 /coverage
+
 
 # production
 /build
