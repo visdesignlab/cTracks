@@ -105,7 +105,7 @@ class App extends React.Component {
     var InputAPI_String = JSON.stringify(InputAPI);
 
     if (InputAPI_String === '{}') {
-      console.log('Warning: no input API!');
+      console.log('Note: no input file via URL... reading default input file');
       //this.InputFile = JSON.parse(JSON.stringify(TMP_InputConfigFile));
       this.setState(function () {
         return {
