@@ -8,7 +8,7 @@ import './index.css';
 
 ReactDOM.render(
   <Router>
-    <Route exact path='/' component={App}/>
+    <Route exact path='/:prefix' component={App}/>
   </Router>,
 	document.getElementById('root')
 	);

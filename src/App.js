@@ -2,6 +2,7 @@ import React from 'react';
 
 import queryString from 'query-string';
 import axios from 'axios';
+import hamradio from 'hamradio'
 
 import CTracksComp from 'components/CTracksComp';
 
@@ -74,6 +75,7 @@ var TMP_InputConfigFile =
 class App extends React.Component {
   constructor (props) {
     super(props);
+    hamradio.prefix(props.match.prefix)
 
     this.state = {
       InputFile: null,
@@ -145,7 +147,7 @@ class App extends React.Component {
 
         <div>
           { this.state.InputFile ?
-            <CTracksComp InputFile = {this.state.InputFile} /> : null
+            <CTracksComp InputFile = {this.state.InputFile}  /> : null
           }
         </div>
 
