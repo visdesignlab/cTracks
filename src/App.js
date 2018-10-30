@@ -3,6 +3,7 @@ import React from 'react';
 import queryString from 'query-string';
 import axios from 'axios';
 import hamradio from 'hamradio'
+import * as hglib from 'higlass';
 
 import CTracksComp from 'components/CTracksComp';
 
@@ -75,12 +76,12 @@ var TMP_InputConfigFile =
 class App extends React.Component {
   constructor (props) {
     super(props);
-    hamradio.prefix(props.match.prefix)
+    if (props.match.params.prefix) hamradio.prefix(props.match.params.prefix)
 
     this.state = {
       InputFile: null,
+      chromInfo: null
     }
-
 
     //Binding functions
     //this.ReadInputAPI = this.ReadInputAPI.bind(this);
@@ -92,9 +93,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    hglib.ChromosomeInfo('http://higlass.io/api/v1/chrom-sizes/?id=Ajn_ttUUQbqgtOD4nOt-IA')
+      .then(info => this.setState({chromInfo: info}))
 
     this.ReadInputAPI();
-
   }
 
   componentDidUpdate() {
@@ -146,8 +148,11 @@ class App extends React.Component {
         </div>
 
         <div>
-          { this.state.InputFile ?
-            <CTracksComp InputFile = {this.state.InputFile}  /> : null
+          { this.state.InputFile && this.state.chromInfo ?
+            <CTracksComp
+              InputFile = {this.state.InputFile}
+              chromInfo = {this.state.chromInfo}
+            /> : null
           }
         </div>
 
