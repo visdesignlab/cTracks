@@ -9,8 +9,7 @@ import './index.css';
 ReactDOM.render(
   <Router>
     <Route exact path='/' component={App}/>
-  </Router>, 
+  </Router>,
 	document.getElementById('root')
 	);
 registerServiceWorker();
-

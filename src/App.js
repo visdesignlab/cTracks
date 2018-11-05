@@ -12,6 +12,7 @@ import './App.css';
 // WARNING: TEMPORARY Input Config File - it will be replaced by ARUP API JSON file
 var TMP_InputConfigFile =
 {
+  "uid": "demo",
   "server": "http://155.98.19.129:8989/api/v1",
   "referralAdress": "https://ngs-web-Adress/variant?sampleCatalogId=2&id={ID}",
   "CNVBEDLocation": "https://ngs-web-Adress/variant?sampleCatalogId=2&BED=cnv.bed",
@@ -111,7 +112,7 @@ class App extends React.Component {
         return {
           InputFile: JSON.parse(JSON.stringify(TMP_InputConfigFile))
         }
-      }) 
+      })
     }
     else {
       console.log('Reading input API...');
@@ -129,7 +130,7 @@ class App extends React.Component {
             return {
               InputFile: JSON.parse(JSON.stringify(ConfigFile))
             }
-          }) 
+          })
       })
         .catch(error => console.log("Error",error));
     }
@@ -143,8 +144,8 @@ class App extends React.Component {
         </div>
 
         <div>
-          { this.state.InputFile ? 
-            <CTracksComp InputFile = {this.state.InputFile} /> : null 
+          { this.state.InputFile ?
+            <CTracksComp InputFile = {this.state.InputFile} /> : null
           }
         </div>
 
