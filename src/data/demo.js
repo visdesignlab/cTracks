@@ -1,4 +1,5 @@
 import hamradio from 'hamradio'
+import {testCNVTable} from './TestCNVTable.js';
 
 const server = "http://155.98.19.129:8989/api/v1"
 
@@ -81,6 +82,7 @@ let tracks = [
 ]
 
 export default function () {
+  hamradio.publish('cTracks/variants', testCNVTable)
   hamradio.publish('server/add', server)
     .then(() => {
       tracks.forEach(trackDiffs => {
