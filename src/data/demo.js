@@ -33,7 +33,6 @@ let tracks = [
     "name": "sim_02_sorted.ballele.hitile",
     "tilesetUid": "hitile-ballele_sim02",
     "uid": "hitile-ballele_sim02-track",
-    "trackType": "ballele",
     options: {
       name: "sim_02_sorted.ballele",
       pointColor: "red"
@@ -43,7 +42,6 @@ let tracks = [
     "name": "sim_02_sorted.log2_log2.hitile",
     "tilesetUid": "hitile-log2_log2_sim02",
     "uid": "hitile-log2_log2_sim02-track",
-    "trackType": "log2",
     options: {
       name: "sim_02_sorted.log2_log2",
       pointColor: "orange"
@@ -53,7 +51,6 @@ let tracks = [
     "name": "sim_02_sorted.log2_qual.hitile",
     "tilesetUid": "hitile-log2_qual_sim02",
     "uid": "hitile-log2_qual_sim02-track",
-    "trackType": "log2_qual",
     options: {
       name: "sim_02_sorted.log2_qual",
       pointColor: "green"
@@ -63,7 +60,6 @@ let tracks = [
     "name": "sim_02_sorted.cnv_log2.hitile",
     "tilesetUid": "hitile-cnv_log2_sim02",
     "uid": "hitile-cnv_log2_sim02-track",
-    "trackType": "cnv",
     options: {
       name: "sim_02_sorted.cnv_log2",
       pointColor: "turquoise"
@@ -73,7 +69,6 @@ let tracks = [
     "name": "sim_02_sorted.reads.hitile",
     "tilesetUid": "hitile-reads_sim02",
     "uid": "hitile-reads_sim02-track",
-    "trackType": "reads",
     options: {
       name: "sim_02_sorted.reads",
       pointColor: "blue"
@@ -83,19 +78,22 @@ let tracks = [
 
 export default function () {
   hamradio.publish('cTracks/variants', testCNVTable)
+  hamradio.publish('server/add', 'localhost:8888/api/v1')
   hamradio.publish('server/add', server)
-    .then(() => {
-      tracks.forEach(trackDiffs => {
-        let track = {
-          ...trackTemplate,
-          ...trackDiffs,
-          options: {
-            ...optionsTemplate,
-            ...trackDiffs.options
-          }
-        }
-        hamradio.publish('track/add/global', track)
-        hamradio.publish('track/add/focus', track)
-      })
+  tracks.forEach((trackDiffs, i) => {
+    let track = {
+      ...trackTemplate,
+      ...trackDiffs,
+      options: {
+        ...optionsTemplate,
+        ...trackDiffs.options
+      }
+    }
+    hamradio.publish('track/add', {
+      track,
+      global: true,
+      focus: true,
+      order: i
     })
+  })
 }
