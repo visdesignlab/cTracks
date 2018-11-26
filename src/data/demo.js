@@ -1,35 +1,13 @@
 import hamradio from 'hamradio'
 import {testCNVTable} from './TestCNVTable.js';
 
+import tracks from '../node_modules/components/CTracksComp/utils/tracks'
+
 const server = "http://155.98.19.129:8989/api/v1"
 
-const optionsTemplate = {
-  labelColor: "black",
-  labelPosition: "topLeft",
-  axisPositionHorizontal: "right",
-  pointColor: "red",
-  pointSize: 2,
-  valueScaling: "linear",
-  trackBorderWidth: 1,
-  trackBorderColor: "grey",
-  labelTextOpacity: 0.4,
-  name: "template_label"
-}
-
-const trackTemplate = {
-  name: "template.hitile",
-  server,
-  tilesetUid: "template_tilesetUid",
-  uid: "uid",
-  type: "horizontal-point",
-  width: 770,
-  height: 38,
-  position: "top",
-  options: {}
-}
-
-let tracks = [
+let demoTracks = [
   {
+    server,
     "name": "sim_02_sorted.ballele.hitile",
     "tilesetUid": "hitile-ballele_sim02",
     "uid": "hitile-ballele_sim02-track",
@@ -39,6 +17,7 @@ let tracks = [
     }
   },
   {
+    server,
     "name": "sim_02_sorted.log2_log2.hitile",
     "tilesetUid": "hitile-log2_log2_sim02",
     "uid": "hitile-log2_log2_sim02-track",
@@ -48,6 +27,7 @@ let tracks = [
     }
   },
   {
+    server,
     "name": "sim_02_sorted.log2_qual.hitile",
     "tilesetUid": "hitile-log2_qual_sim02",
     "uid": "hitile-log2_qual_sim02-track",
@@ -57,6 +37,7 @@ let tracks = [
     }
   },
   {
+    server,
     "name": "sim_02_sorted.cnv_log2.hitile",
     "tilesetUid": "hitile-cnv_log2_sim02",
     "uid": "hitile-cnv_log2_sim02-track",
@@ -66,6 +47,7 @@ let tracks = [
     }
   },
   {
+    server,
     "name": "sim_02_sorted.reads.hitile",
     "tilesetUid": "hitile-reads_sim02",
     "uid": "hitile-reads_sim02-track",
@@ -78,17 +60,10 @@ let tracks = [
 
 export default function () {
   hamradio.publish('cTracks/variants', testCNVTable)
-  hamradio.publish('server/add', 'localhost:8888/api/v1')
   hamradio.publish('server/add', server)
-  tracks.forEach((trackDiffs, i) => {
-    let track = {
-      ...trackTemplate,
-      ...trackDiffs,
-      options: {
-        ...optionsTemplate,
-        ...trackDiffs.options
-      }
-    }
+  hamradio.publish('server/add', 'http://localhost:8888/api/v1')
+  demoTracks.forEach((trackDiffs, i) => {
+    let track = tracks.track(trackDiffs, tracks.horizontalPointOptions(trackDiffs.options))
     hamradio.publish('track/add', {
       track,
       global: true,
