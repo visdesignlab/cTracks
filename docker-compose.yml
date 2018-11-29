@@ -1,6 +1,12 @@
 version: '3'
 services:
-  web:
+  ctracks:
     build: .
     ports:
-     - "3000:3000"
+      - "3000:3000"
+  higlass:
+    build:
+      context: ../higlass-server
+      dockerfile: docker-context/Dockerfile
+    ports:
+      - "8888:80"
