@@ -14,12 +14,11 @@ import './App.css';
 class App extends React.Component {
   constructor (props) {
     super(props);
-    let uid = props.match.params.prefix || 'demo'
-    hamradio.prefix(uid)
+    if (props.match.params.prefix) hamradio.prefix(props.match.params.prefix)
 
     this.state = {
       chromInfo: null,
-      uid
+      uid: props.match.params.prefix
     }
 
   }
