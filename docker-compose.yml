@@ -3,4 +3,19 @@ services:
   web:
     build: .
     ports:
-     - "3000:3000"
+      - "3000:3000"
+  higlass:
+    build:
+      context: ../higlass-server
+      dockerfile: docker-context/Dockerfile
+    ports:
+      - "8888:80"
+    volumes:
+      - /tmp/data:/data
+      - /tmp/tmp:/tmp
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/fuse
+    security_opt:
+      - apparmor:unconfined
