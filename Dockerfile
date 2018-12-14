@@ -10,7 +10,7 @@ RUN npm install
 WORKDIR /usr/src/
 RUN git clone https://github.com/higlass/higlass.git
 WORKDIR /usr/src/higlass
-RUN git checkout develop
+RUN git checkout v1.3.0-rc.5
 RUN npm install
 RUN npm run build
 RUN npm link
