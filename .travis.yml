@@ -9,6 +9,7 @@ branches:
 before_script:
 - npm install --quiet -g gulp
 - npm install
+- echo "SKIP_PREFLIGHT_CHECK=true" > .env
 before_deploy:
 - travis_wait npm run build
 deploy:
