@@ -6,6 +6,7 @@ import * as hglib from 'higlass';
 import demo from './data/demo.js'
 
 import CTracksComp from 'components/CTracksComp';
+import ResilientData from 'components/CTracksComp/ResilientData'
 
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -15,6 +16,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     if (props.match.params.prefix) hamradio.prefix(props.match.params.prefix)
+    ResilientData.initialize(`cTracks/${props.match.params.prefix || ''}`) // gets it to listen to the events and store critical data, also initializes the data to store what's in SessionStorage
 
     this.state = {
       chromInfo: null,
@@ -31,7 +33,7 @@ class App extends React.Component {
     hglib.ChromosomeInfo('http://higlass.io/api/v1/chrom-sizes/?id=Ajn_ttUUQbqgtOD4nOt-IA')
       .then(info => this.setState({chromInfo: info}))
 
-    if (this.state.uid === 'demo')
+    if (this.state.uid === 'demo' && !ResilientData.servers().length)
       demo()
 
     hamradio.publish('ready/cTracks')

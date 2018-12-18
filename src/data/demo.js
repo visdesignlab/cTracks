@@ -61,6 +61,12 @@ let demoTracks = [
 export default function () {
   hamradio.publish('cTracks/variants', testCNVTable)
   hamradio.publish('server/add', {name: 'Demo', api: server})
+  hamradio.publish('tools', {
+    zoom: true,
+    servers: true,
+    urls: true,
+    tracks: true
+  })
   demoTracks.forEach((trackDiffs, i) => {
     let track = tracks.track(trackDiffs, tracks.horizontalPointOptions(trackDiffs.options))
     hamradio.publish('track/add', {
