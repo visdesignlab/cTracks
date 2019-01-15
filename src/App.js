@@ -15,14 +15,21 @@ import './App.css';
 class App extends React.Component {
   constructor (props) {
     super(props);
-    if (props.match.params.prefix) hamradio.prefix(props.match.params.prefix)
-    ResilientData.initialize(`cTracks/${props.match.params.prefix || ''}`) // gets it to listen to the events and store critical data, also initializes the data to store what's in SessionStorage
+    const prefix = props.match.params.prefix
+      ? props.match.params.prefix
+      : props.location.hash
+        ? props.location.hash.replace(/^#/, '')
+        : ''
+
+    if (prefix !== '') {
+      hamradio.prefix(prefix)
+    }
+    ResilientData.initialize(`cTracks/${prefix}`) // gets it to listen to the events and store critical data, also initializes the data to store what's in SessionStorage
 
     this.state = {
       chromInfo: null,
-      uid: props.match.params.prefix
+      uid: prefix
     }
-
   }
 
   componentWillMount() {
