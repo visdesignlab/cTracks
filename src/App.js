@@ -40,7 +40,7 @@ class App extends React.Component {
     hglib.ChromosomeInfo('http://higlass.io/api/v1/chrom-sizes/?id=Ajn_ttUUQbqgtOD4nOt-IA')
       .then(info => this.setState({chromInfo: info}))
 
-    if (this.state.uid === 'demo' && !ResilientData.servers().length)
+    if (this.state.uid === 'demo' && !ResilientData.servers.get().length)
       demo()
 
     hamradio.publish('ready/cTracks')
