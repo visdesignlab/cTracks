@@ -68,12 +68,12 @@ export default function () {
     tracks: true
   })
   demoTracks.forEach((trackDiffs, i) => {
-    let track = tracks.track(trackDiffs, tracks.horizontalPointOptions(trackDiffs.options))
+    let tileset = tracks.track(trackDiffs, tracks.horizontalPointOptions(trackDiffs.options))
     hamradio.publish('track/add', {
-      track,
+      tilesets: {[tileset.uid]: tileset},
       global: true,
       focus: true,
-      order: i
+      row: i
     })
   })
 }
