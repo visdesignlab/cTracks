@@ -73,8 +73,7 @@ export default function () {
     tracks: true
   })
   demoTracks.forEach((trackDiffs, i) => {
-    let tileset = tracks.track(trackDiffs, tracks.horizontalPointOptions(trackDiffs.options))
-    console.log(tileset)
+    let tileset = tracks.track(trackDiffs, tracks.options['horizontal-point'](trackDiffs.options))
     hamradio.publish('track/add', {
       tilesets: {[tileset.uid]: tileset},
       global: true,
