@@ -11,6 +11,7 @@ let demoTracks = [
     "name": "sim_02_sorted.ballele.hitile",
     "tilesetUid": "hitile-ballele_sim02",
     "uid": "hitile-ballele_sim02-track",
+    "filetype": "hitile",
     options: {
       name: "sim_02_sorted.ballele",
       pointColor: "red"
@@ -21,6 +22,7 @@ let demoTracks = [
     "name": "sim_02_sorted.log2_log2.hitile",
     "tilesetUid": "hitile-log2_log2_sim02",
     "uid": "hitile-log2_log2_sim02-track",
+    "filetype": "hitile",
     options: {
       name: "sim_02_sorted.log2_log2",
       pointColor: "orange"
@@ -31,6 +33,7 @@ let demoTracks = [
     "name": "sim_02_sorted.log2_qual.hitile",
     "tilesetUid": "hitile-log2_qual_sim02",
     "uid": "hitile-log2_qual_sim02-track",
+    "filetype": "hitile",
     options: {
       name: "sim_02_sorted.log2_qual",
       pointColor: "green"
@@ -41,6 +44,7 @@ let demoTracks = [
     "name": "sim_02_sorted.cnv_log2.hitile",
     "tilesetUid": "hitile-cnv_log2_sim02",
     "uid": "hitile-cnv_log2_sim02-track",
+    "filetype": "hitile",
     options: {
       name: "sim_02_sorted.cnv_log2",
       pointColor: "turquoise"
@@ -51,6 +55,7 @@ let demoTracks = [
     "name": "sim_02_sorted.reads.hitile",
     "tilesetUid": "hitile-reads_sim02",
     "uid": "hitile-reads_sim02-track",
+    "filetype": "hitile",
     options: {
       name: "sim_02_sorted.reads",
       pointColor: "blue"
@@ -68,7 +73,7 @@ export default function () {
     tracks: true
   })
   demoTracks.forEach((trackDiffs, i) => {
-    let tileset = tracks.track(trackDiffs, tracks.horizontalPointOptions(trackDiffs.options))
+    let tileset = tracks.track(trackDiffs, tracks.options['horizontal-point'](trackDiffs.options))
     hamradio.publish('track/add', {
       tilesets: {[tileset.uid]: tileset},
       global: true,
