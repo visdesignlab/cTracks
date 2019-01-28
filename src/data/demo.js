@@ -64,7 +64,11 @@ let demoTracks = [
 ]
 
 export default function () {
-  hamradio.publish('cTracks/variants', testCNVTable)
+  hamradio.publish('variants', testCNVTable)
+  hamradio.publish('features/cnv', {
+    color: 'green',
+    locations: testCNVTable.map(cnv => [[cnv['#chrom'], cnv['start']], [cnv['#chrom'], cnv['stop']]])
+  })
   hamradio.publish('server/add', {name: 'Demo', api: server})
   hamradio.publish('tools', {
     zoom: true,
