@@ -6,16 +6,16 @@ WORKDIR /usr/src/ctracks
 COPY package.json ./
 RUN npm install
 
-# Only use this section until higlass is updated
-WORKDIR /usr/src/
-RUN git clone https://github.com/higlass/higlass.git
-WORKDIR /usr/src/higlass
-RUN git checkout v1.3.0-rc.5
-RUN npm install
-RUN npm run build
-RUN npm link
-WORKDIR /usr/src/ctracks
-RUN npm link higlass
+## Only use this section if higlass needs to be on a specific branch
+# WORKDIR /usr/src/
+# RUN git clone https://github.com/higlass/higlass.git
+# WORKDIR /usr/src/higlass
+# RUN git checkout v1.3.0-rc.5
+# RUN npm install
+# RUN npm run build
+# RUN npm link
+# WORKDIR /usr/src/ctracks
+# RUN npm link higlass
 
 COPY . .
 EXPOSE 3000
