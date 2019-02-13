@@ -8,10 +8,10 @@ const server = "http://155.98.19.129:8989/api/v1"
 let demoTracks = [
   {
     server,
-    "name": "sim_02_sorted.ballele.hitile",
-    "tilesetUid": "hitile-ballele_sim02",
-    "uid": "hitile-ballele_sim02-track",
-    "filetype": "hitile",
+    "name": "sim_02_sorted.ballele.bigwig",
+    "tilesetUid": "bigwig-ballele_sim02",
+    "uid": "bigwig-ballele_sim02-track",
+    "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.ballele",
       pointColor: "red"
@@ -19,10 +19,10 @@ let demoTracks = [
   },
   {
     server,
-    "name": "sim_02_sorted.log2_log2.hitile",
-    "tilesetUid": "hitile-log2_log2_sim02",
-    "uid": "hitile-log2_log2_sim02-track",
-    "filetype": "hitile",
+    "name": "sim_02_sorted.log2_log2.bigwig",
+    "tilesetUid": "bigwig-log2_log2_sim02",
+    "uid": "bigwig-log2_log2_sim02-track",
+    "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.log2_log2",
       pointColor: "orange"
@@ -30,10 +30,10 @@ let demoTracks = [
   },
   {
     server,
-    "name": "sim_02_sorted.log2_qual.hitile",
-    "tilesetUid": "hitile-log2_qual_sim02",
-    "uid": "hitile-log2_qual_sim02-track",
-    "filetype": "hitile",
+    "name": "sim_02_sorted.log2_qual.bigwig",
+    "tilesetUid": "bigwig-log2_qual_sim02",
+    "uid": "bigwig-log2_qual_sim02-track",
+    "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.log2_qual",
       pointColor: "green"
@@ -41,10 +41,10 @@ let demoTracks = [
   },
   {
     server,
-    "name": "sim_02_sorted.cnv_log2.hitile",
-    "tilesetUid": "hitile-cnv_log2_sim02",
-    "uid": "hitile-cnv_log2_sim02-track",
-    "filetype": "hitile",
+    "name": "sim_02_sorted.cnv_log2.bigwig",
+    "tilesetUid": "bigwig-cnv_log2_sim02",
+    "uid": "bigwig-cnv_log2_sim02-track",
+    "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.cnv_log2",
       pointColor: "turquoise"
@@ -52,10 +52,10 @@ let demoTracks = [
   },
   {
     server,
-    "name": "sim_02_sorted.reads.hitile",
-    "tilesetUid": "hitile-reads_sim02",
-    "uid": "hitile-reads_sim02-track",
-    "filetype": "hitile",
+    "name": "sim_02_sorted.reads.bigwig",
+    "tilesetUid": "bigwig-reads_sim02",
+    "uid": "bigwig-reads_sim02-track",
+    "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.reads",
       pointColor: "blue"
