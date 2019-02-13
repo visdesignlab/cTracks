@@ -16,7 +16,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     const hash = props.location.hash.replace(/^#/, '')
-    const prefix = hash !== '' ? hash : props.location.pathname
+    const prefix = hash !== '' ? hash : props.location.pathname.replace(/^\//, '')
 
     if (prefix !== '') {
       hamradio.prefix(prefix)
