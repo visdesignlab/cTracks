@@ -15,11 +15,8 @@ import './App.css';
 class App extends React.Component {
   constructor (props) {
     super(props);
-    const prefix = props.match.params.prefix
-      ? props.match.params.prefix
-      : props.location.hash
-        ? props.location.hash.replace(/^#/, '')
-        : ''
+    const hash = props.location.hash.replace(/^#/, '')
+    const prefix = hash !== '' ? hash : props.location.pathname
 
     if (prefix !== '') {
       hamradio.prefix(prefix)
