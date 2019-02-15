@@ -74,7 +74,9 @@ export default function () {
     zoom: true,
     servers: true,
     urls: true,
-    tracks: true
+    tracks: true,
+    addtracks: true,
+    removetracks: true
   })
   demoTracks.forEach((trackDiffs, i) => {
     let tileset = tracks.track(trackDiffs, tracks.options['horizontal-point'](trackDiffs.options))
