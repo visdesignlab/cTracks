@@ -19,3 +19,5 @@ services:
       - /dev/fuse
     security_opt:
       - apparmor:unconfined
+    environment:
+      - SSL_VERIFY=${SSL_VERIFY:-1}
