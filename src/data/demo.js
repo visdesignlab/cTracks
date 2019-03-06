@@ -84,7 +84,7 @@ export default function () {
       tilesets: {[tileset.uid]: tileset},
       global: true,
       focus: true,
-      row: i
+      row: i+1
     })
   })
 }
