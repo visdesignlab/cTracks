@@ -66,7 +66,7 @@ let demoTracks = [
 export default function () {
   hamradio.publish('variants', testCNVTable)
   hamradio.publish('features/cnv', {
-    color: 'gray',
+    color: '#FFA500',
     locations: testCNVTable.map(cnv => [[cnv['#chrom'], cnv['start']], [cnv['#chrom'], cnv['stop']]])
   })
   hamradio.publish('server/add', {name: 'Demo', api: server})
@@ -84,7 +84,7 @@ export default function () {
       tilesets: {[tileset.uid]: tileset},
       global: true,
       focus: true,
-      order: i,
+      order: i+1,
       uid: `${tileset.uid}-track`
     })
   })
