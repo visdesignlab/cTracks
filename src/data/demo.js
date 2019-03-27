@@ -85,7 +85,8 @@ export default function () {
       global: true,
       focus: true,
       order: i,
-      uid: `${tileset.uid}-track`
+      uid: `${tileset.uid}-track`,
+      label: `${tileset.name.split('.')[1]}`
     })
   })
 }
