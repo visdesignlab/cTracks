@@ -10,7 +10,7 @@ let demoTracks = [
     server,
     "name": "sim_02_sorted.ballele.bigwig",
     "tilesetUid": "bigwig-ballele_sim02",
-    "uid": "bigwig-ballele_sim02-track",
+    "uid": "bigwig-ballele_sim02-tileset",
     "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.ballele",
@@ -21,7 +21,7 @@ let demoTracks = [
     server,
     "name": "sim_02_sorted.log2_log2.bigwig",
     "tilesetUid": "bigwig-log2_log2_sim02",
-    "uid": "bigwig-log2_log2_sim02-track",
+    "uid": "bigwig-log2_log2_sim02-tileset",
     "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.log2_log2",
@@ -32,7 +32,7 @@ let demoTracks = [
     server,
     "name": "sim_02_sorted.log2_qual.bigwig",
     "tilesetUid": "bigwig-log2_qual_sim02",
-    "uid": "bigwig-log2_qual_sim02-track",
+    "uid": "bigwig-log2_qual_sim02-tileset",
     "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.log2_qual",
@@ -43,7 +43,7 @@ let demoTracks = [
     server,
     "name": "sim_02_sorted.cnv_log2.bigwig",
     "tilesetUid": "bigwig-cnv_log2_sim02",
-    "uid": "bigwig-cnv_log2_sim02-track",
+    "uid": "bigwig-cnv_log2_sim02-tileset",
     "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.cnv_log2",
@@ -54,7 +54,7 @@ let demoTracks = [
     server,
     "name": "sim_02_sorted.reads.bigwig",
     "tilesetUid": "bigwig-reads_sim02",
-    "uid": "bigwig-reads_sim02-track",
+    "uid": "bigwig-reads_sim02-tileset",
     "filetype": "bigwig",
     options: {
       name: "sim_02_sorted.reads",
@@ -84,7 +84,8 @@ export default function () {
       tilesets: {[tileset.uid]: tileset},
       global: true,
       focus: true,
-      row: i+1
+      order: i+1,
+      uid: `${tileset.uid}-track`
     })
   })
 }
