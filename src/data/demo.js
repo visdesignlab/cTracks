@@ -86,7 +86,8 @@ export default function () {
       focus: true,
       order: i+1,
       uid: `${tileset.uid}-track`,
-      label: `${tileset.name.split('.')[1]}`
+      label: `${tileset.name.split('.')[1]}`,
+      backgroundColor: 'white'
     })
   })
 }
