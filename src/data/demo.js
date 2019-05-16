@@ -68,11 +68,11 @@ export default function () {
   hamradio.publish('server/add', {name: 'Demo', api: server})
   hamradio.publish('tools', {
     zoom: true,
-    servers: true,
-    urls: true,
-    tracks: true,
-    addtracks: true,
-    removetracks: true
+    servers: false,
+    urls: false,
+    tracks: false,
+    addtracks: false,
+    removetracks: false
   })
   demoTracks.forEach((trackDiffs, i) => {
     let tileset = tracks.track(trackDiffs, tracks.options['horizontal-point'](trackDiffs.options))

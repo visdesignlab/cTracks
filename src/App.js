@@ -50,16 +50,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>cTracks</h2>
-        </div>
 
-        <div>
-          <CTracksComp
-            chromInfo = {this.state.chromInfo}
-            uid = {this.state.uid}
-          />
-        </div>
+        <CTracksComp
+          chromInfo = {this.state.chromInfo}
+          uid = {this.state.uid}
+        />
 
       </div>
     )
